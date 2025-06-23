@@ -63,3 +63,9 @@
 .login-box button:hover {
   background-color: #ef3cff;
 }
+
+.link{
+    margin-top: 10px;
+    text-decoration: none;
+    color: #ef3cff;
+}

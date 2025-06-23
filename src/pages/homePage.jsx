@@ -8,6 +8,10 @@ export default function HomePage() {
                 <p>This is a simple React homepage styled with CSS.</p>
                 <button>Explore More</button>
             </div>
+
+
         </div>
+
+
     );
 }

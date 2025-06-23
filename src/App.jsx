@@ -2,8 +2,10 @@
 import React from 'react'
 import './App.css'
 import HomePage from './pages/homePage'
+import SignupPage from './pages/signUpPage'
 import LoginPage from './pages/loginPage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import AdminHomePage from './pages/adminHomePage'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -14,10 +16,11 @@ function App() {
 
 
         <Routes path="/*">
-          <Route path="/" element={<LoginPage />} />
-          {/* <Route path='/signup' element={<SignupPage />} /> */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path='/*' element={<h1>404 Not Found</h1>} />
+          <Route path='/admin/*' element={<AdminHomePage />} />
+          <Route path='/*' element={<HomePage />} />
         </Routes>
 
       </BrowserRouter>

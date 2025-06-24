@@ -24,7 +24,7 @@ export default function AdminProductPage() {
             <div className="w-full  bg-white shadow-lg rounded-lg overflow-hidden">
                 <h1 className="text-2xl font-bold text-gray-800 mb-5 text-center ">Admin Product Page</h1>
 
-                <div className="h-[400px] overflow-y-auto"> {/* Vertical Scroll */}
+                <div className="h-[400px] overflow-y-auto "> {/* Vertical Scroll */}
                     <table className="w-full text-sm text-left text-gray-700">
                         <thead className="text-xs uppercase bg-blue-200 text-gray-600 sticky top-0">
                             <tr>

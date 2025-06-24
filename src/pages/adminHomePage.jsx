@@ -4,37 +4,38 @@ import { FaUsers } from "react-icons/fa";
 import { MdInventory } from "react-icons/md";
 import { BsCartCheckFill } from "react-icons/bs";
 import AdminProductPage from "./admin/adminProductPage";
+import AddProductForm from "./admin/addProductForm";
 
 export default function AdminHomePage() {
     return (
         <div className=" w-full h-screen flex">
             {/* Sidebar */}
-            <div className="w-[15%] h-full bg-gray-200  flex flex-col items-start py-10 px-5 space-y-6 ">
-                <h2 className="text-xl font-bold mb-6 text-gray-700">Admin Panel</h2>
+            <div className="w-[18%] h-full bg-gray-800  flex flex-col items-start py-10 px-10 space-y-8 ">
+                <h2 className="text-xl font-bold mb-6 text-white">Admin Panel</h2>
                 <Link
                     to="/admin/dashboard"
-                    className="flex items-center space-x-3 text-gray-700  hover:text-indigo-600 transition"
+                    className="flex items-center space-x-3 text-white  hover:text-blue-200 transition"
                 >
                     <GoGraph size={20} />
                     <span>Dashboard</span>
                 </Link>
                 <Link
                     to="/admin/users"
-                    className="flex items-center space-x-3 text-gray-700 hover:text-indigo-600 transition"
+                    className="flex items-center space-x-3 text-white hover:text-blue-200 transition"
                 >
                     <FaUsers size={20} />
                     <span>Users</span>
                 </Link>
                 <Link
                     to="/admin/products"
-                    className="flex items-center space-x-3 text-gray-700 hover:text-indigo-600 transition"
+                    className="flex items-center space-x-3 text-white hover:text-blue-200 transition"
                 >
                     <MdInventory size={20} />
                     <span>Products</span>
                 </Link>
                 <Link
                     to="/admin/orders"
-                    className="flex items-center space-x-3 text-gray-700 hover:text-indigo-600 transition"
+                    className="flex items-center space-x-3 text-white hover:text-blue-200 transition"
                 >
                     <BsCartCheckFill size={20} />
                     <span>Orders</span>
@@ -42,21 +43,21 @@ export default function AdminHomePage() {
             </div>
 
             {/* Main Content */}
-            <div className="w-[85%] h-screen bg-gray-100 p-10">
-                <h1 className="text-2xl font-semibold text-gray-800">Welcome to Admin Dashboard</h1>
-                {/* Add content here */}
-                <div className="border border-gray-300  flex h-full p-10">
-                    <Routes path="/*">
-                        <Route path="/dashboard" element={<h1>Dashboard</h1>} />
-                        <Route path="/users" element={<h1>Users</h1>} />
-                        <Route path="/products" element={<AdminProductPage />} />
-                        <Route path="/orders" element={<h1>Orders</h1>} />
-                        <Route path='/*' element={<h1>404 Not Found the page</h1>} />
 
-                    </Routes>
-                </div>
+            {/* Add content here */}
+            <div className="border border-gray-300  flex w-full h-full p-5">
+                <Routes path="/*">
+                    <Route path="/dashboard" element={<h1>Dashboard</h1>} />
+                    <Route path="/users" element={<h1>Users</h1>} />
+                    <Route path="/products" element={<AdminProductPage />} />
+                    <Route path="/products/addProduct" element={<AddProductForm />} />
+                    <Route path="/orders" element={<h1>Orders</h1>} />
+                    <Route path='/*' element={<h1>404 Not Found the page</h1>} />
 
+                </Routes>
             </div>
+
+
 
         </div>
     );

@@ -2,33 +2,12 @@ import { Link } from 'react-router-dom';
 
 export default function LoginPage() {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-600">
-            <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
-                <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Welcome Back</h2>
-                <form className="space-y-5">
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                    />
-                    <button
-                        type="submit"
-                        className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-all duration-300"
-                    >
-                        Login
-                    </button>
-                </form>
-                <p className="mt-4 text-center text-sm text-gray-600">
-                    Don't have an account?{' '}
-                    <Link to="/register" className="text-indigo-500 hover:underline">
-                        Register
-                    </Link>
-                </p>
+        <div className='w-full h-screen bg-red-600 flex justify-center items-center'>
+            <div className='w-[450px] h-[450px] border border-black bg-white justify-center items-center flex flex-col'>
+                <img src='/logo.jpg' className='rounded-full w-[100px]' alt='logo mb-5 ' />
+                <input type='email' placeholder='Email' className='w-[300px] h-[50px] border border-black rounded-full px-5 mt-12' />
+                <input type='password' placeholder='Password' className='w-[300px] h-[50px] border border-black rounded-full px-5 mt-3' />
+                <Link to='/admin/home'><button className='w-[300px] h-[40px] border border-black rounded-md px-5 bg-red-600 mt-3'>Login</button></Link>
             </div>
         </div>
     );

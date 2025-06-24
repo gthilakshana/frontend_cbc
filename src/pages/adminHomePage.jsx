@@ -48,8 +48,8 @@ export default function AdminHomePage() {
                 <div className="border border-gray-300  flex h-full p-10">
                     <Routes path="/*">
                         <Route path="/dashboard" element={<h1>Dashboard</h1>} />
-                        <Route path="/users" element={<AdminProductPage />} />
-                        <Route path="/products" element={<h1>Products</h1>} />
+                        <Route path="/users" element={<h1>Users</h1>} />
+                        <Route path="/products" element={<AdminProductPage />} />
                         <Route path="/orders" element={<h1>Orders</h1>} />
                         <Route path='/*' element={<h1>404 Not Found the page</h1>} />
 

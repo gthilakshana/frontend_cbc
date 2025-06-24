@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
 export default function LoginPage() {
@@ -14,9 +15,12 @@ export default function LoginPage() {
         }).then((Response) => {
 
             if (Response.data.user == null) {
-                alert(Response.data.message)
+                toast.error(Response.data.message)
                 return
+            } else {
+                toast.success(Response.data.message)
             }
+
             localStorage.setItem('token', Response.data.token)
 
             if (Response.data.token) {
@@ -30,13 +34,34 @@ export default function LoginPage() {
     }
 
     return (
-        <div className='w-full h-screen bg-red-600 flex justify-center items-center'>
-            <div className='w-[450px] h-[450px] border border-black bg-white justify-center items-center flex flex-col'>
-                <img src='/logo.jpg' className='rounded-full w-[100px]' alt='logo mb-5 ' />
-                <input type='email' defaultValue={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' className='w-[300px] h-[40px] border border-black rounded-md px-5 mt-12' />
-                <input type='password' defaultValue={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='w-[300px] h-[40px] border border-black rounded-md px-5 mt-3' />
-                <button onClick={login} className='w-[300px] h-[40px] border border-black rounded-md px-5 bg-red-600 mt-10'>Login</button>
+        <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+            <div className="w-full max-w-md p-8 bg-white rounded-2xl shadow-lg flex flex-col items-center">
+                <img src="/logo.jpg" alt="Logo" className="w-24 h-24 rounded-full mb-6 shadow-md" />
+
+                <input
+                    type="email"
+                    defaultValue={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4"
+                />
+
+                <input
+                    type="password"
+                    defaultValue={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 mb-6"
+                />
+
+                <button
+                    onClick={login}
+                    className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition duration-200"
+                >
+                    Login
+                </button>
             </div>
         </div>
     );
+
 }

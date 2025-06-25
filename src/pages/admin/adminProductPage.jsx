@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -21,10 +22,10 @@ export default function AdminProductPage() {
             </button>
             </Link>
             {/* Scrollable Container */}
-            <div className="w-full  bg-white shadow-lg rounded-lg overflow-hidden">
+            <div className="w-full  bg-white shadow-lg rounded-lg overflow-y-auto ">
                 <h1 className="text-2xl font-bold text-gray-800 mb-5 text-center ">Admin Product Page</h1>
 
-                <div className="h-[400px] overflow-y-auto "> {/* Vertical Scroll */}
+                <div className="h-[700px] overflow-y-auto "> {/* Vertical Scroll */}
                     <table className="w-full text-sm text-left text-gray-700">
                         <thead className="text-xs uppercase bg-blue-200 text-gray-600 sticky top-0">
                             <tr>
@@ -47,7 +48,20 @@ export default function AdminProductPage() {
                                     <td className="px-6 py-4">{product.stock}</td>
                                     <td className="px-6 py-4">{product.description}</td>
                                     <td className="px-6 py-4 text-center flex gap-4 justify-center">
-                                        <button className="text-red-600 hover:text-red-800">
+                                        <button className="text-red-600 hover:text-red-800"
+                                            title="Delete"
+                                            onClick={() => {
+                                                const token = localStorage.getItem('token');
+                                                axios.delete(`http://localhost:5000/api/products/${product.productId}`, {
+                                                    headers: {
+                                                        Authorization: `Bearer ${token}`,
+                                                    },
+                                                }).then(() => {
+
+                                                    toast.success("Product deleted successfully");
+                                                });
+                                            }}
+                                        >
                                             <FaTrash />
                                         </button>
                                         <button className="text-blue-600 hover:text-blue-800">
@@ -63,3 +77,4 @@ export default function AdminProductPage() {
         </div>
     );
 }
+

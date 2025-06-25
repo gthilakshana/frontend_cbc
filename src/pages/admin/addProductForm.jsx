@@ -1,29 +1,49 @@
+import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddProductForm() {
 
     const [productId, setProductId] = useState("");
     const [productName, setProductName] = useState("");
     const [alterNativeNames, setAlterNativeNames] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
+    const [imageUrls, setImageUrl] = useState("");
     const [price, setPrice] = useState("");
     const [lastPrice, setLastPrice] = useState("");
     const [stock, setStock] = useState("");
     const [description, setDescription] = useState("");
+    const navigate = useNavigate();
 
-    function handleSubmit() {
-        console.log({
-            productId,
-            productName,
-            alterNativeNames,
-            imageUrl,
-            price,
-            lastPrice,
-            stock,
-            description
+    async function handleSubmit() {
+        const altNames = alterNativeNames.split(',');
+        const imgUrls = imageUrls.split(',');
 
-        });
+        const product = {
+            productId: productId,
+            productName: productName,
+            altNames: altNames,
+            images: imgUrls,
+            price: price,
+            lastPrice: lastPrice,
+            stock: stock,
+            description: description
+        };
+        const token = localStorage.getItem('token');
+        try {
+
+            await axios.post('http://localhost:5000/api/products', product, {
+                headers: {
+                    'Authorization': "Bearer " + token
+                }
+            })
+            navigate('/admin/products');
+            toast.success('Product added successfully');
+        } catch (err) {
+            toast.error("Failed to add product: " + err.response.data.message);
+        }
+
     }
 
     return (
@@ -72,7 +92,7 @@ export default function AddProductForm() {
                         <input
                             type="text"
                             placeholder="Enter Image URL"
-                            value={imageUrl}
+                            value={imageUrls}
                             onChange={(e) => setImageUrl(e.target.value)}
                             className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />

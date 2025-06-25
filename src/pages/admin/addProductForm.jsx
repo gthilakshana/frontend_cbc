@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import uploadMediaToSupabase from '../../utils/mediaUpload';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +10,7 @@ export default function AddProductForm() {
     const [productId, setProductId] = useState("");
     const [productName, setProductName] = useState("");
     const [alterNativeNames, setAlterNativeNames] = useState("");
-    const [imageUrls, setImageUrl] = useState("");
+    const [imageFiles, setImageFiles] = useState([]);
     const [price, setPrice] = useState("");
     const [lastPrice, setLastPrice] = useState("");
     const [stock, setStock] = useState("");
@@ -18,7 +19,15 @@ export default function AddProductForm() {
 
     async function handleSubmit() {
         const altNames = alterNativeNames.split(',');
-        const imgUrls = imageUrls.split(',');
+
+        const promisesArray = []
+
+        for (let i = 0; i < imageFiles.length; i++) {
+            promisesArray[i] = uploadMediaToSupabase(imageFiles[i]);
+
+        }
+        const imgUrls = await Promise.all(promisesArray)
+
 
         const product = {
             productId: productId,
@@ -125,11 +134,13 @@ export default function AddProductForm() {
                     <div className="flex flex-col">
                         <label className="mb-1 text-sm font-medium">Image URL</label>
                         <input
-                            type="text"
+                            type="file"
                             placeholder="Enter Image URL"
-                            value={imageUrls}
-                            onChange={(e) => setImageUrl(e.target.value)}
                             className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            onChange={(e) => {
+                                setImageFiles(e.target.files);
+
+                            }} multiple
                         />
                     </div>
 

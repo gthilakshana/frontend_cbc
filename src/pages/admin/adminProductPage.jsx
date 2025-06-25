@@ -22,67 +22,82 @@ export default function AdminProductPage() {
 
     return (
         <div className="w-full  bg-white rounded-lg overflow-hidden  lg:p-1  flex flex-col items-center relative">
-            <Link to="/admin/products/addProduct"><button className="absolute right-3 bottom-0 text-2xl bg-blue-500 text-white p-2 rounded-xl hover:bg-[#a6ddff] hover:text-600">
+            <Link to="/admin/products/addProduct"><button className="absolute right-3 bottom-0 text-2xl bg-blue-500 text-white p-2 rounded-xl hover:bg-[#6ec7ff] hover:text-600">
                 <FaPlus />
             </button>
             </Link>
             {/* Scrollable Container */}
-            <div className="w-full  bg-white shadow-lg rounded-lg overflow-y-auto ">
-                <h1 className="text-2xl font-bold text-gray-800 mb-5 text-center ">Admin Product Page</h1>
-                <div className="w-full h-full flex justify-center items-center">
-                    <div className="w-[40px] h-[40px] border-gray-300 border-[3px] animate-spin border-b-blue-500 rounded-full ">
+            <div className="w-full  bg-gray-100 shadow-lg rounded-lg  ">
+                <h1 className="text-2xl font-bold text-gray-800 m-5 text-start  ">Admin Product Page</h1>
 
+                {productLoaded ?
+                    //table start
+                    <div className="w-full overflow-y-auto">
+
+                        <table className="w-full text-sm text-left text-gray-700">
+                            <thead className="text-xs uppercase bg-blue-200 text-gray-600 sticky top-0">
+                                <tr>
+                                    <th className="px-6 py-4">Product ID</th>
+                                    <th className="px-6 py-4">Product Name</th>
+                                    <th className="px-6 py-4">Price</th>
+                                    <th className="px-6 py-4">Last Price</th>
+                                    <th className="px-6 py-4">Stock</th>
+                                    <th className="px-6 py-4">Description</th>
+                                    <th className="px-6 py-4 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {products.map((product, index) => (
+                                    <tr key={index} className="border-b hover:bg-blue-100 transition duration-300">
+                                        <td className="px-6 py-4">{product.productId}</td>
+                                        <td className="px-6 py-4">{product.productName}</td>
+                                        <td className="px-6 py-4">Rs. {product.price}</td>
+                                        <td className="px-6 py-4">Rs. {product.lastPrice}</td>
+                                        <td className="px-6 py-4">{product.stock}</td>
+                                        <td className="px-6 py-4">{product.description}</td>
+                                        <td className="px-6 py-4 text-center flex gap-4 justify-center">
+                                            <button className="text-red-600 hover:text-red-800"
+                                                title="Delete"
+                                                onClick={() => {
+                                                    const token = localStorage.getItem('token');
+                                                    axios.delete(`http://localhost:5000/api/products/${product.productId}`, {
+                                                        headers: {
+                                                            Authorization: `Bearer ${token}`,
+                                                        },
+                                                    }).then(() => {
+
+                                                        toast.success("Product deleted successfully");
+                                                        setProductLoaded(false);
+                                                    });
+                                                }}
+                                            >
+                                                <FaTrash />
+                                            </button>
+                                            <button className="text-blue-600 hover:text-blue-800">
+                                                <FaPencil />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
-                </div>
+                    //table end
+                    //spinner start
+                    : <div className="w-full h-full flex justify-center items-center">
+                        <div className="w-[40px] h-[40px] border-gray-300 border-[3px] animate-spin border-b-blue-500 rounded-full ">
+
+                        </div>
+                    </div>
+                    //spinner end
+                }
+
+
+
+
             </div>
         </div>
     );
 }
 
-//   <table className="w-full text-sm text-left text-gray-700">
-//                         <thead className="text-xs uppercase bg-blue-200 text-gray-600 sticky top-0">
-//                             <tr>
-//                                 <th className="px-6 py-4">Product ID</th>
-//                                 <th className="px-6 py-4">Product Name</th>
-//                                 <th className="px-6 py-4">Price</th>
-//                                 <th className="px-6 py-4">Last Price</th>
-//                                 <th className="px-6 py-4">Stock</th>
-//                                 <th className="px-6 py-4">Description</th>
-//                                 <th className="px-6 py-4 text-center">Actions</th>
-//                             </tr>
-//                         </thead>
-//                         <tbody>
-//                             {products.map((product, index) => (
-//                                 <tr key={index} className="border-b hover:bg-blue-50 transition duration-300">
-//                                     <td className="px-6 py-4">{product.productId}</td>
-//                                     <td className="px-6 py-4">{product.productName}</td>
-//                                     <td className="px-6 py-4">Rs. {product.price}</td>
-//                                     <td className="px-6 py-4">Rs. {product.lastPrice}</td>
-//                                     <td className="px-6 py-4">{product.stock}</td>
-//                                     <td className="px-6 py-4">{product.description}</td>
-//                                     <td className="px-6 py-4 text-center flex gap-4 justify-center">
-//                                         <button className="text-red-600 hover:text-red-800"
-//                                             title="Delete"
-//                                             onClick={() => {
-//                                                 const token = localStorage.getItem('token');
-//                                                 axios.delete(`http://localhost:5000/api/products/${product.productId}`, {
-//                                                     headers: {
-//                                                         Authorization: `Bearer ${token}`,
-//                                                     },
-//                                                 }).then(() => {
 
-//                                                     toast.success("Product deleted successfully");
-//                                                     setProductLoaded(false);
-//                                                 });
-//                                             }}
-//                                         >
-//                                             <FaTrash />
-//                                         </button>
-//                                         <button className="text-blue-600 hover:text-blue-800">
-//                                             <FaPencil />
-//                                         </button>
-//                                     </td>
-//                                 </tr>
-//                             ))}
-//                         </tbody>
-//                     </table>

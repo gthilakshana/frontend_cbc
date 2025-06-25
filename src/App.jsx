@@ -3,6 +3,7 @@ import React from 'react'
 import './App.css'
 import HomePage from './pages/homePage'
 import SignupPage from './pages/signUpPage'
+import FileUploadTest from './pages/test'
 import LoginPage from './pages/loginPage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AdminHomePage from './pages/adminHomePage'
@@ -22,6 +23,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path='/admin/*' element={<AdminHomePage />} />
           <Route path='/*' element={<HomePage />} />
+          <Route path='/testing' element={<FileUploadTest />} />
         </Routes>
 
       </BrowserRouter>

@@ -23,10 +23,10 @@ export default function LoginPage() {
 
             localStorage.setItem('token', Response.data.token)
 
-            if (Response.data.token) {
-                window.location.href = '/admin'
+            if (Response.data.user.type == "admin") {
+                window.location.href = "/admin"
             } else {
-                window.location.href = '/'
+                window.location.href = "/home"
             }
 
 

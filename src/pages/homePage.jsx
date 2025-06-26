@@ -1,5 +1,6 @@
 import { Routes } from "react-router-dom";
 import Header from "../components/header";
+import Footer from "../components/footer";
 
 export default function HomePage() {
     return (
@@ -8,7 +9,7 @@ export default function HomePage() {
 
 
 
-
+            <Footer />
             <Routes path="/*">
 
 

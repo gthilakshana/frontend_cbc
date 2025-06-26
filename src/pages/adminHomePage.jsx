@@ -5,6 +5,7 @@ import { MdInventory } from "react-icons/md";
 import { BsCartCheckFill } from "react-icons/bs";
 import AdminProductPage from "./admin/adminProductPage";
 import AddProductForm from "./admin/addProductForm";
+import EditProductForm from "./admin/editProductForm";
 
 export default function AdminHomePage() {
     return (
@@ -50,6 +51,7 @@ export default function AdminHomePage() {
                     <Route path="/dashboard" element={<h1>Dashboard</h1>} />
                     <Route path="/users" element={<h1>Users</h1>} />
                     <Route path="/products" element={<AdminProductPage />} />
+                    <Route path="/products/editProduct" element={<EditProductForm />} />
                     <Route path="/products/addProduct" element={<AddProductForm />} />
                     <Route path="/orders" element={<h1>Orders</h1>} />
                     <Route path='/*' element={<h1>404 Not Found the page</h1>} />

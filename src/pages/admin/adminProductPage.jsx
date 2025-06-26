@@ -60,7 +60,7 @@ export default function AdminProductPage() {
                                                 title="Delete"
                                                 onClick={() => {
                                                     const token = localStorage.getItem('token');
-                                                    axios.delete(`import.meta.env.VITE_BASE_URL/api/products/${product.productId}`, {
+                                                    axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/products/${product.productId}`, {
                                                         headers: {
                                                             Authorization: `Bearer ${token}`,
                                                         },

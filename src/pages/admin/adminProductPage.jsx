@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function AdminProductPage() {
     const [products, setProducts] = useState([]);
@@ -20,22 +20,33 @@ export default function AdminProductPage() {
 
     }, [productLoaded]);
 
+    //move to editProduct page
+    const navigate = useNavigate();
+    //move to editProduct page
+
+
     return (
-        <div className="w-full  bg-white rounded-lg overflow-hidden  lg:p-1  flex flex-col items-center relative">
-            <Link to="/admin/products/addProduct"><button className="absolute right-3 bottom-0 text-2xl bg-blue-500 text-white p-2 rounded-xl hover:bg-[#6ec7ff] hover:text-600">
-                <FaPlus />
-            </button>
-            </Link>
-            {/* Scrollable Container */}
-            <div className="w-full  bg-gray-100 shadow-lg rounded-lg  ">
-                <h1 className="text-2xl font-bold text-gray-800 m-5 text-start  ">Admin Product Page</h1>
 
-                {productLoaded ?
-                    //table start
-                    <div className="w-full overflow-y-auto">
+        <div className="w-full min-h-screen bg-gray-50 px-4 py-6 sm:px-6 lg:px-10 flex flex-col gap-6">
 
-                        <table className="w-full text-sm text-left text-gray-700">
-                            <thead className="text-xs uppercase bg-blue-200 text-gray-600 sticky top-0">
+            {/* Header and Add Button */}
+            <div className="relative w-full bg-white rounded-2xl shadow-md p-6 flex flex-col sm:flex-row items-center sm:justify-between">
+                <h1 className="text-2xl font-bold text-gray-800">📦 Admin Product Page</h1>
+
+                <Link to="/admin/products/addProduct">
+                    <button className="mt-4 sm:mt-0 flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-500 transition">
+                        <FaPlus />
+                        <span className="hidden sm:inline">Add Product</span>
+                    </button>
+                </Link>
+            </div>
+
+            {/* Product Table or Spinner */}
+            <div className="bg-white rounded-2xl shadow-md overflow-hidden w-full">
+                {productLoaded ? (
+                    <div className="overflow-x-auto overflow-y-auto max-h-[70vh]">
+                        <table className="w-full text-sm text-left text-gray-800">
+                            <thead className="text-xs uppercase bg-blue-100 text-gray-700 sticky top-0 z-10">
                                 <tr>
                                     <th className="px-6 py-4">Product ID</th>
                                     <th className="px-6 py-4">Product Name</th>
@@ -48,16 +59,21 @@ export default function AdminProductPage() {
                             </thead>
                             <tbody>
                                 {products.map((product, index) => (
-                                    <tr key={index} className="border-b hover:bg-blue-100 transition duration-300">
+                                    <tr
+                                        key={index}
+                                        className="border-b border-gray-200 hover:bg-blue-50 transition duration-200"
+                                    >
                                         <td className="px-6 py-4">{product.productId}</td>
                                         <td className="px-6 py-4">{product.productName}</td>
                                         <td className="px-6 py-4">Rs. {product.price}</td>
                                         <td className="px-6 py-4">Rs. {product.lastPrice}</td>
                                         <td className="px-6 py-4">{product.stock}</td>
-                                        <td className="px-6 py-4">{product.description}</td>
-                                        <td className="px-6 py-4 text-center flex gap-4 justify-center">
-                                            <button className="text-red-600 hover:text-red-800"
+                                        <td className="px-6 py-4 truncate max-w-[200px]">{product.description}</td>
+                                        <td className="px-6 py-4 flex justify-center gap-4">
+                                            {/* Delete Button */}
+                                            <button
                                                 title="Delete"
+                                                className="text-red-600 hover:text-red-800 transition"
                                                 onClick={() => {
                                                     const token = localStorage.getItem('token');
                                                     axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/products/${product.productId}`, {
@@ -65,7 +81,6 @@ export default function AdminProductPage() {
                                                             Authorization: `Bearer ${token}`,
                                                         },
                                                     }).then(() => {
-
                                                         toast.success("Product deleted successfully");
                                                         setProductLoaded(false);
                                                     });
@@ -73,7 +88,17 @@ export default function AdminProductPage() {
                                             >
                                                 <FaTrash />
                                             </button>
-                                            <button className="text-blue-600 hover:text-blue-800">
+
+                                            {/* Edit Button */}
+                                            <button
+                                                title="Edit"
+                                                className="text-blue-600 hover:text-blue-800 transition"
+                                                onClick={() =>
+                                                    navigate(`/admin/products/editProduct`, {
+                                                        state: { product: product },
+                                                    })
+                                                }
+                                            >
                                                 <FaPencil />
                                             </button>
                                         </td>
@@ -82,21 +107,16 @@ export default function AdminProductPage() {
                             </tbody>
                         </table>
                     </div>
-                    //table end
-                    //spinner start
-                    : <div className="w-full h-full flex justify-center items-center">
-                        <div className="w-[40px] h-[40px] border-gray-300 border-[3px] animate-spin border-b-blue-500 rounded-full ">
-
-                        </div>
+                ) : (
+                    // Spinner
+                    <div className="w-full h-[300px] flex justify-center items-center">
+                        <div className="w-10 h-10 border-[3px] border-gray-300 border-b-blue-500 animate-spin rounded-full"></div>
                     </div>
-                    //spinner end
-                }
-
-
-
-
+                )}
             </div>
         </div>
+
+
     );
 }
 

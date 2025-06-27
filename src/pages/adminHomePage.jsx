@@ -9,58 +9,63 @@ import EditProductForm from "./admin/editProductForm";
 
 export default function AdminHomePage() {
     return (
-        <div className=" w-full h-screen flex">
+        <div className="w-full min-h-screen flex bg-gray-100">
+
             {/* Sidebar */}
-            <div className="w-[18%] h-full bg-gray-800  flex flex-col items-start py-10 px-10 space-y-8 ">
-                <h2 className="text-xl font-bold mb-6 text-white">Admin Panel</h2>
-                <Link
-                    to="/admin/dashboard"
-                    className="flex items-center space-x-3 text-white  hover:text-blue-200 transition"
-                >
-                    <GoGraph size={20} />
-                    <span>Dashboard</span>
-                </Link>
-                <Link
-                    to="/admin/users"
-                    className="flex items-center space-x-3 text-white hover:text-blue-200 transition"
-                >
-                    <FaUsers size={20} />
-                    <span>Users</span>
-                </Link>
-                <Link
-                    to="/admin/products"
-                    className="flex items-center space-x-3 text-white hover:text-blue-200 transition"
-                >
-                    <MdInventory size={20} />
-                    <span>Products</span>
-                </Link>
-                <Link
-                    to="/admin/orders"
-                    className="flex items-center space-x-3 text-white hover:text-blue-200 transition"
-                >
-                    <BsCartCheckFill size={20} />
-                    <span>Orders</span>
-                </Link>
+            <div className="w-64 min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white shadow-xl px-6 py-8 hidden md:flex flex-col space-y-6">
+                <h2 className="text-2xl font-bold tracking-wide">⚙️ Admin Panel</h2>
+
+                <nav className="flex flex-col space-y-4 text-sm">
+                    <Link
+                        to="/admin/dashboard"
+                        className="flex items-center space-x-3 hover:text-blue-300 transition duration-200"
+                    >
+                        <GoGraph size={20} />
+                        <span>Dashboard</span>
+                    </Link>
+
+                    <Link
+                        to="/admin/users"
+                        className="flex items-center space-x-3 hover:text-blue-300 transition duration-200"
+                    >
+                        <FaUsers size={20} />
+                        <span>Users</span>
+                    </Link>
+
+                    <Link
+                        to="/admin/products"
+                        className="flex items-center space-x-3 hover:text-blue-300 transition duration-200"
+                    >
+                        <MdInventory size={20} />
+                        <span>Products</span>
+                    </Link>
+
+                    <Link
+                        to="/admin/orders"
+                        className="flex items-center space-x-3 hover:text-blue-300 transition duration-200"
+                    >
+                        <BsCartCheckFill size={20} />
+                        <span>Orders</span>
+                    </Link>
+                </nav>
             </div>
 
             {/* Main Content */}
-
-            {/* Add content here */}
-            <div className="border border-gray-300  flex w-full h-full p-5">
-                <Routes path="/*">
-                    <Route path="/dashboard" element={<h1>Dashboard</h1>} />
-                    <Route path="/users" element={<h1>Users</h1>} />
-                    <Route path="/products" element={<AdminProductPage />} />
-                    <Route path="/products/editProduct" element={<EditProductForm />} />
-                    <Route path="/products/addProduct" element={<AddProductForm />} />
-                    <Route path="/orders" element={<h1>Orders</h1>} />
-                    <Route path='/*' element={<h1>404 Not Found the page</h1>} />
-
-                </Routes>
+            <div className="flex-1 p-6 overflow-y-auto">
+                <div className="bg-white rounded-xl shadow-md p-6 min-h-full border border-gray-200">
+                    <Routes path="/*">
+                        <Route path="/dashboard" element={<h1 className="text-2xl font-semibold text-gray-700">📊 Dashboard</h1>} />
+                        <Route path="/users" element={<h1 className="text-2xl font-semibold text-gray-700">👥 Users</h1>} />
+                        <Route path="/products" element={<AdminProductPage />} />
+                        <Route path="/products/editProduct" element={<EditProductForm />} />
+                        <Route path="/products/addProduct" element={<AddProductForm />} />
+                        <Route path="/orders" element={<h1 className="text-2xl font-semibold text-gray-700">🛒 Orders</h1>} />
+                        <Route path="*" element={<h1 className="text-2xl text-red-600">🚫 404 - Page Not Found</h1>} />
+                    </Routes>
+                </div>
             </div>
 
-
-
         </div>
+
     );
 }

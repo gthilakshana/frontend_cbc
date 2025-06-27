@@ -24,6 +24,7 @@ export default function HomePage() {
 
 
             {/* Sticky Footer */}
+            <Footer />
 
         </div>
 

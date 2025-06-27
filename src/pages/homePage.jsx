@@ -1,7 +1,9 @@
-import { Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import HomeText from "../components/hometext";
+import ProductOverview from "../home/productOverview";
+import LoginPage from "./loginPage";
 
 export default function HomePage() {
     return (
@@ -9,18 +11,20 @@ export default function HomePage() {
             {/* Sticky Header */}
             <Header />
 
+            <div className="w-full h-[calc(100vh-80px)] ">
+                <Routes path="/*">
+                    <Route path="/" element={<HomeText />} />
+                    <Route path="/home" element={<HomeText />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/productInfo/:id" element={<ProductOverview />} />
+                    <Route path="/contact" element={<h1>Contact Page</h1>} />
+                </Routes>
 
-            <HomeText />
+            </div>
 
 
+            {/* Sticky Footer */}
 
-
-            <Footer />
-
-
-            <Routes path="/*">
-
-            </Routes>
         </div>
 
 

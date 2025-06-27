@@ -12,7 +12,7 @@ export default function Header() {
                 <img
                     src="/logofb.png"
                     alt="Logo"
-                    className="h-12 w-12 rounded-full object-cover border border-gray-300 shadow-sm cursor-pointer"
+                    className="h-12 w-12 rounded-full object-cover  shadow-sm cursor-pointer"
                 />
                 <h1 className="text-xl sm:text-2xl font-bold text-blue-500 hover:text-blue-300 transition duration-200 tracking-wide">
                     Mahee Fashion

@@ -1,6 +1,8 @@
+import Footer from "./footer";
+
 export default function HomeText() {
     return (
-        <div className="w-full px-4 sm:px-6 lg:px-20 py-12 bg-gray-50">
+        <div className="w-full h-screen px-4 sm:px-6 lg:px-20 py-12 bg-gray-100">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center text-center md:text-left">
 
                 {/* Left Column - Text */}
@@ -18,6 +20,7 @@ export default function HomeText() {
 
 
             </div>
+
         </div>
     );
 }

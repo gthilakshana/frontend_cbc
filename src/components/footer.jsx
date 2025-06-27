@@ -11,11 +11,11 @@ import {
 
 export default function Footer() {
     return (
-        <footer className="bg-neutral-900 text-gray-200 px-6 sm:px-10 lg:px-20 py-10 fixed bottom-0 w-full z-50">
+        <footer className="bg-neutral-900 text-gray-200 px-6 sm:px-10 lg:px-20 py-10 fixed bottom-0 w-full">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
 
                 {/* About Section */}
-                <div>
+                {/* <div>
                     <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                         <FaInfoCircle className="text-blue-300" /> About Mahee Fashion
                     </h3>
@@ -23,10 +23,10 @@ export default function Footer() {
                         Mahee Fashion brings the finest collections of modern and elegant clothing.
                         Feel confident, bold, and beautiful in every piece.
                     </p>
-                </div>
+                </div> */}
 
                 {/* Quick Links */}
-                <div>
+                {/* <div>
                     <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                         <FaLink className="text-blue-300" /> Quick Links
                     </h3>
@@ -36,10 +36,10 @@ export default function Footer() {
                         <li><a href="/about" className="hover:text-blue-300 flex items-center gap-2"><FaUserFriends /> About Us</a></li>
                         <li><a href="/contact" className="hover:text-blue-300 flex items-center gap-2"><FaUserFriends /> Contact</a></li>
                     </ul>
-                </div>
+                </div> */}
 
                 {/* Social & Contact */}
-                <div>
+                {/* <div>
                     <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                         <FaUserFriends className="text-blue-300" /> Stay Connected
                     </h3>
@@ -55,7 +55,7 @@ export default function Footer() {
                     <p className="text-gray-400 flex items-center gap-2">
                         <FaPhoneAlt /> <a href="tel:+94771134567" className="hover:text-blue-300">+94 77 113 4567</a>
                     </p>
-                </div>
+                </div> */}
             </div>
 
             {/* Footer Bottom */}

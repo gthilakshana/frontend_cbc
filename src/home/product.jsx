@@ -19,8 +19,12 @@ export default function Product() {
                     setProducts(response.data);
                     setLoadingState('loaded');
 
+
                 }).catch(
-                    toast.error("Failed to fetch products")
+                    (error) => {
+                        toast.error(error.response.data.message);
+                        setLoadingState('error');
+                    }
                 )
         }
 

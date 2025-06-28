@@ -13,7 +13,7 @@ export default function ImageSlider({ img }) {
     };
 
     return (
-        <div className="w-[85%] flex flex-col items-center relative">
+        <div className="w-[85%] flex flex-col items-center relative ">
             {/* Main Image Container */}
             <div className="w-full aspect-square relative overflow-hidden rounded-xl shadow-md">
                 <img

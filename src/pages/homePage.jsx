@@ -23,8 +23,8 @@ export default function HomePage() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/about" element={<AboutPage />} />
-                    <Route path="/productInfo/:id" element={<ProductOverview />} />
-                    <Route path="/contact" element={<h1>Contact Page</h1>} />
+                    {/* <Route path="/productInfo/:id" element={<ProductOverview />} /> */}
+
                 </Routes>
 
             </div>

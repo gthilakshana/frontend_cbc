@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ImageSlider from "../components/ImageSlider";
+import ImageSlider from "../components/imageSlider";
+
 import Footer from "../components/footer";
-import { FaHeart, FaShareAlt } from "react-icons/fa";
+import { FaShareAlt } from "react-icons/fa";
 
 export default function ProductOverview() {
     const { id } = useParams();
@@ -28,7 +29,7 @@ export default function ProductOverview() {
             {/* Loading */}
             {status === "loading" && (
                 <div className="w-full h-screen flex justify-center items-center">
-                    <div className="animate-spin rounded-full h-24 w-24 border-4 border-gray-300 border-t-blue-500"></div>
+                    <div className="animate-spin rounded-full h-20 w-20 border-4 border-gray-300 border-t-blue-500"></div>
                 </div>
             )}
 
@@ -61,11 +62,11 @@ export default function ProductOverview() {
                         {/* Details section */}
                         <div className="w-full md:w-1/2 max-w-xl bg-white rounded-2xl p-6 shadow-md">
                             <div className="flex justify-between items-center">
-                                <h1 className="text-4xl font-extrabold mb-2 text-blue-800">{product.productName}</h1>
+                                <h1 className="text-2xl font-arial font-bold mb-2 text-gray-800">{product.productName}</h1>
 
                             </div>
 
-                            <h2 className="text-md text-gray-400 italic mb-4">{product.altNames.join(" | ")}</h2>
+                            <h2 className="text-md text-gray-500 mb-4">{product.altNames.join(" | ")}</h2>
 
                             <div className="mb-4 text-2xl font-semibold">
                                 {product.price > product.lastPrice && (
@@ -74,11 +75,11 @@ export default function ProductOverview() {
                                 <span className="text-green-600">LKR. {product.lastPrice}</span>
                             </div>
 
-                            <div className="flex flex-wrap gap-4 mb-6">
+                            <div className="flex flex-wrap gap-4 mb-6 mt-[120px]">
                                 <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">
                                     Add to Cart
                                 </button>
-                                <button className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition duration-300 shadow-md">
+                                <button className="px-6 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-700 transition duration-300 shadow-md">
                                     Buy Now
                                 </button>
                                 <button

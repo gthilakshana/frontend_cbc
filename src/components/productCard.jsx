@@ -22,12 +22,14 @@ export default function ProductCard({ product }) {
                 <p className="text-sm text-gray-500 mt-1 truncate">
                     {product.altNames?.join(" | ")}
                 </p>
-
+                <span className="text-gray-500 text-center mt-2">{product.productId}</span>
                 <div className="mt-3">
                     {product.price > product.lastPrice ? (
                         <div className="text-md">
+
                             <span className="line-through text-red-500 mr-2">LKR. {product.price}</span>
                             <span className="text-green-700 font-bold">LKR. {product.lastPrice}</span>
+
                         </div>
                     ) : (
                         <div className="text-green-700 font-bold text-md">LKR. {product.lastPrice}</div>

@@ -79,7 +79,7 @@ export default function HomeText() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
                     <div className="group relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition">
                         <img
-                            src="/public/wear/girlf1.jpg"
+                            src="/public/girlf1.jpg"
                             alt="Women's Wear"
                             className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-500"
                         />
@@ -91,7 +91,7 @@ export default function HomeText() {
 
                     <div className="group relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition">
                         <img
-                            src="/public/wear/boyf2.jpg"
+                            src="/public/boyf2.jpg"
                             alt="Men's Wear"
                             className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-500"
                         />
@@ -103,7 +103,7 @@ export default function HomeText() {
 
                     <div className="group relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition">
                         <img
-                            src="/public/wear/boyf1.jpg"
+                            src="/public/boyf1.jpg"
                             alt="Traditional Styles"
                             className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-500"
                         />
@@ -150,7 +150,7 @@ export default function HomeText() {
                             </p>
                             <div className="flex items-center gap-4 mt-6">
                                 <img
-                                    src={`/public/profile/profile${i + 1}.jpg`}
+                                    src={`/public/profile${i + 1}.jpg`}
                                     alt="Customer"
                                     className="w-12 h-12 rounded-full object-cover"
                                 />

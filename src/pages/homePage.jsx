@@ -1,7 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "../components/header";
 import Footer from "../components/footer";
+
 import HomeText from "../components/hometext";
+import Product from "../home/product";
 import ProductOverview from "../home/productOverview";
 import LoginPage from "./loginPage";
 
@@ -15,6 +17,7 @@ export default function HomePage() {
                 <Routes path="/*">
                     <Route path="/" element={<HomeText />} />
                     <Route path="/home" element={<HomeText />} />
+                    <Route path="/product" element={<Product />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/productInfo/:id" element={<ProductOverview />} />
                     <Route path="/contact" element={<h1>Contact Page</h1>} />
@@ -24,7 +27,7 @@ export default function HomePage() {
 
 
             {/* Sticky Footer */}
-            <Footer />
+            {/* <Footer /> */}
 
         </div>
 

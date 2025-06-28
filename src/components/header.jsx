@@ -73,6 +73,7 @@ export default function Header() {
                     </Link>
                     <Link
                         to="/product"
+
                         onClick={() => setMenuOpen(false)}
                         className="w-full text-center py-3 text-gray-700 hover:bg-blue-100 transition"
                     >

@@ -8,8 +8,8 @@ export default function HomeText() {
         <div className="w-full bg-gray-100 text-gray-800 font-body">
             {/* Hero Banner */}
             <section
-                className="relative h-[90vh] w-full bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: "url('./Chic_Fashion.jpg')" }}
+                className="relative h-[70vh] w-full bg-cover bg-top bg-no-repeat "
+                style={{ backgroundImage: "url('./banner.jpg')" }}
             >
                 <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white text-center px-4">
                     <h1 className="text-5xl sm:text-6xl font-heading mb-6 leading-tight">
@@ -77,11 +77,11 @@ export default function HomeText() {
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-                    <div className="group relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition">
+                    <div className="group relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition ">
                         <img
-                            src="./girlf1.jpg"
+                            src="./whomen.jpg"
                             alt="Women's Wear"
-                            className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-500"
+                            className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-500 "
                         />
                         <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-6">
                             <h3 className="text-white text-2xl font-bold mb-1">Women's Wear</h3>
@@ -91,7 +91,7 @@ export default function HomeText() {
 
                     <div className="group relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition">
                         <img
-                            src="./boyf2.jpg"
+                            src="./men.jpg"
                             alt="Men's Wear"
                             className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-500"
                         />
@@ -103,7 +103,7 @@ export default function HomeText() {
 
                     <div className="group relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition">
                         <img
-                            src="./boyf1.jpg"
+                            src="./men2.jpg"
                             alt="Traditional Styles"
                             className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-500"
                         />

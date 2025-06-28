@@ -9,7 +9,7 @@ export default function HomeText() {
             {/* Hero Banner */}
             <section
                 className="relative h-[90vh] w-full bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: "url('/public/Chic_Fashion.jpg')" }}
+                style={{ backgroundImage: "url('./Chic_Fashion.jpg')" }}
             >
                 <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white text-center px-4">
                     <h1 className="text-5xl sm:text-6xl font-heading mb-6 leading-tight">

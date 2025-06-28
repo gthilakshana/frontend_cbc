@@ -4,7 +4,7 @@ import Footer from "../components/footer";
 import ContactPage from "../home/contact";
 import HomeText from "../components/hometext";
 import Product from "../home/product";
-import ProductOverview from "../home/productOverview";
+
 import LoginPage from "./loginPage";
 
 export default function HomePage() {

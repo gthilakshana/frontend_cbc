@@ -55,7 +55,7 @@ export default function ProductOverview() {
     return (
         <div className="w-full bg-gray-100 text-gray-800 font-body">
             <div className="w-full min-h-screen flex flex-col md:flex-row items-start justify-center px-6 py-12 bg-gradient-to-br from-white via-gray-50 to-white gap-10">
-                <div className="w-full md:w-1/2 max-w-xl">
+                <div className="w-full md:w-1/2 max-w-xl ">
                     <ImageSlider img={product.images} />
                 </div>
 

@@ -29,13 +29,13 @@ export default function Product() {
     return (
         <div className="w-full bg-gray-100 text-gray-800 font-body ">
             {/* Heading */}
-            <div className="mb-8 text-center">
+            <div className="mb-8 text-center  p-6">
                 <h1 className="text-4xl font-bold text-gray-800 mb-2">All Products</h1>
                 <p className="text-gray-500 text-lg">Discover our latest arrivals and timeless pieces</p>
             </div>
 
             {/* Search Input */}
-            <div className="max-w-2xl mx-auto mb-10 px-4">
+            <div className="max-w-[600px] mx-auto mb-10 px-4">
                 <input
                     type="text"
                     placeholder="Search products..."

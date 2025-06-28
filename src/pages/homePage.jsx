@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
+import ContactPage from "../home/contact";
 import HomeText from "../components/hometext";
 import Product from "../home/product";
 import ProductOverview from "../home/productOverview";
@@ -19,6 +19,7 @@ export default function HomePage() {
                     <Route path="/home" element={<HomeText />} />
                     <Route path="/product" element={<Product />} />
                     <Route path="/login" element={<LoginPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
                     <Route path="/productInfo/:id" element={<ProductOverview />} />
                     <Route path="/contact" element={<h1>Contact Page</h1>} />
                 </Routes>

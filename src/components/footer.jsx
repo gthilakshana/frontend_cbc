@@ -1,70 +1,79 @@
-import { FaInstagram, FaFacebookF, FaTiktok, FaTwitter } from "react-icons/fa";
-import {
-    FaEnvelope,
-    FaPhoneAlt,
-    FaInfoCircle,
-    FaLink,
-    FaUserFriends,
-} from "react-icons/fa";
-
-
+import { FaFacebookF, FaInstagram, FaTwitter, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Footer() {
     return (
-        <footer className="bg-neutral-900 text-gray-200 px-6 sm:px-10 lg:px-20 py-10 fixed bottom-0 w-full">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
-
-                {/* About Section */}
-                {/* <div>
-                    <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                        <FaInfoCircle className="text-blue-300" /> About Mahee Fashion
-                    </h3>
-                    <p className="leading-relaxed text-gray-400">
-                        Mahee Fashion brings the finest collections of modern and elegant clothing.
-                        Feel confident, bold, and beautiful in every piece.
+        <footer className="bg-neutral-900 text-gray-200 px-6 sm:px-10 lg:px-20 py-10 w-full">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+                {/* Brand Info */}
+                <div>
+                    <h2 className="text-xl font-bold text-white mb-4">Mahee Fashion</h2>
+                    <p className="text-gray-400">
+                        Elevating your style with elegance and authenticity. Discover the latest trends and timeless classics.
                     </p>
-                </div> */}
+                    <div className="flex gap-4 mt-4 text-xl">
+                        <a href="https://facebook.com" target="_blank" className="hover:text-blue-400 transition">
+                            <FaFacebookF />
+                        </a>
+                        <a href="https://instagram.com" target="_blank" className="hover:text-pink-400 transition">
+                            <FaInstagram />
+                        </a>
+                        <a href="https://twitter.com" target="_blank" className="hover:text-sky-400 transition">
+                            <FaTwitter />
+                        </a>
+                    </div>
+                </div>
 
                 {/* Quick Links */}
-                {/* <div>
-                    <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                        <FaLink className="text-blue-300" /> Quick Links
-                    </h3>
-                    <ul className="space-y-2">
-                        <li><a href="/" className="hover:text-blue-300 flex items-center gap-2"><FaUserFriends /> Home</a></li>
-                        <li><a href="/product" className="hover:text-blue-300 flex items-center gap-2"><FaUserFriends /> Products</a></li>
-                        <li><a href="/about" className="hover:text-blue-300 flex items-center gap-2"><FaUserFriends /> About Us</a></li>
-                        <li><a href="/contact" className="hover:text-blue-300 flex items-center gap-2"><FaUserFriends /> Contact</a></li>
+                <div>
+                    <h2 className="text-lg font-semibold mb-4 text-white">Quick Links</h2>
+                    <ul className="space-y-2 text-gray-400">
+                        <li><a href="/" className="hover:text-white transition">Home</a></li>
+                        <li><a href="/product" className="hover:text-white transition">Products</a></li>
+                        <li><a href="/about" className="hover:text-white transition">About Us</a></li>
+                        <li><a href="/contact" className="hover:text-white transition">Contact</a></li>
                     </ul>
-                </div> */}
+                </div>
 
-                {/* Social & Contact */}
-                {/* <div>
-                    <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                        <FaUserFriends className="text-blue-300" /> Stay Connected
-                    </h3>
-                    <div className="flex space-x-4 text-xl mb-4">
-                        <a href="#" className="hover:text-blue-300 transition" title="Instagram"><FaInstagram /></a>
-                        <a href="#" className="hover:text-blue-300 transition" title="Facebook"><FaFacebookF /></a>
-                        <a href="#" className="hover:text-blue-300 transition" title="TikTok"><FaTiktok /></a>
-                        <a href="#" className="hover:text-blue-300 transition" title="Twitter"><FaTwitter /></a>
-                    </div>
-                    <p className="text-gray-400 flex items-center gap-2">
-                        <FaEnvelope /> <a href="mailto:contact@maheefashion.com" className="hover:text-blue-300">contact@maheefashion.com</a>
-                    </p>
-                    <p className="text-gray-400 flex items-center gap-2">
-                        <FaPhoneAlt /> <a href="tel:+94771134567" className="hover:text-blue-300">+94 77 113 4567</a>
-                    </p>
-                </div> */}
+                {/* Contact Info */}
+                <div>
+                    <h2 className="text-lg font-semibold mb-4 text-white">Contact</h2>
+                    <ul className="space-y-3 text-gray-400 text-sm">
+                        <li className="flex items-center gap-2">
+                            <FaMapMarkerAlt /> 123 Fashion Street, Colombo, Sri Lanka
+                        </li>
+                        <li className="flex items-center gap-2">
+                            <FaPhoneAlt /> +94 76 123 4567
+                        </li>
+                        <li className="flex items-center gap-2">
+                            <FaEnvelope /> support@maheefashion.lk
+                        </li>
+                    </ul>
+                </div>
+
+                {/* Newsletter (Optional) */}
+                <div>
+                    <h2 className="text-lg font-semibold mb-4 text-white">Subscribe</h2>
+                    <p className="text-gray-400 mb-4">Get the latest updates and offers.</p>
+                    <form className="flex flex-col sm:flex-row gap-2">
+                        <input
+                            type="email"
+                            placeholder="Email address"
+                            className="px-4 py-2 rounded-md w-full sm:w-auto text-black"
+                        />
+                        <button
+                            type="submit"
+                            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
+                        >
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
             </div>
 
-            {/* Footer Bottom */}
-            <div className="border-t border-gray-700 mt-10 pt-4 text-center text-gray-500 text-xs sm:text-sm">
-                &copy; {new Date().getFullYear()} <span className="text-white font-medium">Mahee Fashion</span>. All rights reserved.
+            {/* Bottom Note */}
+            <div className="mt-10 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
+                © {new Date().getFullYear()} Mahee Fashion. All rights reserved.
             </div>
         </footer>
-
-
-
     );
 }

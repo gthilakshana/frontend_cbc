@@ -165,7 +165,7 @@ export default function EditProductForm() {
                                         setSelectedColor("");
                                     }
                                 }}
-                                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                                className="px-4 py-2 bg-blue-400 text-white  hover:bg-blue-400"
                             >
                                 Add
                             </button>
@@ -222,7 +222,7 @@ export default function EditProductForm() {
                                         setSelectedSize("");
                                     }
                                 }}
-                                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                                className="px-4 py-2 bg-blue-400 text-white  hover:bg-blue-500"
                             >
                                 Add
                             </button>
@@ -326,7 +326,7 @@ export default function EditProductForm() {
                     <button
                         type="button"
                         onClick={handleSubmit}
-                        className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300 "
+                        className="bg-blue-400 text-white py-2 px-6  hover:bg-blue-700 transition duration-300 "
                     >
                         Update Product
                     </button>

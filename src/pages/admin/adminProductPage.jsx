@@ -27,14 +27,14 @@ export default function AdminProductPage() {
 
     return (
 
-        <div className="w-[100%] min-h-screen bg-gray-50 px-4 py-6 sm:px-6 lg:px-10 flex flex-col gap-6">
+        <div className="w-[100%] h-full bg-gray-50 px-4 py-6 sm:px-6 lg:px-10 flex flex-col gap-6">
 
             {/* Header and Add Button */}
             <div className="relative w-full bg-white rounded-2xl shadow-md p-6 flex flex-col sm:flex-row items-center sm:justify-between">
                 <h1 className="text-2xl font-bold text-gray-800">📦 Admin Product Page</h1>
 
                 <Link to="/admin/products/addProduct">
-                    <button className="mt-4 sm:mt-0 flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-500 transition">
+                    <button className="mt-4 sm:mt-0 flex items-center gap-2 bg-blue-400 text-white px-4 py-2  hover:bg-blue-500 transition">
                         <FaPlus />
                         <span className="hidden sm:inline">Add Product</span>
                     </button>
@@ -83,7 +83,7 @@ export default function AdminProductPage() {
                                                 {product.colors?.map((color, i) => (
                                                     <span
                                                         key={i}
-                                                        className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded"
+                                                        className="bg-blue-100 text-blue-400 text-xs px-2 py-1 rounded"
                                                     >
                                                         {color}
                                                     </span>

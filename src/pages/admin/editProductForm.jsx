@@ -22,11 +22,20 @@ export default function EditProductForm() {
     }
 
 
+
+
     const [productId, setProductId] = useState(product.productId);
     const [productName, setProductName] = useState(product.productName);
     const [alterNativeNames, setAlterNativeNames] = useState(altNames);
     const [imageFiles, setImageFiles] = useState([]);
     const [price, setPrice] = useState(product.price);
+    const [colors, setColors] = useState(product.colors || []);
+    const [selectedColor, setSelectedColor] = useState("");
+
+    const [sizes, setSizes] = useState(product.sizes || []);
+    const [selectedSize, setSelectedSize] = useState("");
+
+    const [brands, setBrands] = useState(product.brands);
     const [lastPrice, setLastPrice] = useState(product.lastPrice);
     const [stock, setStock] = useState(product.stock);
     const [description, setDescription] = useState(product.description);
@@ -57,6 +66,9 @@ export default function EditProductForm() {
             price: price,
             lastPrice: lastPrice,
             stock: stock,
+            colors: colors,
+            sizes: sizes,
+            brands: brands,
             description: description
         };
         const token = localStorage.getItem('token');
@@ -127,6 +139,139 @@ export default function EditProductForm() {
                             className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                     </div>
+
+
+
+
+                    {/* Colors Selector & Inputs */}
+                    <div className="flex flex-col mb-6">
+                        <label className="mb-1 text-sm font-medium">Add Color</label>
+                        <div className="flex gap-2">
+                            <select
+                                value={selectedColor}
+                                onChange={(e) => setSelectedColor(e.target.value)}
+                                className="p-2 border rounded-md flex-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            >
+                                <option value="">Select a color</option>
+                                {["Black", "White", "Gray", "Red", "Blue", "Green", "Beige", "Brown", "Pink", "Navy"].map((color, i) => (
+                                    <option key={i} value={color}>{color}</option>
+                                ))}
+                            </select>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    if (selectedColor && !colors.includes(selectedColor)) {
+                                        setColors([...colors, selectedColor]);
+                                        setSelectedColor("");
+                                    }
+                                }}
+                                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                            >
+                                Add
+                            </button>
+                        </div>
+
+                        {/* Editable & Removable color inputs */}
+                        <div className="flex flex-wrap gap-2 mt-3">
+                            {colors.map((color, index) => (
+                                <div key={index} className="flex items-center gap-1">
+                                    <input
+                                        value={color}
+                                        onChange={(e) => {
+                                            const updated = [...colors];
+                                            updated[index] = e.target.value;
+                                            setColors(updated);
+                                        }}
+                                        className="px-3 py-1 border rounded-md"
+                                    />
+                                    <button
+                                        onClick={() => {
+                                            const updated = colors.filter((_, i) => i !== index);
+                                            setColors(updated);
+                                        }}
+                                        className="text-red-500 hover:text-red-700 text-lg"
+                                        title="Remove"
+                                    >
+                                        &times;
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+
+                    {/* Sizes Selector & Inputs */}
+                    <div className="flex flex-col mb-6">
+                        <label className="mb-1 text-sm font-medium">Add Size</label>
+                        <div className="flex gap-2">
+                            <select
+                                value={selectedSize}
+                                onChange={(e) => setSelectedSize(e.target.value)}
+                                className="p-2 border rounded-md flex-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            >
+                                <option value="">Select a size</option>
+                                {["XS", "S", "M", "L", "XL", "XXL", "XXXL"].map((size, i) => (
+                                    <option key={i} value={size}>{size}</option>
+                                ))}
+                            </select>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    if (selectedSize && !sizes.includes(selectedSize)) {
+                                        setSizes([...sizes, selectedSize]);
+                                        setSelectedSize("");
+                                    }
+                                }}
+                                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                            >
+                                Add
+                            </button>
+                        </div>
+
+                        {/* Editable & Removable size inputs */}
+                        <div className="flex flex-wrap gap-2 mt-3">
+                            {sizes.map((size, index) => (
+                                <div key={index} className="flex items-center gap-1">
+                                    <input
+                                        value={size}
+                                        onChange={(e) => {
+                                            const updated = [...sizes];
+                                            updated[index] = e.target.value;
+                                            setSizes(updated);
+                                        }}
+                                        className="px-3 py-1 border rounded-md"
+                                    />
+                                    <button
+                                        onClick={() => {
+                                            const updated = sizes.filter((_, i) => i !== index);
+                                            setSizes(updated);
+                                        }}
+                                        className="text-red-500 hover:text-red-700 text-lg"
+                                        title="Remove"
+                                    >
+                                        &times;
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div className="flex flex-col">
+                        <label className="mb-1 text-sm font-medium">Brands</label>
+                        <input
+                            type="text"
+                            placeholder="Enter Alternative Names"
+                            value={brands}
+                            onChange={(e) => setBrands(e.target.value)}
+                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        />
+                    </div>
+
 
                     <div className="flex flex-col">
                         <label className="mb-1 text-sm font-medium">Price</label>

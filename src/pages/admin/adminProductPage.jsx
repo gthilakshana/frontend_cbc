@@ -27,7 +27,7 @@ export default function AdminProductPage() {
 
     return (
 
-        <div className="w-full min-h-screen bg-gray-50 px-4 py-6 sm:px-6 lg:px-10 flex flex-col gap-6">
+        <div className="w-[100%] min-h-screen bg-gray-50 px-4 py-6 sm:px-6 lg:px-10 flex flex-col gap-6">
 
             {/* Header and Add Button */}
             <div className="relative w-full bg-white rounded-2xl shadow-md p-6 flex flex-col sm:flex-row items-center sm:justify-between">
@@ -42,9 +42,11 @@ export default function AdminProductPage() {
             </div>
 
             {/* Product Table or Spinner */}
-            <div className="bg-white rounded-2xl shadow-md overflow-hidden w-full">
+            <div className="bg-white  shadow-md overflow-hidden w-full">
                 {productLoaded ? (
-                    <div className="overflow-x-auto overflow-y-auto max-h-[70vh]">
+                    <div className="overflow-x-auto overflow-y-auto max-h-[70vh] ">
+
+
                         <table className="w-full text-sm text-left text-gray-800">
                             <thead className="text-xs uppercase bg-blue-100 text-gray-700 sticky top-0 z-10">
                                 <tr>
@@ -53,6 +55,9 @@ export default function AdminProductPage() {
                                     <th className="px-6 py-4">Price</th>
                                     <th className="px-6 py-4">Last Price</th>
                                     <th className="px-6 py-4">Stock</th>
+                                    <th className="px-6 py-4">Brands</th>
+                                    <th className="px-6 py-4">Colors</th>
+                                    <th className="px-6 py-4">Sizes</th>
                                     <th className="px-6 py-4">Description</th>
                                     <th className="px-6 py-4 text-center">Actions</th>
                                 </tr>
@@ -68,7 +73,44 @@ export default function AdminProductPage() {
                                         <td className="px-6 py-4">Rs. {product.price}</td>
                                         <td className="px-6 py-4">Rs. {product.lastPrice}</td>
                                         <td className="px-6 py-4">{product.stock}</td>
-                                        <td className="px-6 py-4 truncate max-w-[200px]">{product.description}</td>
+                                        <td className="px-6 py-4">{product.brands}</td>
+
+
+
+                                        {/* Colors as tags */}
+                                        <td className="px-6 py-4">
+                                            <div className="flex flex-wrap gap-1">
+                                                {product.colors?.map((color, i) => (
+                                                    <span
+                                                        key={i}
+                                                        className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded"
+                                                    >
+                                                        {color}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </td>
+
+                                        {/* Sizes as tags */}
+                                        <td className="px-6 py-4">
+                                            <div className="flex flex-wrap gap-1">
+                                                {product.sizes?.map((size, i) => (
+                                                    <span
+                                                        key={i}
+                                                        className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
+                                                    >
+                                                        {size}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </td>
+
+                                        {/* Description */}
+                                        <td className="px-6 py-4 truncate max-w-[200px]">
+                                            {product.description}
+                                        </td>
+
+                                        {/* Actions */}
                                         <td className="px-6 py-4 flex justify-center gap-4">
                                             {/* Delete Button */}
                                             <button
@@ -76,14 +118,19 @@ export default function AdminProductPage() {
                                                 className="text-red-600 hover:text-red-800 transition"
                                                 onClick={() => {
                                                     const token = localStorage.getItem('token');
-                                                    axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/products/${product.productId}`, {
-                                                        headers: {
-                                                            Authorization: `Bearer ${token}`,
-                                                        },
-                                                    }).then(() => {
-                                                        toast.success("Product deleted successfully");
-                                                        setProductLoaded(false);
-                                                    });
+                                                    axios
+                                                        .delete(
+                                                            `${import.meta.env.VITE_BACKEND_URL}/api/products/${product.productId}`,
+                                                            {
+                                                                headers: {
+                                                                    Authorization: `Bearer ${token}`,
+                                                                },
+                                                            }
+                                                        )
+                                                        .then(() => {
+                                                            toast.success("Product deleted successfully");
+                                                            setProductLoaded(false);
+                                                        });
                                                 }}
                                             >
                                                 <FaTrash />
@@ -106,6 +153,10 @@ export default function AdminProductPage() {
                                 ))}
                             </tbody>
                         </table>
+
+
+
+
                     </div>
                 ) : (
                     // Spinner

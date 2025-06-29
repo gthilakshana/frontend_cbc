@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { MdCheckCircle, MdCancel } from "react-icons/md";
+import { FaTag, FaPalette, FaRulerCombined } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ImageSlider from "../components/imageSlider";
@@ -11,6 +12,10 @@ export default function ProductOverview() {
     const { id: productId } = useParams();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedBrand, setSelectedBrand] = useState("");
+    const [selectedColor, setSelectedColor] = useState("");
+    const [selectedSize, setSelectedSize] = useState("");
+
 
 
     const product = products.find((p) => p.productId === productId);
@@ -141,6 +146,78 @@ export default function ProductOverview() {
                             </div>
                         </div>
                     </div>
+
+
+
+                    <div className="mt-6">
+                        <h3 className="text-sm font-semibold mb-3 flex items-center gap-2 text-gray-700">
+
+                            Brand: <span className="font-normal">{selectedBrand || "None selected"}</span>
+                        </h3>
+                        <div className="flex flex-wrap gap-3">
+                            {product.brands?.map((brand, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setSelectedBrand(brand)}
+                                    className={`px-4 py-2 rounded-full border text-sm shadow-sm transition 
+          ${selectedBrand === brand
+                                            ? "bg-blue-600 text-white border-blue-600"
+                                            : "bg-white border-gray-300 hover:border-blue-400 hover:bg-blue-50"}`}
+                                >
+                                    {brand}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Color Selector */}
+                    <div className="mt-6">
+                        <h3 className="text-sm font-semibold mb-3 flex items-center gap-2 text-gray-700">
+
+                            Color: <span className="font-normal">{selectedColor || "None selected"}</span>
+                        </h3>
+                        <div className="flex flex-wrap gap-3">
+                            {product.colors?.map((color, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setSelectedColor(color)}
+                                    className={`px-4 w-[80px] py-2 border text-sm shadow-sm  transition 
+                                    ${selectedColor === color
+                                            ? "border-black text-black bg-gray-100 font-semibold"
+                                            : "border-gray-300 bg-white hover:border-black hover:bg-gray-50"
+                                        }`}
+                                >
+                                    {color}
+                                </button>
+
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Size Selector */}
+                    <div className="mt-6">
+                        <h3 className="text-sm font-semibold mb-3 flex items-center gap-2 text-gray-700">
+
+                            Size: <span className="font-normal">{selectedSize || "None selected"}</span>
+                        </h3>
+                        <div className="flex flex-wrap gap-3">
+                            {product.sizes?.map((size, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setSelectedSize(size)}
+                                    className={`px-4 py-2 w-[50px] border text-sm shadow-sm rounded-md transition duration-200
+                                    ${selectedSize === size
+                                            ? "bg-orange-600 text-white  font-semibold"
+                                            : "bg-white text-gray-800 border-gray-300 hover:border-black hover:bg-gray-50"
+                                        }`}
+                                >
+                                    {size}
+                                </button>
+
+                            ))}
+                        </div>
+                    </div>
+
 
 
                     <div className="flex flex-wrap  gap-4 mb-6 mt-[120px] justify-center">

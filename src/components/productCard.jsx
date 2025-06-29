@@ -27,12 +27,12 @@ export default function ProductCard({ product }) {
                     {product.price > product.lastPrice ? (
                         <div className="text-md">
 
-                            <span className="line-through text-red-500 mr-2">LKR. {product.price}</span>
-                            <span className="text-green-700 font-bold">LKR. {product.lastPrice}</span>
+                            <span className="line-through text-green-500 mr-2">LKR. {product.price}</span>
+                            <span className="text-orange-600 font-bold">LKR. {product.lastPrice}</span>
 
                         </div>
                     ) : (
-                        <div className="text-green-700 font-bold text-md">LKR. {product.lastPrice}</div>
+                        <div className="text-green-500 font-bold text-md">LKR. {product.lastPrice}</div>
                     )}
                 </div>
 
@@ -40,10 +40,10 @@ export default function ProductCard({ product }) {
                 <div className="mt-auto flex items-center justify-between pt-6">
                     <button
                         type="button"
-                        className="flex items-center gap-2 px-5 py-3 rounded-md bg-blue-600 text-white font-semibold shadow-md hover:bg-blue-700 transition duration-300"
+                        className="px-5 w-[130px] py-2 bg-blue-400 text-white text-sm font-medium  hover:bg-blue-500 transition duration-300 shadow-md"
                         title="Add to Cart"
                     >
-                        <FaShoppingCart className="text-lg" /> Add to Cart
+                        Add to Cart
                     </button>
 
                     <Link

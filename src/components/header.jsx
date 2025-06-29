@@ -6,7 +6,7 @@ export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <header className="bg-white dark:bg-gray-900 shadow-md w-full px-6 md:px-10 h-[80px] flex items-center justify-between sticky top-0 z-50 transition duration-300">
+        <header className=" dark:bg-gray-900 shadow-md w-full px-6 md:px-10 h-[80px] flex items-center justify-between sticky top-0 z-50 transition duration-300">
 
             <div className="flex items-center space-x-3">
                 <h1 className="text-2xl font-extrabold text-white hover:text-blue-400 transition duration-300 tracking-wide font-sans">

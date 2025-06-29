@@ -69,40 +69,36 @@ export default function Header() {
                 </button>
             </div>
 
+            {/* Mobile Menu */}
             {menuOpen && (
-                <div className="absolute top-[80px] right-0 w-60 h-[calc(100vh-80px)] bg-gray-900 border-l flex flex-col justify-between md:hidden shadow-lg z-50">
-
-                    {/* Menu Items */}
-                    <div className="flex flex-col items-start w-full">
-                        {[
-                            { path: "/", label: "Home" },
-                            { path: "/product", label: "Products" },
-                            { path: "/about", label: "About Us" },
-                            { path: "/contact", label: "Contact" },
-                        ].map(({ path, label }) => (
-                            <Link
-                                key={path}
-                                to={path}
-                                onClick={() => setMenuOpen(false)}
-                                className="w-full px-6 py-4 text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-                            >
-                                {label}
-                            </Link>
-                        ))}
-                    </div>
-
-                    {/* Login Button */}
-                    <div className="w-full px-6 py-4">
+                <div className="absolute top-[80px] right-0 w-60 h-[calc(100vh-80px)] bg-gray-900 flex flex-col items-start md:hidden shadow-lg z-50 overflow-y-auto">
+                    {[
+                        { path: "/", label: "Home" },
+                        { path: "/product", label: "Products" },
+                        { path: "/about", label: "About Us" },
+                        { path: "/contact", label: "Contact" },
+                    ].map(({ path, label }) => (
                         <Link
-                            to="/login"
+                            key={path}
+                            to={path}
                             onClick={() => setMenuOpen(false)}
-                            className="block w-full text-center bg-blue-400 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition"
+                            className="w-full px-6 py-4 text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition"
                         >
-                            Login
+                            {label}
                         </Link>
-                    </div>
+                    ))}
+
+
+                    <Link
+                        to="/login"
+                        onClick={() => setMenuOpen(false)}
+                        className="w-[90%] mx-auto my-4 text-center bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded transition"
+                    >
+                        Login
+                    </Link>
                 </div>
             )}
+
 
 
         </header>

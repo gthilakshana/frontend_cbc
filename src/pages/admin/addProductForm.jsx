@@ -163,7 +163,7 @@ export default function AddProductForm() {
                                         setSelectedColor("");
                                     }
                                 }}
-                                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                                className="px-4 py-2 bg-blue-400 text-white  hover:bg-blue-500"
                             >
                                 Add
                             </button>
@@ -208,7 +208,7 @@ export default function AddProductForm() {
                                         setSelectedSize("");
                                     }
                                 }}
-                                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                                className="px-4 py-2 bg-blue-400 text-white  hover:bg-blue-500"
                             >
                                 Add
                             </button>
@@ -273,7 +273,7 @@ export default function AddProductForm() {
                     <button
                         type="button"
                         onClick={handleSubmit}
-                        className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300 "
+                        className="bg-blue-400 text-white py-2 px-6  hover:bg-blue-500 transition duration-300 "
                     >
                         Add Product
                     </button>

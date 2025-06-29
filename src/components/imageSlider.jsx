@@ -14,9 +14,9 @@ export default function ImageSlider({ img }) {
 
     return (
         <div className="w-full flex justify-center">
-            <div className="w-[90%] max-w-xl flex flex-col items-center relative">
+            <div className="w-[80%] max-w-xl flex flex-col items-center relative">
 
-                <div className="w-full aspect-square relative overflow-hidden rounded-xl shadow-md flex items-center justify-center">
+                <div className="w-full aspect-square relative overflow-hidden  shadow-md flex items-center justify-center">
                     <img
                         src={img[currentIndex]}
                         alt="Main"

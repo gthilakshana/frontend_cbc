@@ -3,7 +3,7 @@ import { FaShoppingCart } from "react-icons/fa";
 
 export default function ProductCard({ product }) {
     return (
-        <div className="w-[300px] bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200 overflow-hidden flex flex-col">
+        <div className="w-[270px] bg-white  shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200 overflow-hidden flex flex-col">
             {/* Image */}
             <Link to={`/productInfo/${product.productId}`} className="block overflow-hidden h-[250px] rounded-t-lg">
                 <img

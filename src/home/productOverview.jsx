@@ -12,7 +12,6 @@ export default function ProductOverview() {
     const { id: productId } = useParams();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [selectedBrand, setSelectedBrand] = useState("");
     const [selectedColor, setSelectedColor] = useState("");
     const [selectedSize, setSelectedSize] = useState("");
 
@@ -78,7 +77,7 @@ export default function ProductOverview() {
                     <ImageSlider img={product.images} />
                 </div>
 
-                <div className="w-full md:w-1/2 max-w-xl bg-white rounded-2xl p-6 shadow-md">
+                <div className="w-full md:w-1/2 max-w-xl bg-white  p-6 shadow-md">
                     <div className="flex justify-between items-center">
                         <h1 className="text-2xl font-arial font-bold mb-2 text-gray-800">
                             {product.productName}
@@ -149,26 +148,18 @@ export default function ProductOverview() {
 
 
 
-                    <div className="mt-6">
-                        <h3 className="text-sm font-semibold mb-3 flex items-center gap-2 text-gray-700">
+                    <h2 className="text-sm text-gray-600 mb-2 mt-6">
+                        <span className="font-medium text-gray-700">Brands :</span>
+                        <span className="inline-block bg-blue-100 text-gray-700 px-3 py-1  text-xs font-medium ml-2">
+                            {product.brands?.join(" | ")}
+                        </span>
+                    </h2>
 
-                            Brand: <span className="font-normal">{selectedBrand || "None selected"}</span>
-                        </h3>
-                        <div className="flex flex-wrap gap-3">
-                            {product.brands?.map((brand, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => setSelectedBrand(brand)}
-                                    className={`px-4 py-2 rounded-full border text-sm shadow-sm transition 
-          ${selectedBrand === brand
-                                            ? "bg-blue-600 text-white border-blue-600"
-                                            : "bg-white border-gray-300 hover:border-blue-400 hover:bg-blue-50"}`}
-                                >
-                                    {brand}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
+
+
+
+
+
 
                     {/* Color Selector */}
                     <div className="mt-6">

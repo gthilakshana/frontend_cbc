@@ -27,7 +27,7 @@ export default function Header() {
                         <Link
                             key={path}
                             to={path}
-                            className="text-gray-700 dark:text-gray-300 text-lg font-medium hover:text-blue-600 transition border-b-2 border-transparent hover:border-blue-600"
+                            className="text-gray-700 dark:text-gray-300 text-lg font-medium hover:text-white transition border-b-2 border-transparent hover:border-blue-600"
                         >
                             {label}
                         </Link>
@@ -37,14 +37,14 @@ export default function Header() {
 
                 <Link
                     to="/cart"
-                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition text-xl"
+                    className="text-gray-600 dark:text-gray-300 hover:text-white transition text-xl"
                     title="Cart"
                 >
                     <FaShoppingCart />
                 </Link>
                 <Link
                     to="/login"
-                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition text-xl"
+                    className="text-gray-600 dark:text-gray-300 hover:text-white transition text-xl"
                     title="Login"
                 >
                     <FaUserCircle />
@@ -55,20 +55,20 @@ export default function Header() {
             <div className="bg-gray-900 md:hidden text-xl flex items-center space-x-4">
                 <Link
                     to="/cart"
-                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition"
+                    className="text-gray-600 dark:text-gray-300 hover:text-white transition"
                     title="Cart"
                 >
                     <FaShoppingCart />
                 </Link>
                 <Link
                     to="/login"
-                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition"
+                    className="text-gray-600 dark:text-gray-300 hover:text-white transition"
                     title="Login"
                 >
                     <FaUserCircle />
                 </Link>
                 <button
-                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition"
+                    className="text-gray-600 dark:text-gray-300 hover:text-white transition"
                     onClick={() => setMenuOpen(!menuOpen)}
                 >
                     <FaBars />

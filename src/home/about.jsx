@@ -66,7 +66,7 @@ export default function AboutPage() {
             </section>
 
             {/* Call to Action */}
-            <section className="bg-blue-600 text-white py-16 text-center px-6">
+            <section className="bg-gray-400 text-white py-16 text-center px-6">
                 <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4 animate-slide-up">
                     Be a Part of the <span className="text-pink-200">Mahee Fashion</span> Story
                 </h2>

@@ -1,4 +1,6 @@
 import { useParams } from "react-router-dom";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { MdCheckCircle, MdCancel } from "react-icons/md";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ImageSlider from "../components/imageSlider";
@@ -12,6 +14,18 @@ export default function ProductOverview() {
 
 
     const product = products.find((p) => p.productId === productId);
+    const [quantity, setQuantity] = useState(1);
+    const decreaseQuantity = () => {
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+        }
+    };
+
+    const increaseQuantity = () => {
+        if (quantity < product.stock) {
+            setQuantity(quantity + 1);
+        }
+    };
 
     useEffect(() => {
         axios
@@ -66,41 +80,89 @@ export default function ProductOverview() {
                         </h1>
                     </div>
 
-                    <h2 className="text-md text-gray-500 mb-4">
+                    <h2 className="text-2 text-gray-500 mb-4">
                         {product.altNames?.join(" | ")}
                     </h2>
 
-                    <div className="mb-4 text-2xl font-semibold">
-                        {product.price > product.lastPrice && (
-                            <span className="line-through text-red-500 mr-2">
-                                LKR. {product.price}
-                            </span>
-                        )}
-                        <span className="text-green-600">LKR. {product.lastPrice}</span>
+                    <div className="space-y-6">
+
+                        {/* Price Section */}
+                        <div className="text-2xl font-semibold text-gray-800">
+                            {product.price > product.lastPrice && (
+                                <span className="line-through text-green-500 mr-2 text-xl">
+                                    Rs. {product.price}
+                                </span>
+                            )}
+                            <span className="text-orange-600 text-xl">Rs. {product.lastPrice}</span>
+                        </div>
+
+                        {/* Stock and Quantity Section */}
+                        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 space-y-3 w-full max-w-sm">
+                            {/* Stock Status */}
+                            <h2 className="text-md font-medium flex items-center space-x-2">
+                                {product.stock > 0 ? (
+                                    <>
+                                        <MdCheckCircle className="text-green-600" size={18} />
+                                        <span className="text-gray-600">In Stock</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <MdCancel className="text-red-600" size={18} />
+                                        <span className="text-red-600">Out of Stock</span>
+                                    </>
+                                )}
+                            </h2>
+
+                            {/* Quantity Controls */}
+                            <div className="flex items-center justify-between">
+                                <span
+                                    className={`text-sm font-medium ${product.stock > 0 ? "text-gray-700" : "text-red-700"
+                                        }`}
+                                >
+                                    Quantity: {quantity}
+                                </span>
+
+                                {product.stock > 0 && (
+                                    <div className="flex items-center space-x-2">
+                                        <button
+                                            onClick={decreaseQuantity}
+                                            className="p-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-[20%] shadow"
+                                        >
+                                            <AiOutlineMinus size={18} />
+                                        </button>
+                                        <button
+                                            onClick={increaseQuantity}
+                                            className="p-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-[20%] shadow"
+                                        >
+                                            <AiOutlinePlus size={18} />
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 mb-6 mt-[120px]">
-                        <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300 shadow-md">
-                            Add to Cart
-                        </button>
-                        <button className="px-6 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-700 transition duration-300 shadow-md">
+
+                    <div className="flex flex-wrap  gap-4 mb-6 mt-[120px] justify-center">
+                        <button className="px-5 w-[130px] py-2  bg-orange-600 text-white text-sm font-medium  hover:bg-orange-500 transition duration-300 shadow-md">
                             Buy Now
                         </button>
-                        <button
-                            title="Share"
-                            className="px-4 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-300 flex items-center gap-2 shadow-md"
-                        >
-                            <FaShareAlt />
-                            <span className="hidden sm:inline">Share</span>
+                        <button className="px-5 w-[130px] py-2 bg-blue-400 text-white text-sm font-medium  hover:bg-blue-500 transition duration-300 shadow-md">
+                            Add to Cart
                         </button>
+
                     </div>
+
                 </div>
             </div>
 
-            <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-md px-6 py-10 mt-10 mb-20">
-                <h2 className="text-3xl font-bold text-blue-800 mb-4">Product Description</h2>
+            <div className=" justify-center max-w-5xl mx-auto  px-6 py-10 mt-10 mb-20">
+                <h2 className="text-2xl font-bold text-gary-800 mb-4">Product Description</h2>
                 <p className="text-gray-700 text-lg leading-relaxed">{product.description}</p>
             </div>
+
+
+
 
             <Footer />
         </div>

@@ -77,7 +77,7 @@ export default function Header() {
 
             {/* Mobile Dropdown */}
             {menuOpen && (
-                <div className="absolute top-[80px] right-0 w-60 h-screen bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 flex flex-col items-start md:hidden shadow-lg z-50">
+                <div className="absolute top-[80px] right-0 w-60 h-screen dark:bg-gray-900 border-l border-gray-200 dark:border-gray-700 flex flex-col items-start md:hidden shadow-lg z-50">
                     {[
                         { path: "/", label: "Home" },
                         { path: "/product", label: "Products" },

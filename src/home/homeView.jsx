@@ -1,14 +1,14 @@
-import Footer from "./footer";
+import Footer from "../components/footer";
 import { HiOutlineScissors } from "react-icons/hi";
 import { MdLocalShipping } from "react-icons/md";
 import { GiSpinningRibbons } from "react-icons/gi";
 
-export default function HomeText() {
+export default function HomeView() {
     return (
         <div className="w-full bg-gray-100 text-gray-800 font-body">
             {/* Hero Banner */}
             <section
-                className="relative h-[70vh] w-full bg-cover bg-top bg-no-repeat "
+                className="relative h-[90vh] w-full bg-cover bg-top bg-no-repeat "
                 style={{ backgroundImage: "url('./banner.jpg')" }}
             >
                 <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white text-center px-4">

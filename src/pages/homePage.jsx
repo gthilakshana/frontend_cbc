@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ContactPage from "../home/contact";
-import HomeText from "../components/hometext";
+import HomeView from "../home/homeView";
 import AboutPage from "../home/about";
 import ProductOverview from "../home/productOverview";
 import Product from "../home/product";
@@ -17,8 +17,8 @@ export default function HomePage() {
 
             <div className="w-full h-[calc(100vh-80px)] ">
                 <Routes path="/*">
-                    <Route path="/" element={<HomeText />} />
-                    <Route path="/home" element={<HomeText />} />
+                    <Route path="/" element={<HomeView />} />
+                    <Route path="/home" element={<HomeView />} />
                     <Route path="/product" element={<Product />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/contact" element={<ContactPage />} />

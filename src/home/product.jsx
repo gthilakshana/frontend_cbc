@@ -51,7 +51,7 @@ export default function Product() {
                     <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-b-blue-500" />
                 </div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 place-items-center px-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-5 place-items-center px-4">
                     {filteredProducts.length > 0 ? (
                         filteredProducts.map((product) => (
                             <ProductCard key={product.productId} product={product} />
@@ -60,6 +60,7 @@ export default function Product() {
                         <p className="text-gray-500 col-span-full text-center">No products found.</p>
                     )}
                 </div>
+
             )}
 
             <div className="mt-8">

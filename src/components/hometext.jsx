@@ -165,7 +165,7 @@ export default function HomeText() {
             </section>
 
             {/* Newsletter */}
-            <section className="bg-blue-600 py-16 text-white text-center px-6">
+            <section className="bg-gray-500 py-16 text-white text-center px-6">
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">Join Our Style Circle</h2>
                 <p className="mb-6 max-w-xl mx-auto">
                     Sign up for early access to our newest collections, special discounts, and exclusive events.

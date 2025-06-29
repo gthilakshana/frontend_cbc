@@ -60,13 +60,7 @@ export default function Header() {
                 >
                     <FaShoppingCart />
                 </Link>
-                <Link
-                    to="/login"
-                    className="text-gray-600 dark:text-gray-300 hover:text-white transition"
-                    title="Login"
-                >
-                    <FaUserCircle />
-                </Link>
+
                 <button
                     className="text-gray-600 dark:text-gray-300 hover:text-white transition"
                     onClick={() => setMenuOpen(!menuOpen)}
@@ -75,26 +69,42 @@ export default function Header() {
                 </button>
             </div>
 
-            {/* Mobile Dropdown */}
             {menuOpen && (
-                <div className="absolute top-[80px] right-0 w-60 h-screen bg-gray-900 border-l  border-gray-300 flex flex-col items-start md:hidden shadow-lg z-50">
-                    {[
-                        { path: "/", label: "Home" },
-                        { path: "/product", label: "Products" },
-                        { path: "/about", label: "About Us" },
-                        { path: "/contact", label: "Contact" },
-                    ].map(({ path, label }) => (
+                <div className="absolute top-[80px] right-0 w-60 h-[calc(100vh-80px)] bg-gray-900 border-l flex flex-col justify-between md:hidden shadow-lg z-50">
+
+                    {/* Menu Items */}
+                    <div className="flex flex-col items-start w-full">
+                        {[
+                            { path: "/", label: "Home" },
+                            { path: "/product", label: "Products" },
+                            { path: "/about", label: "About Us" },
+                            { path: "/contact", label: "Contact" },
+                        ].map(({ path, label }) => (
+                            <Link
+                                key={path}
+                                to={path}
+                                onClick={() => setMenuOpen(false)}
+                                className="w-full px-6 py-4 text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                            >
+                                {label}
+                            </Link>
+                        ))}
+                    </div>
+
+                    {/* Login Button */}
+                    <div className="w-full px-6 py-4">
                         <Link
-                            key={path}
-                            to={path}
+                            to="/login"
                             onClick={() => setMenuOpen(false)}
-                            className="w-full px-6 py-4 text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                            className="block w-full text-center bg-blue-400 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition"
                         >
-                            {label}
+                            Login
                         </Link>
-                    ))}
+                    </div>
                 </div>
             )}
+
+
         </header>
 
 

@@ -27,7 +27,7 @@ export default function AdminProductPage() {
 
     return (
 
-        <div className="w-[100%] h-full bg-gray-50 px-4 py-6 sm:px-6 lg:px-10 flex flex-col gap-6">
+        <div className="w-full h-full bg-gray-50 py-6 px-4 sm:px-6 lg:px-10 flex flex-col gap-6">
 
             {/* Header and Add Button */}
             <div className="relative w-full bg-white rounded-2xl shadow-md p-6 flex flex-col sm:flex-row items-center sm:justify-between">
@@ -47,7 +47,7 @@ export default function AdminProductPage() {
                     <div className="overflow-x-auto overflow-y-auto max-h-[70vh] ">
 
 
-                        <table className="w-full text-sm text-left text-gray-800">
+                        <table className="min-w-full text-sm text-left text-gray-800">
                             <thead className="text-xs uppercase bg-blue-100 text-gray-700 sticky top-0 z-10">
                                 <tr>
                                     <th className="px-6 py-4">Product ID</th>

@@ -23,8 +23,8 @@ export default function AdminHomePage() {
 
 
             {/* Main Content */}
-            <main className="flex-1 p-6 overflow-y-auto">
-                <div className="bg-white rounded-xl shadow-md p-6 min-h-full border border-gray-200">
+            <main className="flex-1  overflow-y-auto">
+                <div className="bg-white  shadow-md h-full border border-gray-200">
                     <Routes path="/*">
                         <Route path="/dashboard" element={<h1 className="text-2xl font-semibold text-gray-700">📊 Dashboard</h1>} />
                         <Route path="/users" element={<h1 className="text-2xl font-semibold text-gray-700">👥 Users</h1>} />

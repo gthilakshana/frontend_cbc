@@ -141,7 +141,7 @@ export default function AddProductForm() {
                     </div>
 
 
-                    {/* COLOR SELECTOR */}
+                    {/* Colors Selector & Inputs */}
                     <div className="flex flex-col mb-6">
                         <label className="mb-1 text-sm font-medium">Add Color</label>
                         <div className="flex gap-2">
@@ -163,30 +163,42 @@ export default function AddProductForm() {
                                         setSelectedColor("");
                                     }
                                 }}
-                                className="px-4 py-2 bg-blue-400 text-white  hover:bg-blue-500"
+                                className="px-4 py-2 bg-blue-400 text-white  hover:bg-blue-400"
                             >
                                 Add
                             </button>
                         </div>
 
-                        {/* Display selected colors as editable inputs */}
+                        {/* Editable & Removable color inputs */}
                         <div className="flex flex-wrap gap-2 mt-3">
                             {colors.map((color, index) => (
-                                <input
-                                    key={index}
-                                    value={color}
-                                    onChange={(e) => {
-                                        const updated = [...colors];
-                                        updated[index] = e.target.value;
-                                        setColors(updated);
-                                    }}
-                                    className="px-3 py-1 border rounded-md"
-                                />
+                                <div key={index} className="flex items-center gap-1">
+                                    <input
+                                        value={color}
+                                        onChange={(e) => {
+                                            const updated = [...colors];
+                                            updated[index] = e.target.value;
+                                            setColors(updated);
+                                        }}
+                                        className="px-3 py-1 border rounded-md"
+                                    />
+                                    <button
+                                        onClick={() => {
+                                            const updated = colors.filter((_, i) => i !== index);
+                                            setColors(updated);
+                                        }}
+                                        className="text-red-500 hover:text-red-700 text-lg"
+                                        title="Remove"
+                                    >
+                                        &times;
+                                    </button>
+                                </div>
                             ))}
                         </div>
                     </div>
 
-                    {/* SIZE SELECTOR */}
+
+                    {/* Sizes Selector & Inputs */}
                     <div className="flex flex-col mb-6">
                         <label className="mb-1 text-sm font-medium">Add Size</label>
                         <div className="flex gap-2">
@@ -214,22 +226,34 @@ export default function AddProductForm() {
                             </button>
                         </div>
 
-                        {/* Display selected sizes as editable inputs */}
+                        {/* Editable & Removable size inputs */}
                         <div className="flex flex-wrap gap-2 mt-3">
                             {sizes.map((size, index) => (
-                                <input
-                                    key={index}
-                                    value={size}
-                                    onChange={(e) => {
-                                        const updated = [...sizes];
-                                        updated[index] = e.target.value;
-                                        setSizes(updated);
-                                    }}
-                                    className="px-3 py-1 border rounded-md"
-                                />
+                                <div key={index} className="flex items-center gap-1">
+                                    <input
+                                        value={size}
+                                        onChange={(e) => {
+                                            const updated = [...sizes];
+                                            updated[index] = e.target.value;
+                                            setSizes(updated);
+                                        }}
+                                        className="px-3 py-1 border rounded-md"
+                                    />
+                                    <button
+                                        onClick={() => {
+                                            const updated = sizes.filter((_, i) => i !== index);
+                                            setSizes(updated);
+                                        }}
+                                        className="text-red-500 hover:text-red-700 text-lg"
+                                        title="Remove"
+                                    >
+                                        &times;
+                                    </button>
+                                </div>
                             ))}
                         </div>
                     </div>
+
 
 
 

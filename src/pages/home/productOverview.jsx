@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { MdCheckCircle, MdCancel } from "react-icons/md";
-import { FaTag, FaPalette, FaRulerCombined } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ImageSlider from "../components/imageSlider";
-import Footer from "../components/footer";
-import { FaShareAlt } from "react-icons/fa";
+import ImageSlider from "../../components/imageSlider";
+import Footer from "../../components/footer";
+import { addToCart } from "../../utils/cartFunction";
+import toast from "react-hot-toast";
 
 export default function ProductOverview() {
     const { id: productId } = useParams();
@@ -44,6 +44,12 @@ export default function ProductOverview() {
             });
     }, []);
 
+    function onAddtoCartClick() {
+        addToCart(product.productId, 1);
+        toast.success(product.productId + "Product added to cart");
+        console.log(product.productName);
+    }
+
     if (loading) {
         return (
             <div className="w-full h-screen flex justify-center items-center">
@@ -69,6 +75,9 @@ export default function ProductOverview() {
             </div>
         );
     }
+
+
+
 
     return (
         <div className="w-full bg-gray-100 text-gray-800 font-body">
@@ -215,7 +224,9 @@ export default function ProductOverview() {
                         <button className="px-5 w-[130px] py-2  bg-orange-600 text-white text-sm font-medium  hover:bg-orange-500 transition duration-300 shadow-md">
                             Buy Now
                         </button>
-                        <button className="px-5 w-[130px] py-2 bg-blue-400 text-white text-sm font-medium  hover:bg-blue-500 transition duration-300 shadow-md">
+                        <button
+                            onClick={onAddtoCartClick}
+                            className="px-5 w-[130px] py-2 bg-blue-400 text-white text-sm font-medium  hover:bg-blue-500 transition duration-300 shadow-md">
                             Add to Cart
                         </button>
 

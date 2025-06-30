@@ -40,6 +40,7 @@ export default function Header() {
                     className="text-gray-600 dark:text-gray-300 hover:text-white transition text-xl"
                     title="Cart"
                 >
+
                     <FaShoppingCart />
                 </Link>
                 <Link

@@ -1,10 +1,5 @@
-import {
-    FaMapMarkerAlt,
-    FaPhoneAlt,
-    FaEnvelope,
-    FaClock,
-} from "react-icons/fa";
-import Footer from "../components/footer";
+
+import Footer from "../../components/footer";
 
 export default function ContactPage() {
     return (

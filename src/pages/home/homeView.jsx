@@ -1,4 +1,4 @@
-import Footer from "../components/footer";
+import Footer from "../../components/footer";
 import { HiOutlineScissors } from "react-icons/hi";
 import { MdLocalShipping } from "react-icons/md";
 import { GiSpinningRibbons } from "react-icons/gi";
@@ -6,9 +6,10 @@ import { GiSpinningRibbons } from "react-icons/gi";
 export default function HomeView() {
     return (
         <div className="w-full bg-gray-100 text-gray-800 font-body">
+
             {/* Hero Banner */}
             <section
-                className="relative h-[90vh] w-full bg-cover bg-top bg-no-repeat "
+                className="relative h-[90vh] w-full bg-cover bg-top bg-no-repeat"
                 style={{ backgroundImage: "url('./banner.jpg')" }}
             >
                 <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white text-center px-4">
@@ -18,11 +19,15 @@ export default function HomeView() {
                     <p className="text-xl mb-8 max-w-2xl">
                         Elevate your wardrobe with trendy, high-quality clothing tailored for elegance and everyday comfort.
                     </p>
-                    <button className="px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-pink-600 hover:to-indigo-600 text-white rounded-full font-semibold text-lg shadow-lg transition">
+                    <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold text-lg shadow-md hover:shadow-lg transition-all">
                         ✨ Start Shopping
                     </button>
                 </div>
             </section>
+
+
+
+
 
             {/* About Section */}
             <section className="py-20 px-6 lg:px-24 bg-gradient-to-b from-white via-gray-50 to-white text-center">
@@ -77,41 +82,24 @@ export default function HomeView() {
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-                    <div className="group relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition ">
-                        <img
-                            src="./whomen.jpg"
-                            alt="Women's Wear"
-                            className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-500 "
-                        />
-                        <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-6">
-                            <h3 className="text-white text-2xl font-bold mb-1">Women's Wear</h3>
-                            <p className="text-gray-200 text-sm">Elegant sarees, modern office looks & casual everyday chic.</p>
+                    {/* Collection Cards */}
+                    {[
+                        { img: "./whomen.jpg", title: "Women's Wear", desc: "Elegant sarees, modern office looks & casual everyday chic." },
+                        { img: "./men.jpg", title: "Men's Wear", desc: "Stylish kurtas, formal suits, and everyday comfort essentials." },
+                        { img: "./men2.jpg", title: "Traditional Styles", desc: "Celebrate culture with our handwoven classics and heritage designs." }
+                    ].map((col, i) => (
+                        <div key={i} className="group relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition">
+                            <img
+                                src={col.img}
+                                alt={col.title}
+                                className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-500"
+                            />
+                            <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-6">
+                                <h3 className="text-white text-2xl font-bold mb-1">{col.title}</h3>
+                                <p className="text-gray-200 text-sm">{col.desc}</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div className="group relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition">
-                        <img
-                            src="./men.jpg"
-                            alt="Men's Wear"
-                            className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-500"
-                        />
-                        <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-6">
-                            <h3 className="text-white text-2xl font-bold mb-1">Men's Wear</h3>
-                            <p className="text-gray-200 text-sm">Stylish kurtas, formal suits, and everyday comfort essentials.</p>
-                        </div>
-                    </div>
-
-                    <div className="group relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition">
-                        <img
-                            src="./men2.jpg"
-                            alt="Traditional Styles"
-                            className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-500"
-                        />
-                        <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-6">
-                            <h3 className="text-white text-2xl font-bold mb-1">Traditional Styles</h3>
-                            <p className="text-gray-200 text-sm">Celebrate culture with our handwoven classics and heritage designs.</p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
 
                 <div className="text-center mt-12">
@@ -121,6 +109,41 @@ export default function HomeView() {
                     >
                         View All Categories
                     </a>
+                </div>
+            </section>
+
+            {/* ✅ New Featured Styles Section */}
+            <section className="py-20 px-6 lg:px-24 bg-blue-50">
+                <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-6">
+                    Featured <span className="text-blue-600">Styles</span>
+                </h2>
+                <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+                    Handpicked seasonal picks to elevate your style with a blend of class and comfort.
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    {[1, 2, 3].map((_, i) => (
+                        <div
+                            key={i}
+                            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 flex flex-col items-center text-center"
+                        >
+                            <img
+                                src={`./featured${i + 1}.jpg`}
+                                alt="Featured"
+                                className="w-full h-60 object-cover rounded-xl mb-6"
+                            />
+                            <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                                {i === 0 ? "Elegant Drapes" : i === 1 ? "Urban Classic" : "Fusion Trends"}
+                            </h3>
+                            <p className="text-gray-600">
+                                {i === 0
+                                    ? "Chic traditional designs with modern cuts for weddings & events."
+                                    : i === 1
+                                        ? "Smart looks for professionals who love comfort and charisma."
+                                        : "Where cultural grace meets street-ready silhouettes."}
+                            </p>
+                        </div>
+                    ))}
                 </div>
             </section>
 
@@ -134,7 +157,6 @@ export default function HomeView() {
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {/* Testimonials */}
                     {[1, 2, 3].map((t, i) => (
                         <div
                             key={i}
@@ -176,13 +198,15 @@ export default function HomeView() {
                         placeholder="Enter your email"
                         className="w-full px-4 py-3 rounded-lg text-gray-800 focus:outline-none"
                     />
-                    <button className="bg-white text-pink-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">
+                    <button className="bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-blue-100 transition-all">
                         Subscribe
                     </button>
                 </form>
             </section>
 
+            {/* Footer */}
             <Footer />
         </div>
+
     );
 }

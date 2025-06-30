@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import Header from "../components/header";
-import Footer from "../components/footer";
-import ContactPage from "../home/contact";
-import HomeView from "../home/homeView";
-import AboutPage from "../home/about";
-import ProductOverview from "../home/productOverview";
-import Product from "../home/product";
+import ContactPage from "./home/contact";
+import HomeView from "./home/homeView";
+import AboutPage from "./home/about";
+import Cart from "./home/cart";
+import ProductOverview from "./home/productOverview";
+import Product from "./home/product";
 
 import LoginPage from "./loginPage";
 
@@ -23,6 +23,7 @@ export default function HomePage() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/about" element={<AboutPage />} />
+                    <Route path="/cart" element={<Cart />} />
                     <Route path="/productInfo/:id" element={<ProductOverview />} />
 
 

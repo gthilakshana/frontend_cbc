@@ -12,7 +12,7 @@ export default function ProductCard({ product }) {
     }
 
     return (
-        <div className="w-[270px] bg-white border border-gray-200 shadow-md hover:shadow-lg transition duration-300 rounded-lg overflow-hidden flex flex-col">
+        <div className="w-[270px] bg-white border border-gray-200 shadow-md hover:shadow-lg transition duration-300  overflow-hidden flex flex-col">
 
             <Link to={`/productInfo/${product.productId}`} className="block">
                 <img

@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
                 {/* Brand Info */}
                 <div>
-                    <h2 className="text-xl font-bold text-white mb-4">Mahee Fashion</h2>
+                    <h2 className="text-xl  text-white mb-4">MAHEE FASHION</h2>
                     <p className="text-gray-400">
                         Elevating your style with elegance and authenticity. Discover the latest trends and timeless classics.
                     </p>
@@ -25,7 +25,7 @@ export default function Footer() {
 
                 {/* Quick Links */}
                 <div>
-                    <h2 className="text-lg font-semibold mb-4 text-white">Quick Links</h2>
+                    <h2 className="text-lg  mb-4 text-white">QUICK LINKS</h2>
                     <ul className="space-y-2 text-gray-400">
                         <li><a href="/" className="hover:text-white transition">Home</a></li>
                         <li><a href="/product" className="hover:text-white transition">Products</a></li>
@@ -36,7 +36,7 @@ export default function Footer() {
 
                 {/* Contact Info */}
                 <div>
-                    <h2 className="text-lg font-semibold mb-4 text-white">Contact</h2>
+                    <h2 className="text-lg font-semibold mb-4 text-white">CONTACT</h2>
                     <ul className="space-y-3 text-gray-400 text-sm">
                         <li className="flex items-center gap-2">
                             <FaMapMarkerAlt /> 123 Fashion Street, Colombo, Sri Lanka
@@ -52,17 +52,17 @@ export default function Footer() {
 
                 {/* Newsletter (Optional) */}
                 <div>
-                    <h2 className="text-lg font-semibold mb-4 text-white">Subscribe</h2>
+                    <h2 className="text-lg font-semibold mb-4 text-white">SUBSCRIBE</h2>
                     <p className="text-gray-400 mb-4">Get the latest updates and offers.</p>
                     <form className="flex flex-col sm:flex-row gap-2">
                         <input
                             type="email"
                             placeholder="Email address"
-                            className="px-4 py-2 rounded-md w-full sm:w-auto text-black"
+                            className="px-4 py-2  w-full sm:w-auto text-black"
                         />
                         <button
                             type="submit"
-                            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
+                            className="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 "
                         >
                             Subscribe
                         </button>

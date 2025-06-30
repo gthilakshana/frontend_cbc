@@ -12,10 +12,10 @@ export default function Header() {
 
                 <Link
                     to="/"
-                    className="text-2xl font-extrabold text-white hover:text-blue-400 transition duration-300 tracking-wide font-sans"
+                    className="text-2xl font-arial text-white hover:text-gray-300 transition duration-300 tracking-wide font-sans"
 
                 >
-                    Mahee Fashion
+                    MAHEE FASHION
                 </Link>
 
             </div>
@@ -25,10 +25,10 @@ export default function Header() {
 
                 <nav className="flex space-x-6 font-arial">
                     {[
-                        { path: "/", label: "Home" },
-                        { path: "/product", label: "Products" },
-                        { path: "/about", label: "About Us" },
-                        { path: "/contact", label: "Contact" },
+                        { path: "/", label: "HOME" },
+                        { path: "/product", label: "PRODUCT" },
+                        { path: "/about", label: "ABOUT" },
+                        { path: "/contact", label: "CONTACT" },
                     ].map(({ path, label }) => (
                         <Link
                             key={path}

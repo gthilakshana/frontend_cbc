@@ -3,6 +3,7 @@ import Header from "../components/header";
 import ContactPage from "./home/contact";
 import HomeView from "./home/homeView";
 import AboutPage from "./home/about";
+import SignupPage from "./signUpPage";
 import Cart from "./home/cart";
 import ProductOverview from "./home/productOverview";
 import Product from "./home/product";
@@ -21,6 +22,7 @@ export default function HomePage() {
                     <Route path="/home" element={<HomeView />} />
                     <Route path="/product" element={<Product />} />
                     <Route path="/login" element={<LoginPage />} />
+                    <Route path="/signup" element={<SignupPage />} />
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/cart" element={<Cart />} />

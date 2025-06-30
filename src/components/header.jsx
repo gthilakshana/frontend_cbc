@@ -23,7 +23,7 @@ export default function Header() {
 
             <div className="hidden md:flex items-center space-x-6">
 
-                <nav className="flex space-x-6">
+                <nav className="flex space-x-6 font-arial">
                     {[
                         { path: "/", label: "Home" },
                         { path: "/product", label: "Products" },

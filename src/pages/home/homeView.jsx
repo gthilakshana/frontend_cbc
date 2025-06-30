@@ -26,6 +26,36 @@ export default function HomeView() {
             </section>
 
 
+            <section className="py-20 px-6 lg:px-24 bg-white text-center">
+                <h2 className="text-3xl sm:text-4xl  text-gray-800 mb-4">
+                    BEST WOMEN'S CLOTHING IN <span className="text-blue-600 ">SRI LANKA.</span>
+                </h2>
+                <p className="text-gray-600 max-w-2xl mx-auto mb-12">
+                    Create a WOW effect wherever you go with our range of designs. It's the perfect combination of comfort & sleek. Let's explore.
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                    {[
+                        { title: "TOPS", image: "./top.jpg" },
+                        { title: "TROUSERS", image: "./trousers.jpg" },
+                        { title: "MIDI DRESSES", image: "./midi.jpg" },
+                        { title: "MAXI DRESSES", image: "./maxi.jpg" },
+                    ].map((item, i) => (
+                        <div key={i} className="bg-white border border-gray-200  overflow-hidden shadow hover:shadow-lg transition cursor-pointer">
+                            <img
+                                src={item.image}
+                                alt={item.title}
+                                className="w-full h-90 object-cover"
+                            />
+                            <div className="p-4 border-t">
+                                <h3 className="text-sm font-semibold text-gray-800 tracking-wide">{item.title}</h3>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+
 
 
 

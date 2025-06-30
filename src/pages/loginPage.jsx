@@ -7,87 +7,95 @@ export default function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    function login() {
-        axios.post(import.meta.env.VITE_BACKEND_URL + '/api/users/login', {
-            email,
-            password
-        }).then((response) => {
+    async function login(e) {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/api/users/login', {
+                email,
+                password,
+            });
+
             if (!response.data.user) {
-                toast.error(response.data.message);
+                toast.error(response.data.message || "Login failed.", {
+                    style: {
+                        background: '#ef4444',
+                        color: 'white',
+                    },
+                });
                 return;
             }
-            toast.success(response.data.message);
-            localStorage.setItem('token', response.data.token);
 
+            toast.success(response.data.message, {
+                style: {
+                    background: '#22c55e',
+                    color: 'white',
+                },
+            });
+            localStorage.setItem('token', response.data.token);
             window.location.href = response.data.user.type === "admin" ? "/admin" : "/home";
-        });
+
+        } catch (error) {
+            const errorMsg = error?.response?.data?.message || "Login failed";
+            toast.error(errorMsg, {
+                style: {
+                    background: '#ef4444',
+                    color: 'white',
+                },
+            });
+        }
     }
 
     return (
-        <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-pink-100 via-white to-blue-100 px-4">
-            <div className="flex flex-col md:flex-row items-center bg-white rounded-3xl shadow-2xl overflow-hidden max-w-5xl w-full">
+        <div className="min-h-screen bg-white flex items-center justify-center px-4">
+            <div className="w-full max-w-md border border-gray-200 p-8 rounded-md shadow-sm">
+                <h2 className="text-center text-3xl font-bold text-gray-800 mb-1">Welcome Back</h2>
+                <p className="text-center text-sm text-gray-600 mb-6">
+                    Login to continue shopping your favorite styles
+                </p>
 
-                {/* Image Section */}
-                <div className="hidden md:flex w-full md:w-1/2 bg-cover bg-center p-6">
-                    <img
-                        src="/clothing.png"
-                        alt="Fashion"
-                        className="w-full h-full object-contain"
+                <form onSubmit={login} className="space-y-5">
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        placeholder="Email Address"
+                        required
+                        className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
-                </div>
 
-                {/* Form Section */}
-                <div className="w-full md:w-1/2 p-8 sm:p-12">
-                    <h2 className="text-3xl font-bold text-gray-800 text-center">Welcome Back 👋</h2>
-                    <p className="text-sm text-gray-500 text-center mb-6">
-                        Login to continue shopping your favorite styles
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        placeholder="Password"
+                        required
+                        className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+
+                    <button
+                        type="submit"
+                        className="w-full py-3 bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded-sm transition"
+                    >
+                        Login
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={() => window.location.href = "/signup"}
+                        className="w-full py-3 bg-white border border-blue-500 text-blue-500 hover:bg-blue-50 font-semibold rounded-sm transition"
+                    >
+                        Create New Account
+                    </button>
+                </form>
+
+                <div className="text-center mt-4">
+                    <p className="text-sm text-gray-500">
+                        Forgot password?{' '}
+                        <Link to="/reset" className="text-blue-500 hover:underline">
+                            Reset here
+                        </Link>
                     </p>
-
-                    <div className="space-y-4">
-                        {/* Email */}
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Email Address"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-
-                        {/* Password */}
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Password"
-                            className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-
-                        {/* Login */}
-                        <button
-                            onClick={login}
-                            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-md transition"
-                        >
-                            Login
-                        </button>
-
-                        {/* Register */}
-                        <button
-                            onClick={() => window.location.href = "/register"}
-                            className="w-full py-3 bg-white border border-blue-500 text-blue-600 hover:bg-blue-50 font-semibold rounded-xl transition"
-                        >
-                            Create New Account
-                        </button>
-                    </div>
-
-                    {/* Forgot Password */}
-                    <div className="text-center mt-4">
-                        <p className="text-sm text-gray-500">
-                            Forgot password?{' '}
-                            <Link to="/reset" className="text-blue-500 hover:underline">
-                                Reset here
-                            </Link>
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>

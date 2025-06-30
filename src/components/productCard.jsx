@@ -12,45 +12,48 @@ export default function ProductCard({ product }) {
     }
 
     return (
-        <div className="w-[270px] bg-white  shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200 overflow-hidden flex flex-col">
-            {/* Image */}
-            <Link to={`/productInfo/${product.productId}`} className="block overflow-hidden h-[250px] rounded-t-lg">
+        <div className="w-[270px] bg-white border border-gray-200 shadow-md hover:shadow-lg transition duration-300 rounded-lg overflow-hidden flex flex-col">
+
+            <Link to={`/productInfo/${product.productId}`} className="block">
                 <img
                     src={product.images[0]}
                     alt={product.productName}
-                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                    className="w-full h-[330px] object-cover transform hover:scale-105 transition-transform duration-500"
                 />
             </Link>
 
-            {/* Details */}
-            <div className="p-5 flex flex-col flex-grow">
+
+            <div className="p-4 flex flex-col flex-grow">
                 <Link to={`/productInfo/${product.productId}`} className="hover:underline">
-                    <h2 className="text-xl font-semibold text-gray-900 truncate">{product.productName}</h2>
+                    <h2 className="text-lg font-semibold text-gray-900 truncate">{product.productName}</h2>
                 </Link>
 
-                <p className="text-sm text-gray-500 mt-1 truncate">
-                    {product.altNames?.join(" | ")}
-                </p>
-                <span className="text-gray-500 text-center mt-2">{product.productId}</span>
+                {product.altNames?.length > 0 && (
+                    <p className="text-sm text-gray-500 mt-1 truncate">
+                        {product.altNames.join(" | ")}
+                    </p>
+                )}
+
+                <span className="text-gray-400 text-sm mt-1">ID: {product.productId}</span>
+
+
                 <div className="mt-3">
                     {product.price > product.lastPrice ? (
                         <div className="text-md">
-
-                            <span className="line-through text-green-500 mr-2">LKR. {product.price}</span>
-                            <span className="text-orange-600 font-bold">LKR. {product.lastPrice}</span>
-
+                            <span className="line-through text-red-400 mr-2">LKR. {product.price}</span>
+                            <span className="text-green-600 font-bold">LKR. {product.lastPrice}</span>
                         </div>
                     ) : (
-                        <div className="text-green-500 font-bold text-md">LKR. {product.lastPrice}</div>
+                        <div className="text-green-600 font-bold text-md">LKR. {product.lastPrice}</div>
                     )}
                 </div>
 
-                {/* Actions */}
-                <div className="mt-auto flex items-center justify-between pt-6">
+
+                <div className="mt-auto pt-6 flex items-center justify-between">
                     <button
                         onClick={onAddtoCartClick}
                         type="button"
-                        className="px-5 w-[130px] py-2 bg-blue-400 text-white text-sm font-medium  hover:bg-blue-500 transition duration-300 shadow-md"
+                        className="px-4 py-2 w-[120px] bg-blue-500 text-white text-sm font-medium  hover:bg-blue-600 transition"
                         title="Add to Cart"
                     >
                         Add to Cart
@@ -58,10 +61,10 @@ export default function ProductCard({ product }) {
 
                     <Link
                         to={`/productInfo/${product.productId}`}
-                        className="text-blue-600 font-semibold hover:underline transition duration-300"
+                        className="text-blue-600 font-semibold text-sm hover:underline transition"
                         title="View Details"
                     >
-                        View Details
+                        View
                     </Link>
                 </div>
             </div>

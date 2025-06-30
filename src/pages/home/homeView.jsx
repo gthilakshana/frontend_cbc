@@ -72,7 +72,7 @@ export default function HomeView() {
                 </div>
             </section>
 
-            {/* Collections Section */}
+
             <section className="py-20 px-6 lg:px-20 bg-gradient-to-b from-white to-gray-50">
                 <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-4">
                     Explore Our <span className="text-blue-600">Collections</span>
@@ -112,42 +112,10 @@ export default function HomeView() {
                 </div>
             </section>
 
-            {/* ✅ New Featured Styles Section */}
-            <section className="py-20 px-6 lg:px-24 bg-blue-50">
-                <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-6">
-                    Featured <span className="text-blue-600">Styles</span>
-                </h2>
-                <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-                    Handpicked seasonal picks to elevate your style with a blend of class and comfort.
-                </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {[1, 2, 3].map((_, i) => (
-                        <div
-                            key={i}
-                            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 flex flex-col items-center text-center"
-                        >
-                            <img
-                                src={`./featured${i + 1}.jpg`}
-                                alt="Featured"
-                                className="w-full h-60 object-cover rounded-xl mb-6"
-                            />
-                            <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                                {i === 0 ? "Elegant Drapes" : i === 1 ? "Urban Classic" : "Fusion Trends"}
-                            </h3>
-                            <p className="text-gray-600">
-                                {i === 0
-                                    ? "Chic traditional designs with modern cuts for weddings & events."
-                                    : i === 1
-                                        ? "Smart looks for professionals who love comfort and charisma."
-                                        : "Where cultural grace meets street-ready silhouettes."}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </section>
 
-            {/* Testimonials */}
+
+
             <section className="py-20 px-6 lg:px-24 bg-gradient-to-b from-gray-50 to-white">
                 <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-6">
                     What Our <span className="text-blue-600">Customers Say</span>
@@ -186,7 +154,7 @@ export default function HomeView() {
                 </div>
             </section>
 
-            {/* Newsletter */}
+
             <section className="bg-gray-500 py-16 text-white text-center px-6">
                 <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">Join Our Style Circle</h2>
                 <p className="mb-6 max-w-xl mx-auto">

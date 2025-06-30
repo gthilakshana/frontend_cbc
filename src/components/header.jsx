@@ -9,9 +9,15 @@ export default function Header() {
         <header className=" bg-gray-900 shadow-md w-full px-6 md:px-10 h-[80px] flex items-center justify-between sticky top-0 z-50 transition duration-300">
 
             <div className="flex items-center space-x-3">
-                <h1 className="text-2xl font-extrabold text-white hover:text-blue-400 transition duration-300 tracking-wide font-sans">
+
+                <Link
+                    to="/"
+                    className="text-2xl font-extrabold text-white hover:text-blue-400 transition duration-300 tracking-wide font-sans"
+
+                >
                     Mahee Fashion
-                </h1>
+                </Link>
+
             </div>
 
 
@@ -27,7 +33,7 @@ export default function Header() {
                         <Link
                             key={path}
                             to={path}
-                            className="text-gray-700 dark:text-gray-300 text-lg font-medium hover:text-white transition border-b-2 border-transparent hover:border-blue-600"
+                            className="text-gray-700 dark:text-gray-300 text-lg font-medium hover:text-white transition border-b-2 border-transparent hover:border-white"
                         >
                             {label}
                         </Link>

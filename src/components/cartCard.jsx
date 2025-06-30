@@ -12,7 +12,7 @@ export default function CartCard({ productId, qty, onDelete }) {
 
     useEffect(() => {
         axios
-            .get(`${import.meta.env.VITE_BACKEND_URL}/api/products/${productId}`)
+            .get(import.meta.env.VITE_BACKEND_URL + `/api/products/${productId}`)
             .then((res) => setProduct(res.data))
             .catch((err) => console.error("Failed to load product:", err));
     }, [productId]);
@@ -32,13 +32,13 @@ export default function CartCard({ productId, qty, onDelete }) {
 
             <img
                 src={product.images[0]}
-                alt={product.productName}
+
                 className="w-20 h-20 object-cover rounded"
             />
 
 
             <div className="flex-1 space-y-1">
-                <h2 className="font-semibold text-gray-800 text-sm">{product.name}</h2>
+                <h2 className="font-semibold text-gray-800 text-sm">{product.productName}</h2>
                 <p className="text-xs text-gray-600">
                     No Brand, Color Family: {product.colors ?? "N/A"}, Size:{" "}
                     {product.sizes ?? "N/A"}

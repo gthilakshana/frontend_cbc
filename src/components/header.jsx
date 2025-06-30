@@ -80,10 +80,10 @@ export default function Header() {
             {menuOpen && (
                 <div className="absolute top-[80px] right-0 w-60 h-[calc(100vh-80px)] bg-gray-900 flex flex-col items-start md:hidden shadow-lg z-50 overflow-y-auto">
                     {[
-                        { path: "/", label: "Home" },
-                        { path: "/product", label: "Products" },
-                        { path: "/about", label: "About Us" },
-                        { path: "/contact", label: "Contact" },
+                        { path: "/", label: "HOME" },
+                        { path: "/product", label: "PRODUCT" },
+                        { path: "/about", label: "ABOUT" },
+                        { path: "/contact", label: "CONTACT" },
                     ].map(({ path, label }) => (
                         <Link
                             key={path}
@@ -99,7 +99,7 @@ export default function Header() {
                     <Link
                         to="/login"
                         onClick={() => setMenuOpen(false)}
-                        className="w-[90%] mx-auto my-4 text-center bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded transition"
+                        className="w-[90%] mx-auto my-4 text-center bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 px-4  transition"
                     >
                         Login
                     </Link>

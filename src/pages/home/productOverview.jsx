@@ -46,7 +46,7 @@ export default function ProductOverview() {
 
     function onAddtoCartClick() {
         addToCart(product.productId, 1);
-        toast.success(product.productId + "Product added to cart");
+        toast.success("Product added to cart");
         console.log(product.productName);
     }
 

@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
+import { addToCart } from "../utils/cartFunction";
+import { toast } from "react-hot-toast";
+
 
 export default function ProductCard({ product }) {
+
+    function onAddtoCartClick() {
+        addToCart(product.productId, 1);
+        toast.success("Product added to cart");
+        console.log(product.productName);
+    }
+
     return (
         <div className="w-[270px] bg-white  shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200 overflow-hidden flex flex-col">
             {/* Image */}
@@ -39,6 +48,7 @@ export default function ProductCard({ product }) {
                 {/* Actions */}
                 <div className="mt-auto flex items-center justify-between pt-6">
                     <button
+                        onClick={onAddtoCartClick}
                         type="button"
                         className="px-5 w-[130px] py-2 bg-blue-400 text-white text-sm font-medium  hover:bg-blue-500 transition duration-300 shadow-md"
                         title="Add to Cart"

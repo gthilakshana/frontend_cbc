@@ -43,7 +43,7 @@ export default function Header() {
 
                 <Link
                     to="/cart"
-                    className="text-gray-600 dark:text-gray-500 hover:text-gray-600 transition text-xl"
+                    className="text-gray-400  hover:text-gray-600 transition text-xl"
                     title="Cart"
                 >
 
@@ -51,7 +51,7 @@ export default function Header() {
                 </Link>
                 <Link
                     to="/login"
-                    className="text-gray-600 dark:text-gray-500 hover:text-gray-600 transition text-xl"
+                    className="text-gray-400  hover:text-gray-600 transition text-xl"
                     title="Login"
                 >
                     <FaUserCircle />
@@ -62,14 +62,14 @@ export default function Header() {
             <div className="bg-white md:hidden text-xl flex items-center space-x-4">
                 <Link
                     to="/cart"
-                    className=" dark:text-gray-500 hover:text-gray-600 transition"
+                    className=" dark:text-gray-400 hover:text-gray-600 transition"
                     title="Cart"
                 >
                     <FaShoppingCart />
                 </Link>
 
                 <button
-                    className=" dark:text-gray-500 hover:text-gray-600 transition"
+                    className=" dark:text-gray-400 hover:text-gray-600 transition"
                     onClick={() => setMenuOpen(!menuOpen)}
                 >
                     <FaBars />

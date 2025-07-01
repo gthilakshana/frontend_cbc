@@ -13,11 +13,47 @@ import {
 
 } from "react-icons/si";
 
+
+
 export default function HomeView() {
 
 
     const [products, setProducts] = useState([]);
     const galleryRef = useRef(null);
+
+    //slider code
+    const heroBanners = [
+        {
+            image: "/banner2.jpg",
+            title: "BOLD. BEAUTIFUL. YOU.",
+            subtitle: "Stand out in styles that speak confidence."
+        },
+        {
+            image: "/men-banner.jpg",
+            title: "REFINED EVERYDAY WEAR",
+            subtitle: "Comfort meets luxury in every outfit."
+        }, {
+            image: "/Banner1.jpg",
+            title: "ELEGANCE IN EVERY THREAD",
+            subtitle: "Modern fashion infused with timeless design."
+        },
+    ];
+
+    const [index, setIndex] = useState(0);
+
+    const nextSlide = () => {
+        setIndex((prev) => (prev + 1) % heroBanners.length);
+    };
+
+    const prevSlide = () => {
+        setIndex((prev) => (prev === 0 ? heroBanners.length - 1 : prev - 1));
+    };
+    useEffect(() => {
+        const interval = setInterval(nextSlide, 8000);
+        return () => clearInterval(interval);
+    }, []);
+
+    //slider code 
 
     useEffect(() => {
         axios
@@ -44,24 +80,50 @@ export default function HomeView() {
     return (
         <div className="w-full bg-gray-100 text-gray-800 font-body">
 
-
             <section
-                className="relative h-[90vh] w-full bg-cover bg-top bg-no-repeat"
-                style={{ backgroundImage: "url('./banner.jpg')" }}
+                className="relative w-full h-[90vh] bg-cover bg-center bg-no-repeat transition-all duration-700"
+                style={{ backgroundImage: `url(${heroBanners[index].image})` }}
             >
-                <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white text-center px-4">
-                    <h1 className="text-5xl sm:text-6xl font-heading mb-6 leading-tight">
-                        DISCOVER YOUR <span className="text-blue-400">STYLE</span>
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center text-white px-4">
+                    <h1 className="text-5xl sm:text-6xl font-heading mb-6 leading-tight uppercase">
+                        {heroBanners[index].title}
                     </h1>
                     <p className="text-xl mb-8 max-w-2xl font-sans">
-                        Elevate your wardrobe with trendy, high-quality clothing tailored for elegance and everyday comfort.
+                        {heroBanners[index].subtitle}
                     </p>
-                    <button className="px-8 py-3 bg-blue-400 hover:bg-blue-500 text-white  font-semibold text-lg shadow-md hover:shadow-lg transition-all"
-                        onClick={() => window.location.href = "/product"}
+                    <button
+                        className="px-8 py-3 bg-blue-400 hover:bg-blue-500 text-white font-semibold text-lg shadow-md hover:shadow-lg transition-all"
+                        onClick={() => (window.location.href = "/product")}
                     >
                         Shop Now
                     </button>
+                </div>
 
+                {/* Arrows */}
+                <button
+                    onClick={prevSlide}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white border border-gray-300 shadow hover:shadow-lg p-2 text-gray-600"
+                >
+                    <HiChevronLeft size={28} />
+                </button>
+
+                <button
+                    onClick={nextSlide}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white border border-gray-300 shadow hover:shadow-lg p-2 text-gray-600"
+                >
+                    <HiChevronRight size={28} />
+                </button>
+
+                {/* Dots */}
+                <div className="absolute bottom-6 right-6 flex gap-2 z-20">
+                    {heroBanners.map((_, i) => (
+                        <div
+                            key={i}
+                            className={`w-2 h-2  transition-all duration-300 ${i === index ? "bg-white" : "bg-white/50"
+                                }`}
+                        />
+                    ))}
                 </div>
             </section>
 

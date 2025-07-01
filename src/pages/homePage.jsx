@@ -16,7 +16,7 @@ export default function HomePage() {
             {/* Sticky Header */}
             <Header />
 
-            <div className="w-full h-[calc(100vh-80px)] ">
+            <div className="w-full h-[calc(100vh-80px)] overflow-y-auto">
                 <Routes path="/*">
                     <Route path="/" element={<HomeView />} />
                     <Route path="/home" element={<HomeView />} />

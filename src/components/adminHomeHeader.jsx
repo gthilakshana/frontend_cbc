@@ -6,68 +6,52 @@ import { MdInventory } from "react-icons/md";
 import { BsCartCheckFill } from "react-icons/bs";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 
-export default function AdminHomeHeader() {
+export default function AdminSidebar() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
         <>
-            {/* Header */}
-            <header className="bg-gray-900 shadow-md w-full px-6 md:px-10 h-[80px] flex items-center justify-between sticky top-0 z-50">
 
-                <div className="text-white">
-                    <button onClick={() => setSidebarOpen(true)}>
-                        <HiOutlineMenu size={28} />
-                    </button>
-                </div>
+            <button
+                onClick={() => setSidebarOpen(true)}
+                className="fixed top-4 left-4 z-50 bg-gray-900 text-white p-2  shadow-md hover:bg-gray-500"
+            >
+                <HiOutlineMenu size={24} />
+            </button>
 
-                {/* Logo */}
-                <h1 className="text-2xl  font-extrabold text-white hover:text-blue-400 transition duration-300 tracking-wide font-sans">
-                    Mahee Fashion
-                </h1>
-
-
-                <div className="w-8"></div>
-            </header>
-
-            {/* Sidebar (Overlay) */}
+            {/* Sidebar */}
             <div
-                className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-gray-900 to-gray-800 text-white shadow-xl px-6 py-8 z-40 transform transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+                className={`fixed top-[70px] left-0 h-full w-64 bg-gray-900 text-white shadow-lg transform transition-transform duration-300 z-40 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
                     }`}
             >
-                {/* Close button */}
-                <div className="flex justify-end mb-6">
-                    <button onClick={() => setSidebarOpen(false)}>
-                        <HiOutlineX size={26} className="text-white" />
+                <div className="flex justify-between items-center p-4 border-b border-gray-700">
+                    <h2 className="text-xl font-semibold">Admin Panel</h2>
+                    <button onClick={() => setSidebarOpen(false)} className="text-white">
+                        <HiOutlineX size={24} />
                     </button>
                 </div>
 
-                <h2 className="text-2xl font-bold tracking-wide mb-6">⚙️ Admin Panel</h2>
-
-                <nav className="flex flex-col space-y-4 text-sm">
-                    <Link to="/admin/dashboard" onClick={() => setSidebarOpen(false)} className="flex items-center space-x-3 hover:text-blue-300 transition duration-200">
-                        <GoGraph size={20} />
-                        <span>Dashboard</span>
+                <nav className="p-4 flex flex-col gap-4 text-sm">
+                    <Link to="/admin/dashboard" onClick={() => setSidebarOpen(false)} className="flex items-center gap-2 hover:text-blue-300">
+                        <GoGraph /> Dashboard
                     </Link>
-                    <Link to="/admin/users" onClick={() => setSidebarOpen(false)} className="flex items-center space-x-3 hover:text-blue-300 transition duration-200">
-                        <FaUsers size={20} />
-                        <span>Users</span>
+                    <Link to="/admin/users" onClick={() => setSidebarOpen(false)} className="flex items-center gap-2 hover:text-blue-300">
+                        <FaUsers /> Users
                     </Link>
-                    <Link to="/admin/products" onClick={() => setSidebarOpen(false)} className="flex items-center space-x-3 hover:text-blue-300 transition duration-200">
-                        <MdInventory size={20} />
-                        <span>Products</span>
+                    <Link to="/admin/products" onClick={() => setSidebarOpen(false)} className="flex items-center gap-2 hover:text-blue-300">
+                        <MdInventory /> Products
                     </Link>
-                    <Link to="/admin/orders" onClick={() => setSidebarOpen(false)} className="flex items-center space-x-3 hover:text-blue-300 transition duration-200">
-                        <BsCartCheckFill size={20} />
-                        <span>Orders</span>
+                    <Link to="/admin/orders" onClick={() => setSidebarOpen(false)} className="flex items-center gap-2 hover:text-blue-300">
+                        <BsCartCheckFill /> Orders
                     </Link>
                 </nav>
             </div>
 
-
+            {/* Backdrop */}
             {sidebarOpen && (
                 <div
                     onClick={() => setSidebarOpen(false)}
-                    className="fixed inset-0 bg-black opacity-40 z-30 md:hidden"
+                    className="fixed inset-0 bg-black opacity-40 z-30"
                 />
             )}
         </>

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -8,17 +8,16 @@ export default function SignupPage() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     async function signup(e) {
-        e.preventDefault();  // Prevent form default reload
+        e.preventDefault();
 
         try {
-            const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/api/users/signup', {
-                firstName,
-                lastName,
-                email,
-                password
-            });
+            const response = await axios.post(
+                import.meta.env.VITE_BACKEND_URL + '/api/users/signup',
+                { firstName, lastName, email, password }
+            );
 
             const { message, token, user } = response.data;
 
@@ -36,7 +35,7 @@ export default function SignupPage() {
             localStorage.setItem('token', token);
 
 
-            window.location.href = '/home';
+            navigate('/home');
 
         } catch (error) {
             const errorMsg = error?.response?.data?.message || "Signup failed";
@@ -46,13 +45,12 @@ export default function SignupPage() {
         }
     }
 
-
     return (
         <div className="min-h-screen bg-white flex items-center justify-center px-4">
             <div className="w-full max-w-md">
                 {/* Breadcrumb */}
                 <div className="text-sm text-gray-500 mb-4">
-                    <Link to="/" className="hover:underline">Home</Link>  &gt;
+                    <Link to="/" className="hover:underline">Home</Link> &gt;
                     <Link to="/login" className="hover:underline mx-1">Login</Link>
                     <span className="mx-1">&gt;</span> Create Account
                 </div>
@@ -88,7 +86,7 @@ export default function SignupPage() {
                         </div>
 
                         <div>
-                            <label className="block text-sm text-gray-700 mb-1">Your Email Address <span className="text-red-500">*</span></label>
+                            <label className="block text-sm text-gray-700 mb-1">Email Address</label>
                             <input
                                 type="email"
                                 value={email}
@@ -99,7 +97,7 @@ export default function SignupPage() {
                         </div>
 
                         <div>
-                            <label className="block text-sm text-gray-700 mb-1">Your Password <span className="text-red-500">*</span></label>
+                            <label className="block text-sm text-gray-700 mb-1">Password</label>
                             <input
                                 type="password"
                                 value={password}
@@ -111,7 +109,6 @@ export default function SignupPage() {
 
                         <button
                             type="submit"
-
                             className="w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 mt-2"
                         >
                             CREATE AN ACCOUNT

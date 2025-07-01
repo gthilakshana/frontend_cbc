@@ -102,11 +102,11 @@ export default function ProductOverview() {
 
                         <div className="text-2xl font-semibold text-gray-800">
                             {product.price > product.lastPrice && (
-                                <span className="line-through text-green-500 mr-2 text-xl">
+                                <span className="line-through text-red-500 mr-2 text-xl">
                                     Rs. {product.price}
                                 </span>
                             )}
-                            <span className="text-orange-600 text-xl">Rs. {product.lastPrice}</span>
+                            <span className="text-gray-600 text-xl">Rs. {product.lastPrice}</span>
                         </div>
 
 

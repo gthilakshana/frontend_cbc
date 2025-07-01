@@ -67,12 +67,12 @@ export default function Product() {
                         </div>
                     )}
                 </section>
+
+
             </main>
 
 
-            <footer className="w-full">
-                <Footer />
-            </footer>
+
         </div>
 
     );

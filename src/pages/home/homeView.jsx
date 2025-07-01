@@ -1,13 +1,50 @@
 import Footer from "../../components/footer";
+import { useRef } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { HiOutlineScissors } from "react-icons/hi";
 import { MdLocalShipping } from "react-icons/md";
 import { GiSpinningRibbons } from "react-icons/gi";
+import {
+    SiAfterpay,
+    SiVisa,
+    SiMastercard,
+
+} from "react-icons/si";
 
 export default function HomeView() {
+
+
+    const [products, setProducts] = useState([]);
+    const galleryRef = useRef(null);
+
+    useEffect(() => {
+        axios
+            .get(import.meta.env.VITE_BACKEND_URL + "/api/products")
+            .then((res) => {
+                console.log("API response:", res.data);
+                setProducts(res.data);
+            })
+            .catch((err) => console.error("Error fetching products:", err));
+    }, []);
+
+    const scrollGallery = (direction) => {
+        const scrollAmount = 400;
+        if (galleryRef.current) {
+            galleryRef.current.scrollBy({
+                left: direction * scrollAmount,
+                behavior: "smooth",
+            });
+        }
+    };
+
+
+
     return (
         <div className="w-full bg-gray-100 text-gray-800 font-body">
 
-            {/* Hero Banner */}
+
             <section
                 className="relative h-[90vh] w-full bg-cover bg-top bg-no-repeat"
                 style={{ backgroundImage: "url('./banner.jpg')" }}
@@ -60,6 +97,109 @@ export default function HomeView() {
 
 
 
+            <section
+                className="relative w-full h-[63vh] bg-cover bg-center flex items-center justify-center text-white"
+
+                style={{
+                    backgroundImage: "url('/menfa.png')",
+                }}
+            >
+                <div className="absolute inset-0 bg-black/20" />
+
+                <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between w-full">
+
+                    <div className="text-left max-w-xl space-y-4">
+                        <p className="text-sm font-bold tracking-widest text-white">MAHEE FASHION</p>
+                        <p className="text-xs tracking-widest text-gray-300">NOW IN SRI LANKA</p>
+
+                        <h1 className="text-4xl sm:text-6xl  leading-tight uppercase">
+                            Shop Now <br />
+                            <span className="text-blue-400 inline-flex items-center gap-2">
+                                with <SiAfterpay className="inline text-4xl" />
+                            </span>
+                        </h1>
+
+                        <button className="mt-6 px-6 py-3 bg-white text-black font-bold uppercase tracking-wide hover:bg-gray-200 transition">
+                            Visit MAHEEFASHION.LK
+                        </button>
+
+
+                        <div className="mt-6 flex items-center gap-4 text-gray-200">
+                            <span className="text-sm">Also Available</span>
+                            <SiVisa className="text-2xl" />
+                            <SiMastercard className="text-2xl" />
+
+                        </div>
+                    </div>
+
+
+                    {/* <div className="hidden md:block">
+                        <img
+                            src="/maxi.jpg"
+                            alt="Model"
+                            className="h-[500px] object-contain"
+                        />
+                    </div> */}
+                </div>
+            </section>
+
+
+
+            <section className="bg-white py-20 px-6 lg:px-24 text-center">
+                <h2 className="text-3xl sm:text-4xl font-heading text-gray-800 mb-2 font-semibold">
+                    #MAHEEFASHION
+                </h2>
+                <p className="text-gray-500 mb-10 font-sans">
+                    Feel. Gorgeous. Love. Mahee fashion.
+                </p>
+
+                <div className="relative">
+
+                    <button
+                        onClick={() => scrollGallery(-1)}
+                        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white border border-gray-100 shadow hover:shadow-lg p-2 text-gray-600"
+                    >
+                        <HiChevronLeft size={24} />
+                    </button>
+
+
+                    <div
+                        ref={galleryRef}
+                        className="flex overflow-x-auto gap-6 px-6 scrollbar-hide"
+                    >
+                        {Array.isArray(products) &&
+                            products.map((product, i) => (
+                                <div
+                                    key={i}
+                                    className="flex-shrink-0 w-[320px] text-left bg-white shadow-md cursor-pointer "
+                                >
+                                    <img
+                                        src={product.images?.[1] || "/fallback.jpg"}
+                                        alt={product.productName}
+                                        className="w-full h-[390px] object-cover"
+                                    />
+                                    <div className="p-4 border-t">
+                                        <h3 className="text-sm font-semibold text-gray-800 tracking-wide text-center uppercase">
+                                            {product.brands}
+                                        </h3>
+                                    </div>
+                                </div>
+                            ))}
+                    </div>
+
+
+                    <button
+                        onClick={() => scrollGallery(1)}
+                        className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white border border-gray-300 shadow hover:shadow-lg p-2 text-gray-600"
+                    >
+                        <HiChevronRight size={24} />
+                    </button>
+                </div>
+            </section>
+
+
+
+
 
 
             {/* About Section */}
@@ -106,86 +246,15 @@ export default function HomeView() {
             </section>
 
 
-            {/* <section className="py-20 px-6 lg:px-20 bg-gradient-to-b from-white to-gray-50">
-                <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-4">
-                    Explore Our <span className="text-blue-600">Collections</span>
-                </h2>
-                <p className="text-gray-600 text-center max-w-xl mx-auto mb-12">
-                    Dive into our handpicked styles, perfect for every occasion — from elegant evenings to everyday wear.
-                </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-                    
-                    {[
-                        { img: "./whomen.jpg", title: "Women's Wear", desc: "Elegant sarees, modern office looks & casual everyday chic." },
-                        { img: "./men.jpg", title: "Men's Wear", desc: "Stylish kurtas, formal suits, and everyday comfort essentials." },
-                        { img: "./men2.jpg", title: "Traditional Styles", desc: "Celebrate culture with our handwoven classics and heritage designs." }
-                    ].map((col, i) => (
-                        <div key={i} className="group relative overflow-hidden rounded-2xl shadow hover:shadow-xl transition">
-                            <img
-                                src={col.img}
-                                alt={col.title}
-                                className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-500"
-                            />
-                            <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-6">
-                                <h3 className="text-white text-2xl font-bold mb-1">{col.title}</h3>
-                                <p className="text-gray-200 text-sm">{col.desc}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="text-center mt-12">
-                    <a
-                        href="/categories"
-                        className="inline-block px-8 py-3 bg-gray-600 text-white rounded-[10px] text-lg font-semibold hover:bg-blue-700 shadow-lg transition duration-300"
-                    >
-                        View All Categories
-                    </a>
-                </div>
-            </section> */}
 
 
 
 
-            {/* 
-            <section className="py-20 px-6 lg:px-24 bg-gradient-to-b from-gray-50 to-white">
-                <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-6">
-                    What Our <span className="text-blue-600">Customers Say</span>
-                </h2>
-                <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
-                    Real stories from real people. Here's why thousands trust Mahee Fashion to make their special moments even more stylish.
-                </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {[1, 2, 3].map((t, i) => (
-                        <div
-                            key={i}
-                            className={`bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300 border-t-4 ${i === 0 ? "border-pink-500" : i === 1 ? "border-indigo-500" : "border-yellow-500"
-                                }`}
-                        >
-                            <p className="text-gray-600 italic mb-4">
-                                {i === 0
-                                    ? "Absolutely in love with the fabric and stitching. I got compliments all day!"
-                                    : i === 1
-                                        ? "Very fast delivery and the quality exceeded my expectations."
-                                        : "The traditional outfit I ordered looked even better than in the pictures."}
-                            </p>
-                            <div className="flex items-center gap-4 mt-6">
-                                <img
-                                    src={`./profile${i + 1}.jpg`}
-                                    alt="Customer"
-                                    className="w-12 h-12 rounded-full object-cover"
-                                />
-                                <div>
-                                    <p className="font-bold text-gray-800">{i === 0 ? "Dilani S." : i === 1 ? "Nuwan R." : "Sajith M."}</p>
-                                    <p className="text-sm text-gray-500">{i === 0 ? "Colombo" : i === 1 ? "Galle" : "Kandy"}, Sri Lanka</p>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section> */}
+
+
+
+
 
 
             <section className="bg-gray-200 py-16 text-gray-800 text-center px-6">

@@ -52,8 +52,8 @@ export default function Product() {
                 <section className="mb-10">
                     {/* Product Grid */}
                     {loading ? (
-                        <div className="w-full h-40 flex justify-center items-center">
-                            <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-b-blue-500" />
+                        <div className="w-full h-screen flex justify-center items-center">
+                            <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-b-orange-500" />
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-5 place-items-center px-4">

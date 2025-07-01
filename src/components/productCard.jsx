@@ -41,10 +41,10 @@ export default function ProductCard({ product }) {
                     {product.price > product.lastPrice ? (
                         <div className="text-md">
                             <span className="line-through text-red-400 mr-2">LKR. {product.price}</span>
-                            <span className="text-green-600 font-bold">LKR. {product.lastPrice}</span>
+                            <span className="text-gray-600 ">LKR. {product.lastPrice}</span>
                         </div>
                     ) : (
-                        <div className="text-green-600 font-bold text-md">LKR. {product.lastPrice}</div>
+                        <div className="text-gray-600  text-md">LKR. {product.lastPrice}</div>
                     )}
                 </div>
 
@@ -53,7 +53,7 @@ export default function ProductCard({ product }) {
                     <button
                         onClick={onAddtoCartClick}
                         type="button"
-                        className="px-4 py-2 w-[120px] bg-blue-500 text-white text-sm font-medium  hover:bg-blue-600 transition"
+                        className="px-4 py-2 w-[120px] bg-gray-400 text-white text-sm font-medium  hover:bg-blue-400 transition"
                         title="Add to Cart"
                     >
                         Add to Cart

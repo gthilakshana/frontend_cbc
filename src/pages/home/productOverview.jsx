@@ -99,7 +99,7 @@ export default function ProductOverview() {
 
                     <div className="space-y-6">
 
-                        {/* Price Section */}
+
                         <div className="text-2xl font-semibold text-gray-800">
                             {product.price > product.lastPrice && (
                                 <span className="line-through text-green-500 mr-2 text-xl">
@@ -109,9 +109,9 @@ export default function ProductOverview() {
                             <span className="text-orange-600 text-xl">Rs. {product.lastPrice}</span>
                         </div>
 
-                        {/* Stock and Quantity Section */}
+
                         <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 space-y-3 w-full max-w-sm">
-                            {/* Stock Status */}
+
                             <h2 className="text-md font-medium flex items-center space-x-2">
                                 {product.stock > 0 ? (
                                     <>

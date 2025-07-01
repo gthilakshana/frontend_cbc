@@ -2,19 +2,19 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaEnvelope, FaPhoneAlt, FaMapMarke
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-900 text-gray-200 px-6 sm:px-10 lg:px-20 py-10 w-full">
+        <footer className="bg-white text-gray-400 px-6 sm:px-10 lg:px-20 py-10 w-full">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
                 {/* Brand Info */}
                 <div>
-                    <h2 className="text-xl  text-white mb-4">MAHEE FASHION</h2>
-                    <p className="text-gray-400">
+                    <h2 className="text-xl  text-gray-500 mb-4">MAHEE FASHION</h2>
+                    <p className="text-gray-500">
                         Elevating your style with elegance and authenticity. Discover the latest trends and timeless classics.
                     </p>
                     <div className="flex gap-4 mt-4 text-xl">
                         <a href="https://facebook.com" target="_blank" className="hover:text-blue-400 transition">
                             <FaFacebookF />
                         </a>
-                        <a href="https://instagram.com" target="_blank" className="hover:text-pink-400 transition">
+                        <a href="https://instagram.com" target="_blank" className="hover:text-blue-400 transition">
                             <FaInstagram />
                         </a>
                         <a href="https://twitter.com" target="_blank" className="hover:text-sky-400 transition">
@@ -25,19 +25,19 @@ export default function Footer() {
 
                 {/* Quick Links */}
                 <div>
-                    <h2 className="text-lg  mb-4 text-white">QUICK LINKS</h2>
-                    <ul className="space-y-2 text-gray-400">
-                        <li><a href="/" className="hover:text-white transition">Home</a></li>
-                        <li><a href="/product" className="hover:text-white transition">Products</a></li>
-                        <li><a href="/about" className="hover:text-white transition">About Us</a></li>
-                        <li><a href="/contact" className="hover:text-white transition">Contact</a></li>
+                    <h2 className="text-lg  mb-4 text-gray-500">QUICK LINKS</h2>
+                    <ul className="space-y-2 text-gray-500">
+                        <li><a href="/" className="hover:text-gray-400 transition">Home</a></li>
+                        <li><a href="/product" className="hover:text-gray-400 transition">Products</a></li>
+                        <li><a href="/about" className="hover:text-gray-400 transition">About Us</a></li>
+                        <li><a href="/contact" className="hover:text-gray-400 transition">Contact</a></li>
                     </ul>
                 </div>
 
                 {/* Contact Info */}
                 <div>
-                    <h2 className="text-lg font-semibold mb-4 text-white">CONTACT</h2>
-                    <ul className="space-y-3 text-gray-400 text-sm">
+                    <h2 className="text-lg font-semibold mb-4 text-gray-500">CONTACT</h2>
+                    <ul className="space-y-3 text-gray-500 text-sm">
                         <li className="flex items-center gap-2">
                             <FaMapMarkerAlt /> 123 Fashion Street, Colombo, Sri Lanka
                         </li>
@@ -52,17 +52,17 @@ export default function Footer() {
 
                 {/* Newsletter (Optional) */}
                 <div>
-                    <h2 className="text-lg font-semibold mb-4 text-white">SUBSCRIBE</h2>
-                    <p className="text-gray-400 mb-4">Get the latest updates and offers.</p>
+                    <h2 className="text-lg font-semibold mb-4 text-gray-500">SUBSCRIBE</h2>
+                    <p className="text-gray-500 mb-4">Get the latest updates and offers.</p>
                     <form className="flex flex-col sm:flex-row gap-2">
                         <input
                             type="email"
                             placeholder="Email address"
-                            className="px-4 py-2  w-full sm:w-auto text-black"
+                            className="px-4 py-2  w-full sm:w-auto text-gray-700 border border-gray-600 "
                         />
                         <button
                             type="submit"
-                            className="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 "
+                            className="bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 "
                         >
                             Subscribe
                         </button>

@@ -16,7 +16,7 @@ export default function ProductCard({ product }) {
 
             <Link to={`/productInfo/${product.productId}`} className="block">
                 <img
-                    src={product.images[0]}
+                    src={product.images[1]}
                     alt={product.productName}
                     className="w-full h-[330px] object-cover transform hover:scale-105 transition-transform duration-500"
                 />

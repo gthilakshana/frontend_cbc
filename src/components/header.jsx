@@ -12,7 +12,7 @@ export default function Header() {
 
                 <Link
                     to="/"
-                    className="text-2xl font-arial text-gray-600 hover:text-gray-500 transition duration-300 tracking-wide font-sans"
+                    className="text-2xl font-extralight text-gray-600 hover:text-gray-500 transition duration-300 tracking-wide"
 
                 >
                     MAHEE FASHION
@@ -23,7 +23,7 @@ export default function Header() {
 
             <div className="hidden md:flex items-center space-x-6">
 
-                <nav className="flex space-x-6 font-arial">
+                <nav className="flex space-x-6 font-extralight">
                     {[
                         { path: "/", label: "HOME" },
                         { path: "/product", label: "PRODUCT" },
@@ -78,7 +78,7 @@ export default function Header() {
 
             {/* Mobile Menu */}
             {menuOpen && (
-                <div className="absolute top-[80px] right-0 w-60 h-[calc(100vh-80px)] bg-white flex flex-col items-start md:hidden shadow-lg z-50 overflow-y-auto">
+                <div className="absolute font-extralight top-[80px] right-0 w-60 h-[calc(100vh-80px)] bg-white flex flex-col items-start md:hidden shadow-lg z-50 overflow-y-auto">
                     {[
                         { path: "/", label: "HOME" },
                         { path: "/product", label: "PRODUCT" },
@@ -99,7 +99,7 @@ export default function Header() {
                     <Link
                         to="/login"
                         onClick={() => setMenuOpen(false)}
-                        className="w-[90%] mx-auto my-4 text-center bg-orange-300 hover:bg-orange-400 text-white font-semibold py-2 px-4  transition"
+                        className="w-[90%] mx-auto my-4 text-center bg-orange-300 hover:bg-orange-400 text-white font-extralight py-2 px-4  transition"
                     >
                         Login
                     </Link>

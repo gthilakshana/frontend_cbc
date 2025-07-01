@@ -120,7 +120,7 @@ export default function HomeView() {
                     {heroBanners.map((_, i) => (
                         <div
                             key={i}
-                            className={`w-2 h-2  transition-all duration-300 ${i === index ? "bg-white" : "bg-white/50"
+                            className={`w-2 h-2  transition-all duration-300 ${i === index ? "bg-white" : "bg-white"
                                 }`}
                         />
                     ))}

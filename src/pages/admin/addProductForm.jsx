@@ -21,7 +21,9 @@ export default function AddProductForm() {
 
     const [brands, setBrands] = useState("");
     const [description, setDescription] = useState("");
+    // const [searchText, setSearchText] = useState("");
     const navigate = useNavigate();
+
 
     async function handleSubmit() {
         const altNames = alterNativeNames.split(',');

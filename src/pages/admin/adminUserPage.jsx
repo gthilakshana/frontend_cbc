@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function AdminUserPage() {
     const [users, setUsers] = useState([]);
     const [userLoaded, setUserLoaded] = useState(false);
+    const [searchText, setSearchText] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,18 +20,36 @@ export default function AdminUserPage() {
         }
     }, [userLoaded]);
 
+    const filteredUsers = users.filter((user) =>
+        ((user.firstName && user.firstName.toLowerCase().includes(searchText.toLowerCase())) ||
+            (user.lastName && user.lastName.toLowerCase().includes(searchText.toLowerCase()))) ||
+        (user.email && user.email.toLowerCase().includes(searchText.toLowerCase()))
+    );
+
     return (
         <div className="w-full min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-10 flex flex-col gap-6 overflow-y-auto">
-            {/* Header */}
-            <div className="relative w-full bg-white rounded-2xl shadow-md p-6 flex flex-col sm:flex-row items-center sm:justify-between">
-                <h1 className="text-2xl font-bold text-gray-800 animate-bounce">Admin User Page</h1>
+            <section>
+                {/* Header */}
+                <div className="relative w-full bg-white rounded-2xl shadow-md p-6 flex flex-col sm:flex-row items-center sm:justify-between">
+                    <h1 className="text-2xl font-bold text-gray-800 animate-bounce">Customer Details Page</h1>
+                </div>
 
-            </div>
+                {/* Search Input */}
+                <div className="max-w-[600px] mx-auto mt-6 px-4">
+                    <input
+                        type="text"
+                        placeholder="Search users by name..."
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+            </section>
 
             {/* Table */}
-            <div className="bg-white shadow-md  overflow-hidden w-full">
-                <div className=" h-full overflow-y-auto">
-                    <table className="min-w-full  text-sm text-left text-gray-800">
+            <div className="bg-white shadow-md overflow-hidden w-full">
+                <div className="h-full overflow-y-auto">
+                    <table className="min-w-full text-sm text-left text-gray-800">
                         <thead className="text-xs uppercase bg-blue-100 text-gray-700 sticky top-0 z-10">
                             <tr>
                                 <th className="px-6 py-4">User ID</th>
@@ -44,7 +63,7 @@ export default function AdminUserPage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {users
+                            {filteredUsers
                                 .filter((user) => user.type === "customer")
                                 .map((user, index) => (
                                     <tr
@@ -80,11 +99,14 @@ export default function AdminUserPage() {
                                                 onClick={() => {
                                                     const token = localStorage.getItem("token");
                                                     axios
-                                                        .delete(`${import.meta.env.VITE_BACKEND_URL}/api/users/${user._id}`, {
-                                                            headers: {
-                                                                Authorization: `Bearer ${token}`,
-                                                            },
-                                                        })
+                                                        .delete(
+                                                            `${import.meta.env.VITE_BACKEND_URL}/api/users/${user._id}`,
+                                                            {
+                                                                headers: {
+                                                                    Authorization: `Bearer ${token}`,
+                                                                },
+                                                            }
+                                                        )
                                                         .then(() => {
                                                             toast.success("User deleted successfully");
                                                             setUserLoaded(false);

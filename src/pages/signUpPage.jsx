@@ -13,13 +13,21 @@ export default function SignupPage() {
     async function signup(e) {
         e.preventDefault();
 
+
+
         try {
             const response = await axios.post(
                 import.meta.env.VITE_BACKEND_URL + '/api/users/signup',
-                { firstName, lastName, email, password }
+                {
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                    type: "customer",
+                }
             );
 
-            const { message, token, user } = response.data;
+            const { message, user } = response.data;
 
             if (!user) {
                 toast.error(message || "Signup failed.", {
@@ -28,14 +36,11 @@ export default function SignupPage() {
                 return;
             }
 
-            toast.success(message, {
+            toast.success("Signup successful", {
                 style: { background: 'white', color: 'green' }
             });
 
-            localStorage.setItem('token', token);
-
-
-            navigate('/home');
+            navigate('/login');
 
         } catch (error) {
             const errorMsg = error?.response?.data?.message || "Signup failed";
@@ -44,6 +49,7 @@ export default function SignupPage() {
             });
         }
     }
+
 
     return (
         <div className="min-h-screen bg-white flex items-center justify-center px-4">
@@ -119,3 +125,5 @@ export default function SignupPage() {
         </div>
     );
 }
+
+

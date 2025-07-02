@@ -2,6 +2,7 @@ import Footer from "../../components/footer";
 import { useRef } from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { HiOutlineScissors } from "react-icons/hi";
 import { MdLocalShipping } from "react-icons/md";

@@ -5,7 +5,7 @@ import { FaPlus, FaTrash } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function AdminUserPage() {
+export default function AdminDetailsPage() {
     const [users, setUsers] = useState([]);
     const [userLoaded, setUserLoaded] = useState(false);
     const navigate = useNavigate();
@@ -23,8 +23,13 @@ export default function AdminUserPage() {
         <div className="w-full min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-10 flex flex-col gap-6 overflow-y-auto">
             {/* Header */}
             <div className="relative w-full bg-white rounded-2xl shadow-md p-6 flex flex-col sm:flex-row items-center sm:justify-between">
-                <h1 className="text-2xl font-bold text-gray-800 animate-bounce">Admin User Page</h1>
-
+                <h1 className="text-2xl font-bold text-gray-800 animate-bounce">Admin Details Page</h1>
+                <Link to="/admin/users/addAdmin">
+                    <button className="mt-4 sm:mt-0 flex items-center gap-2 bg-orange-400 text-white px-4 py-2 hover:bg-orange-500 transition">
+                        <FaPlus />
+                        <span className="hidden sm:inline ">Add Admin</span>
+                    </button>
+                </Link>
             </div>
 
             {/* Table */}
@@ -45,7 +50,7 @@ export default function AdminUserPage() {
                         </thead>
                         <tbody>
                             {users
-                                .filter((user) => user.type === "customer")
+                                .filter((user) => user.type === "admin")
                                 .map((user, index) => (
                                     <tr
                                         key={index}

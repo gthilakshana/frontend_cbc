@@ -14,14 +14,14 @@ export default function AdminSidebar() {
 
             <button
                 onClick={() => setSidebarOpen(true)}
-                className="fixed top-4 left-4 z-50 bg-gray-900 text-white p-2  shadow-md hover:bg-gray-500"
+                className="fixed top-4 right-4 z-50 rounded-lg bg-blue-400 text-white p-2  shadow-md hover:bg-blue-500"
             >
                 <HiOutlineMenu size={24} />
             </button>
 
             {/* Sidebar */}
             <div
-                className={`fixed top-[70px] left-0 h-full w-64 bg-gray-900 text-white shadow-lg transform transition-transform duration-300 z-40 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+                className={`fixed top-[0] left-0 h-full w-64 bg-gray-900 text-white shadow-lg transform transition-transform duration-300 z-40 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
                     }`}
             >
                 <div className="flex justify-between items-center p-4 border-b border-gray-700">

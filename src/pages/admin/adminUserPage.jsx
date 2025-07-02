@@ -23,7 +23,7 @@ export default function AdminUserPage() {
         <div className="w-full min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-10 flex flex-col gap-6 overflow-y-auto">
             {/* Header */}
             <div className="relative w-full bg-white rounded-2xl shadow-md p-6 flex flex-col sm:flex-row items-center sm:justify-between">
-                <h1 className="text-2xl font-bold text-gray-800">Admin User Page</h1>
+                <h1 className="text-2xl font-bold text-gray-800 animate-bounce">Admin User Page</h1>
                 <Link to="/admin/users/addAdmin">
                     <button className="mt-4 sm:mt-0 flex items-center gap-2 bg-blue-400 text-white px-4 py-2 hover:bg-blue-500 transition">
                         <FaPlus />
@@ -33,8 +33,8 @@ export default function AdminUserPage() {
             </div>
 
             {/* Table */}
-            <div className="bg-white shadow-md rounded-xl overflow-hidden w-full">
-                <div className="overflow-x-auto max-h-[100vh]">
+            <div className="bg-white shadow-md  overflow-hidden w-full">
+                <div className=" h-full overflow-y-auto">
                     <table className="min-w-full  text-sm text-left text-gray-800">
                         <thead className="text-xs uppercase bg-blue-100 text-gray-700 sticky top-0 z-10">
                             <tr>

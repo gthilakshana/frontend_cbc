@@ -30,24 +30,39 @@ export default function Product() {
         <div className="min-h-screen flex flex-col">
             {/* Main Content */}
             <main className="flex-grow w-full bg-gray-100 text-gray-800 font-body">
-                <section>
-                    {/* Heading */}
-                    <div className="mb-8 text-center  p-6">
-                        <h1 className="text-4xl font-bold text-gray-800 mb-2">All Products</h1>
-                        <p className="text-gray-500 text-lg">Discover our latest arrivals and timeless pieces</p>
+                <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
+
+                    <div className="mb-10 text-center">
+                        <h1 className="text-4xl sm:text-4xl  tracking-tight text-gray-800 ">
+                            All PRODUCT
+                        </h1>
+                        <p className="mt-4 text-lg text-gray-500 font-light">
+                            Discover our latest arrivals and timeless pieces
+                        </p>
                     </div>
 
                     {/* Search Input */}
-                    <div className="max-w-[600px] mx-auto mb-10 px-4">
-                        <input
-                            type="text"
-                            placeholder="Search products..."
-                            value={searchText}
-                            onChange={(e) => setSearchText(e.target.value)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
+                    <div className="max-w-2xl mx-auto mb-12">
+                        <div className="relative">
+                            <input
+                                type="text"
+                                placeholder="Search for dresses, tops, etc..."
+                                value={searchText}
+                                onChange={(e) => setSearchText(e.target.value)}
+                                className="w-full px-5 py-3 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-800 focus:border-gray-800 transition duration-300 placeholder-gray-400 text-sm sm:text-base"
+                            />
+                            <svg
+                                className="w-5 h-5 text-gray-400 absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-5.2-5.2m0 0A7.2 7.2 0 1010 17.8a7.2 7.2 0 005.8-1.9z" />
+                            </svg>
+                        </div>
                     </div>
                 </section>
+
 
                 <section className="mb-10">
                     {/* Product Grid */}
@@ -71,7 +86,7 @@ export default function Product() {
 
             </main>
 
-
+            <Footer />
 
         </div>
 

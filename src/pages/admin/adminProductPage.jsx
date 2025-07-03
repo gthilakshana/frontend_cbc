@@ -47,13 +47,13 @@ export default function AdminProductPage() {
     return (
         <div className="w-full h-full bg-gray-50 py-6 px-4 sm:px-6 lg:px-10 flex flex-col gap-6">
             {/* Header */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-white p-6 rounded-xl shadow-md">
+            <div className="flex flex-col sm:flex-row items-center justify-between bg-white p-6 rounded-xl shadow-md">
                 <div>
                     <h2 className="text-2xl font-bold text-gray-800">Product Management</h2>
                     <p className="text-sm text-gray-500">Manage your product inventory</p>
                 </div>
                 <Link to="/admin/products/addProduct">
-                    <button className="mt-4 sm:mt-0 flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                    <button className="mt-4 sm:mt-0 flex items-center gap-2 bg-orange-400 text-white px-4 py-2 rounded hover:bg-orange-500 transition">
                         <FaPlus />
                         Add Product
                     </button>
@@ -69,7 +69,7 @@ export default function AdminProductPage() {
                     onChange={(e) => setSearchText(e.target.value)}
                     className="w-full sm:w-[300px] border px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3 sm:mb-0"
                 />
-                <p className="text-sm text-gray-500">{filteredProducts.length} products found</p>
+                <p className="text-sm text-gray-500">{filteredProducts.length} Products found</p>
             </div>
 
             {/* Table */}
@@ -106,8 +106,8 @@ export default function AdminProductPage() {
 
                                 <td className="px-6 py-4">
                                     <div className="flex flex-col">
-                                        <span className="font-semibold text-gray-800">Rs{product.price}</span>
-                                        <span className="text-xs text-gray-400 line-through">Rs{product.lastPrice}</span>
+                                        <span className="font-semibold text-gray-800">Rs{product.lastPrice}</span>
+                                        <span className="text-xs text-gray-400 line-through">Rs{product.price}</span>
                                     </div>
                                 </td>
 

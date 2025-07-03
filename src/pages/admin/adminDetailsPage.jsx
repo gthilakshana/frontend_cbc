@@ -73,7 +73,7 @@ export default function AdminDetailsPage() {
                     onChange={(e) => setSearchText(e.target.value)}
                     className="w-full sm:w-[300px] border px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-3 sm:mb-0"
                 />
-                <p className="text-sm text-gray-500">{filteredUsers.length} admins found</p>
+                <p className="text-sm text-gray-500">{filteredUsers.length} Admins found</p>
             </div>
 
             {/* Admin Table */}

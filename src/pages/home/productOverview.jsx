@@ -94,13 +94,23 @@ export default function ProductOverview() {
                         <p>Code: {product.productId}-{selectedColor}-{selectedSize}</p>
                     </div>
 
+
+                    <div className="flex items-center border px-2 py-1 gap-2 w-24 sm:w-[20%] justify-between rounded">
+                        <button onClick={decreaseQty} className="text-sm sm:text-base">
+                            <AiOutlineMinus size={14} />
+                        </button>
+                        <span className="text-sm sm:text-base">{quantity}</span>
+                        <button onClick={increaseQty} className="text-sm sm:text-base">
+                            <AiOutlinePlus size={14} />
+                        </button>
+                    </div>
+
+
                     {/* Quantity + Buttons */}
                     <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-6">
-                        <div className="flex items-center border px-4 py-2 rounded gap-4">
-                            <button onClick={decreaseQty}><AiOutlineMinus size={16} /></button>
-                            <span>{quantity}</span>
-                            <button onClick={increaseQty}><AiOutlinePlus size={16} /></button>
-                        </div>
+
+
+
 
                         <button
                             onClick={handleAddToCart}

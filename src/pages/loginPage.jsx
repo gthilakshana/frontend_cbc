@@ -45,7 +45,7 @@ export default function LoginPage() {
     return (
         <div className="min-h-screen bg-white flex items-center justify-center px-4">
             <div className="w-full max-w-md border border-gray-200 p-8 rounded-md shadow-sm">
-                <h2 className="text-center text-3xl font-bold text-gray-800 mb-1">Welcome Back</h2>
+                <h2 className="text-center text-2xl font-bold text-gray-800 mb-1 uppercase">Welcome Back</h2>
                 <p className="text-center text-sm text-gray-600 mb-6">
                     Login to continue shopping your favorite styles
                 </p>

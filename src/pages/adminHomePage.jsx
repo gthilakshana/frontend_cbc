@@ -6,7 +6,7 @@ import AdminUserPage from "./admin/adminUserPage";
 import AdminHomeHeader from "../components/adminHomeHeader";
 import AddProductForm from "./admin/addProductForm";
 import AddAdminForm from "./admin/addAdminForm";
-
+import EditAdminForm from "./admin/editAdminForm";
 import AdminDashboard from "./admin/adminDashboard";
 import AdminDetailsPage from "./admin/adminDetailsPage";
 import EditProductForm from "./admin/editProductForm";
@@ -39,6 +39,7 @@ export default function AdminHomePage() {
                         {/* <Route path="/home" element={<HomeView />} /> */}
                         <Route path="/users" element={<AdminUserPage />} />
                         <Route path="/adminDetails" element={<AdminDetailsPage />} />
+                        <Route path="/adminDetails/editAdmin" element={<EditAdminForm />} />
                         <Route path="/products" element={<AdminProductPage />} />
                         <Route path="/products/editProduct" element={<EditProductForm />} />
                         <Route path="/products/addProduct" element={<AddProductForm />} />

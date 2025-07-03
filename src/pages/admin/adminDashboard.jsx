@@ -3,6 +3,7 @@ import {
     FaUsers,
     FaBoxOpen,
     FaDollarSign,
+    FaSyncAlt,
 } from "react-icons/fa";
 import {
     BarChart,
@@ -13,6 +14,8 @@ import {
     ResponsiveContainer,
     CartesianGrid,
 } from "recharts";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const salesData = [
     { month: "Jan", sales: 4000 },
@@ -30,70 +33,124 @@ const salesData = [
 ];
 
 export default function AdminDashboard() {
+    const [productCount, setProductCount] = useState(0);
+    const [customerCount, setCustomerCount] = useState(0);
+    const [refreshing, setRefreshing] = useState(false);
+
+    const fetchStats = async () => {
+        try {
+            const [productRes, userRes] = await Promise.all([
+                axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products`),
+                axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users`),
+            ]);
+
+            setProductCount(productRes.data.length);
+
+            const customers = userRes.data.filter((user) => user.type === "customer");
+            setCustomerCount(customers.length);
+        } catch (error) {
+            console.error("Error fetching stats", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchStats();
+    }, []);
+
+    const handleRefresh = () => {
+        setRefreshing(true);
+        fetchStats().finally(() => setRefreshing(false));
+    };
+
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col p-6 overflow-y-auto">
-            <h1 className="text-2xl font-bold text-gray-800 mb-6 animate-bounce">
-                Admin Dashboard
-            </h1>
+            {/* Header */}
+            <div className="flex justify-between items-center mb-4">
+                <h1 className="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
+                <button
+                    onClick={handleRefresh}
+                    className="bg-gray-200 hover:bg-gray-300 text-sm px-4 py-2 rounded-md flex items-center gap-2"
+                >
+                    <FaSyncAlt className={`${refreshing ? "animate-spin" : ""}`} />
+                    Refresh Data
+                </button>
+            </div>
 
-            {/* Cards */}
+            {/* Overview Title */}
+            <h2 className="text-xl font-semibold text-gray-700 mb-4">
+                Dashboard Overview
+            </h2>
+
+            {/* Overview Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div className="bg-white rounded-2xl shadow p-6 flex items-center gap-4">
-                    <FaTshirt className="text-4xl text-indigo-500" />
-                    <div>
-                        <p className="text-sm text-gray-500">Total Products</p>
-                        <p className="text-xl font-semibold text-gray-700">128</p>
+                {/* Total Products */}
+                <div className="bg-blue-600 text-white rounded-lg shadow p-5">
+                    <div className="flex justify-between items-center">
+                        <div>
+                            <p className="text-sm font-medium">Total Products</p>
+                            <h3 className="text-2xl font-bold">{productCount}</h3>
+                        </div>
+                        <FaTshirt className="text-3xl opacity-70" />
+                    </div>
+                    <div className="mt-3 h-2 w-full bg-blue-400 rounded-full">
+                        <div className="h-full w-[60%] bg-white/70 rounded-full"></div>
                     </div>
                 </div>
 
-                <div className="bg-white rounded-2xl shadow p-6 flex items-center gap-4">
-                    <FaBoxOpen className="text-4xl text-green-500" />
-                    <div>
-                        <p className="text-sm text-gray-500">Orders</p>
-                        <p className="text-xl font-semibold text-gray-700">245</p>
+                {/* Total Orders */}
+                <div className="bg-green-500 text-white rounded-lg shadow p-5">
+                    <div className="flex justify-between items-center">
+                        <div>
+                            <p className="text-sm font-medium">Total Orders</p>
+                            <h3 className="text-2xl font-bold">8</h3> {/* Placeholder */}
+                        </div>
+                        <FaBoxOpen className="text-3xl opacity-70" />
+                    </div>
+                    <div className="mt-3 h-2 w-full bg-green-400 rounded-full">
+                        <div className="h-full w-[45%] bg-white/70 rounded-full"></div>
                     </div>
                 </div>
 
-                <div className="bg-white rounded-2xl shadow p-6 flex items-center gap-4">
-                    <FaDollarSign className="text-4xl text-yellow-500" />
-                    <div>
-                        <p className="text-sm text-gray-500">Revenue</p>
-                        <p className="text-xl font-semibold text-gray-700">$12,380</p>
+                {/* Total Customers */}
+                <div className="bg-purple-500 text-white rounded-lg shadow p-5">
+                    <div className="flex justify-between items-center">
+                        <div>
+                            <p className="text-sm font-medium">Total Customers</p>
+                            <h3 className="text-2xl font-bold">{customerCount}</h3>
+                        </div>
+                        <FaUsers className="text-3xl opacity-70" />
+                    </div>
+                    <div className="mt-3 h-2 w-full bg-purple-400 rounded-full">
+                        <div className="h-full w-[30%] bg-white/70 rounded-full"></div>
                     </div>
                 </div>
 
-                <div className="bg-white rounded-2xl shadow p-6 flex items-center gap-4">
-                    <FaUsers className="text-4xl text-pink-500" />
-                    <div>
-                        <p className="text-sm text-gray-500">Customers</p>
-                        <p className="text-xl font-semibold text-gray-700">89</p>
+                {/* Total Revenue */}
+                <div className="bg-yellow-500 text-white rounded-lg shadow p-5">
+                    <div className="flex justify-between items-center">
+                        <div>
+                            <p className="text-sm font-medium">Total Revenue</p>
+                            <h3 className="text-2xl font-bold">Rs19500.00</h3>
+                        </div>
+                        <FaDollarSign className="text-3xl opacity-70" />
+                    </div>
+                    <div className="mt-3 h-2 w-full bg-yellow-400 rounded-full">
+                        <div className="h-full w-[80%] bg-white/70 rounded-full"></div>
                     </div>
                 </div>
             </div>
 
             {/* Chart */}
-            <div className="bg-white rounded-2xl shadow-md p-6">
-                <h2 className="text-2xl font-semibold text-gray-700 mb-6">
-                    📈 Monthly Sales Overview
+            <div className="bg-white shadow-md rounded-lg p-6">
+                <h2 className="text-lg font-semibold text-gray-700 mb-4">
+                    📊 Monthly Sales Overview
                 </h2>
                 <div className="w-full h-80">
                     <ResponsiveContainer width="100%" height="100%">
-                        <BarChart
-                            data={salesData}
-                            margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
-                        >
-                            <CartesianGrid strokeDasharray="4 4" stroke="#e5e7eb" />
-                            <XAxis
-                                dataKey="month"
-                                tick={{ fontSize: 14, fill: "#6b7280" }}
-                                axisLine={false}
-                                tickLine={false}
-                            />
-                            <YAxis
-                                tick={{ fontSize: 14, fill: "#6b7280" }}
-                                axisLine={false}
-                                tickLine={false}
-                            />
+                        <BarChart data={salesData} margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                            <XAxis dataKey="month" tick={{ fontSize: 13, fill: "#6b7280" }} />
+                            <YAxis tick={{ fontSize: 13, fill: "#6b7280" }} />
                             <Tooltip
                                 contentStyle={{
                                     backgroundColor: "#f9fafb",
@@ -104,12 +161,7 @@ export default function AdminDashboard() {
                                 labelStyle={{ color: "#374151", fontWeight: "bold" }}
                                 itemStyle={{ color: "#4f46e5" }}
                             />
-                            <Bar
-                                dataKey="sales"
-                                fill="#6366f1"
-                                radius={[10, 10, 0, 0]}
-                                barSize={40}
-                            />
+                            <Bar dataKey="sales" fill="#4f46e5" barSize={40} radius={[4, 4, 0, 0]} />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>

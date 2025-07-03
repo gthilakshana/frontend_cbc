@@ -11,25 +11,34 @@ export default function LoginPage() {
         e.preventDefault();
 
         try {
-            const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/api/users/login', {
-                email,
-                password,
-            });
+            const response = await axios.post(
+                import.meta.env.VITE_BACKEND_URL + '/api/users/login',
+                { email, password }
+            );
 
-            if (response.data.user) {
-                toast.error(response.data.message);
-            } else {
-                toast.success(response.data.message);
+            const { user, token, message } = response.data;
+
+            // 🟨 Safety check (shouldn't happen if backend returns properly)
+            if (!user) {
+                toast.error("Invalid login");
+                return;
             }
 
-
-
-            localStorage.setItem('token', response.data.token);
-            window.location.href = response.data.user.type === "admin" ? "/admin" : "/home";
+            toast.success(message);
+            localStorage.setItem("token", token);
+            window.location.href = user.type === "admin" ? "/admin" : "/home";
 
         } catch (error) {
+            const status = error?.response?.status;
             const errorMsg = error?.response?.data?.message || "Login failed";
-            toast.error(errorMsg);
+
+            if (status === 403) {
+                toast.error("Your account has been blocked.");
+            } else if (status === 401 || status === 404) {
+                toast.error(errorMsg);
+            } else {
+                toast.error("Something went wrong.");
+            }
         }
     }
 

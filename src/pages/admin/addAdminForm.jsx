@@ -52,90 +52,88 @@ export default function AddAdminForm() {
     }
 
     return (
-        <div className="w-full h-full flex bg-gray-100 p-4">
-            <div className="w-full h-[800px] bg-white p-6 rounded-lg shadow-md border">
-                <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
-                    Add Admin
-                </h1>
+        <div className="w-full min-h-screen bg-gray-100 flex justify-center items-center p-4">
+            <div className="w-full max-w-4xl bg-white p-8 rounded-xl shadow-lg border">
+                <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Add New Admin</h2>
 
-                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                    <div className="flex flex-col">
-                        <label className="mb-1 text-sm font-medium">Email</label>
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label className="block mb-1 text-sm font-medium text-gray-700">Email</label>
                         <input
                             type="email"
-                            placeholder='Enter Email'
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter email"
                             required
-                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                     </div>
 
-                    <div className="flex flex-col">
-                        <label className="mb-1 text-sm font-medium">First Name</label>
+                    <div>
+                        <label className="block mb-1 text-sm font-medium text-gray-700">First Name</label>
                         <input
                             type="text"
-                            placeholder='Enter First Name'
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
+                            placeholder="Enter first name"
                             required
-                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                     </div>
 
-                    <div className="flex flex-col">
-                        <label className="mb-1 text-sm font-medium">Last Name</label>
+                    <div>
+                        <label className="block mb-1 text-sm font-medium text-gray-700">Last Name</label>
                         <input
                             type="text"
-                            placeholder='Enter Last Name'
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
+                            placeholder="Enter last name"
                             required
-                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                     </div>
 
-                    <div className="flex flex-col">
-                        <label className="mb-1 text-sm font-medium">Password</label>
+                    <div>
+                        <label className="block mb-1 text-sm font-medium text-gray-700">Password</label>
                         <input
                             type="password"
-                            placeholder='Enter Password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Enter password"
                             required
-                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                     </div>
 
-                    <div className="flex flex-col">
-                        <label className="mb-1 text-sm font-medium">Status</label>
+                    <div>
+                        <label className="block mb-1 text-sm font-medium text-gray-700">Status</label>
                         <select
                             value={isBlocked ? "true" : "false"}
                             onChange={(e) => setIsBlocked(e.target.value === "true")}
-                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         >
                             <option value="false">Active</option>
                             <option value="true">Blocked</option>
                         </select>
                     </div>
 
-                    <div className="flex flex-col">
-                        <label className="mb-1 text-sm font-medium">Profile Picture</label>
-                        <div className="relative flex items-center gap-2 border rounded-md p-2">
-
+                    <div>
+                        <label className="block mb-1 text-sm font-medium text-gray-700">Profile Picture</label>
+                        <div className="flex items-center gap-3 border border-gray-300 p-2 rounded-md">
+                            <FiUploadCloud className="text-gray-500 text-xl" />
                             <input
                                 type="file"
                                 accept="image/*"
                                 onChange={(e) => setImageFile(e.target.files[0])}
-                                className="w-full focus:outline-none"
+                                className="w-full text-sm text-gray-600"
                             />
                         </div>
                     </div>
 
-                    <div className="md:col-span-2 mt-4 flex justify-center bottom-7">
+                    <div className="sm:col-span-2 flex justify-center mt-4">
                         <button
                             type="submit"
-                            className="bg-orange-400 text-white py-2 px-6  hover:bg-orange-500 transition duration-300"
+                            className="bg-orange-400 hover:bg-orange-500 text-white font-semibold px-6 py-2 rounded-md transition"
                         >
                             Add Admin
                         </button>

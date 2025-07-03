@@ -44,7 +44,7 @@ export default function AddAdminForm() {
                 headers: { Authorization: `Bearer ${token}` }
             });
             toast.success("Admin added successfully");
-            navigate('/admin/products');
+            navigate('/admin/adminDetails');
         } catch (err) {
             const msg = err.response?.data?.message || "Error adding admin";
             toast.error(msg);

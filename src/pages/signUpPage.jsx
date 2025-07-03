@@ -13,8 +13,6 @@ export default function SignupPage() {
     async function signup(e) {
         e.preventDefault();
 
-
-
         try {
             const response = await axios.post(
                 import.meta.env.VITE_BACKEND_URL + '/api/users/signup',
@@ -27,28 +25,24 @@ export default function SignupPage() {
                 }
             );
 
-            const { message, user } = response.data;
+            if (response.data.user) {
+                toast.error(response.data.message);
 
-            if (!user) {
-                toast.error(message || "Signup failed.", {
-                    style: { background: 'white', color: 'black' }
-                });
-                return;
+            } else {
+                toast.success(response.data.message);
             }
 
-            toast.success("Signup successful", {
-                style: { background: 'white', color: 'green' }
-            });
 
-            navigate('/login');
+
+
+            navigate('/');
 
         } catch (error) {
-            const errorMsg = error?.response?.data?.message || "Signup failed";
-            toast.error(errorMsg, {
-                style: { background: '#ef4444', color: 'white' }
-            });
+            const errorMsg = error?.response?.data?.message || "Signup failed.";
+            toast.error(errorMsg);
         }
     }
+
 
 
     return (
@@ -75,8 +69,9 @@ export default function SignupPage() {
                                 type="text"
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
+                                placeholder='First Name'
                                 required
-                                className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 
@@ -86,8 +81,9 @@ export default function SignupPage() {
                                 type="text"
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
+                                placeholder='Last Name'
                                 required
-                                className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 
@@ -97,8 +93,9 @@ export default function SignupPage() {
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                placeholder='Email Address'
                                 required
-                                className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 
@@ -108,8 +105,9 @@ export default function SignupPage() {
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                placeholder='Password'
                                 required
-                                className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 

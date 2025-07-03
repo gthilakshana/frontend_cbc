@@ -16,33 +16,20 @@ export default function LoginPage() {
                 password,
             });
 
-            if (!response.data.user) {
-                toast.error(response.data.message || "Login failed.", {
-                    style: {
-                        background: '#ef4444',
-                        color: 'white',
-                    },
-                });
-                return;
+            if (response.data.user) {
+                toast.error(response.data.message);
+            } else {
+                toast.success(response.data.message);
             }
 
-            toast.success(response.data.message, {
-                style: {
-                    background: '#22c55e',
-                    color: 'white',
-                },
-            });
+
+
             localStorage.setItem('token', response.data.token);
             window.location.href = response.data.user.type === "admin" ? "/admin" : "/home";
 
         } catch (error) {
             const errorMsg = error?.response?.data?.message || "Login failed";
-            toast.error(errorMsg, {
-                style: {
-                    background: '#ef4444',
-                    color: 'white',
-                },
-            });
+            toast.error(errorMsg);
         }
     }
 

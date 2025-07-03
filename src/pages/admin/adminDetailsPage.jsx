@@ -31,7 +31,7 @@ export default function AdminDetailsPage() {
         (user.email && user.email.toLowerCase().includes(searchText.toLowerCase()))
     );
 
-    const handleDelete = async (email) => {
+    const handleDelete = async (email, type) => {
         try {
             const token = localStorage.getItem("token");
             await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/users/${email}`, {
@@ -39,13 +39,20 @@ export default function AdminDetailsPage() {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            toast.success("User deleted successfully");
-            setUserLoaded(false); // reload users
+
+            if (type === "admin") {
+                toast.success("Admin deleted successfully");
+            } else if (type === "customer") {
+                toast.success("Customer deleted successfully");
+            }
+
+            setUserLoaded(false);
         } catch (err) {
             console.error(err);
             toast.error("Failed to delete user");
         }
     };
+
 
     return (
         <div className="w-full min-h-screen bg-gray-50 py-6 px-4 sm:px-6 lg:px-10 flex flex-col gap-6 overflow-y-auto">
@@ -54,6 +61,12 @@ export default function AdminDetailsPage() {
                 {/* Header */}
                 <div className="relative w-full bg-white rounded-2xl shadow-md p-6 flex flex-col sm:flex-row items-center sm:justify-between">
                     <h1 className="text-2xl font-bold text-gray-800 animate-bounce">Admin Details Page</h1>
+                    <Link to="/admin/users/addAdmin">
+                        <button className="mt-4 sm:mt-0 flex items-center gap-2 bg-orange-400 text-white px-4 py-2 hover:bg-orange-500 transition">
+                            <FaPlus />
+                            <span className="hidden sm:inline">Add Admin</span>
+                        </button>
+                    </Link>
                 </div>
 
                 {/* Search Input */}
@@ -108,14 +121,15 @@ export default function AdminDetailsPage() {
                                             <img
                                                 src={user.profilePicture}
                                                 alt="Profile"
-                                                className="w-10 h-10 rounded-full object-cover border"
+                                                className="w-10 h-10 rounded-full object-cover border cursor-pointer transform transition-transform duration-200 hover:scale-150 z-10"
                                             />
                                         </td>
+
                                         <td className="px-6 py-4 flex justify-center gap-4">
                                             <button
                                                 title="Delete"
                                                 className="text-red-600 hover:text-red-800 transition"
-                                                onClick={() => handleDelete(user.email)}
+                                                onClick={() => handleDelete(user.email, user.type)}
                                             >
                                                 <FaTrash />
                                             </button>

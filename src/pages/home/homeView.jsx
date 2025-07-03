@@ -158,6 +158,49 @@ export default function HomeView() {
                 </div>
             </section>
 
+            <section className="py-20 px-6 lg:px-24 bg-white text-center">
+                <h2 className="text-3xl sm:text-4xl text-gray-800 mb-4">
+                    NEW <span className="text-blue-600">ARRIVALS</span>
+                </h2>
+                <p className="text-gray-600 max-w-2xl mx-auto mb-12 font-sans">
+                    Be the first to wear the trend. Explore our newest collection crafted with style and comfort.
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                    {products.slice(0, 10).map((product) => (
+                        <div
+                            key={product.productId}
+                            className="bg-white border border-gray-200 overflow-hidden shadow hover:shadow-lg transition cursor-pointer"
+                        >
+                            <img
+                                src={product.images?.[0] || "/fallback.jpg"}
+                                alt={product.productName}
+                                className="w-full h-80 object-cover"
+                            />
+                            <div className="p-4 border-t">
+                                <h3 className="text-sm font-semibold text-gray-800 tracking-wide truncate">
+                                    {product.productName}
+                                </h3>
+                                <p className="text-xs text-gray-500 truncate">
+                                    {product.altNames?.join(" | ")}
+                                </p>
+                                <div className="mt-2 font-semibold text-gray-800 text-sm">
+                                    Rs. {product.lastPrice.toLocaleString()}
+                                </div>
+
+                                <a
+                                    href={`/productInfo/${product.productId}`}
+                                    className="mt-4 inline-block text-xs text-blue-500 hover:underline"
+                                >
+                                    View Product
+                                </a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+
 
 
             <section
@@ -237,7 +280,7 @@ export default function HomeView() {
                                     className="flex-shrink-0 w-[320px] text-left bg-white shadow-md cursor-pointer "
                                 >
                                     <img
-                                        src={product.images?.[1] || "/fallback.jpg"}
+                                        src={product.images?.[2] || "/fallback.jpg"}
                                         alt={product.productName}
                                         className="w-full h-[390px] object-cover"
                                     />

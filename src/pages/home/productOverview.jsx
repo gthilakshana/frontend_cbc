@@ -145,7 +145,7 @@ export default function ProductOverview() {
             {/* Related Products */}
             <div className="mt-20 mb-10">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800 uppercase">Related Products_</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 border p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 border p-4 justify-items-center">
                     {products
                         .filter(p => p.productId !== productId && p.brands?.[0] === product?.brands?.[0])
                         .slice(0, 4)

@@ -1,4 +1,5 @@
 import Footer from "../../components/footer";
+import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -166,57 +167,56 @@ export default function HomeView() {
                     Be the first to wear the trend. Explore our newest collection crafted with style and comfort.
                 </p>
 
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {products.filter(p => p.stock > 0).slice(0, 12).map((product) => {
-                        const isInStock = product.stock > 0;
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {products
+                        .filter((p) => p.stock > 0)
+                        .slice(0, 12)
+                        .map((product) => {
+                            const isInStock = product.stock > 0;
 
-                        return (
-                            <div
-                                key={product.productId}
-                                className="bg-white border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition rounded-sm flex flex-col relative"
-                            >
-                                {/* Stock Badge */}
+                            return (
                                 <div
-                                    className={`absolute top-2 left-2 text-xs px-2 py-1 rounded-md z-10 font-semibold ${isInStock ? "bg-gray-800 text-white" : "bg-orange-600 text-white"
-                                        }`}
+                                    key={product.productId}
+                                    className="bg-white border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition rounded-sm flex flex-col relative"
                                 >
-                                    {isInStock ? "In Stock" : "Out of Stock"}
-                                </div>
-
-                                {/* Product Image */}
-                                <div className="w-full h-[350px] bg-white flex items-center justify-center p-2">
-                                    <img
-                                        src={product.images?.[0] || "/fallback.jpg"}
-                                        alt={product.productName}
-                                        className="max-h-full max-w-full object-contain"
-                                    />
-                                </div>
-
-                                {/* Product Info */}
-                                <div className="p-3 border-t text-center">
-                                    <h3 className="text-sm font-semibold text-gray-800 uppercase tracking-wide truncate">
-                                        {product.productName}
-                                    </h3>
-
-                                    {/* View Button */}
-                                    <a
-                                        href={`/productInfo/${product.productId}`}
-                                        className="mt-2 inline-block text-xs text-blue-600 hover:underline"
+                                    {/* Stock Badge */}
+                                    <div
+                                        className={`absolute top-2 left-2 text-xs px-2 py-1 rounded-md z-10 font-semibold ${isInStock ? "bg-gray-800 text-white" : "bg-orange-600 text-white"
+                                            }`}
                                     >
-                                        View Product
-                                    </a>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
+                                        {isInStock ? "In Stock" : "Out of Stock"}
+                                    </div>
 
-                {/* Fallback message */}
-                {products.filter((p) => p.stock > 0).length === 0 && (
-                    <div className="text-sm text-gray-500 mt-8 text-center">
-                        No new arrivals available right now.
-                    </div>
-                )}
+                                    {/* Product Image (wrapped with Link) */}
+                                    <Link
+                                        to={`/productInfo/${product.productId}`}
+                                        className="w-full h-[350px] bg-white flex items-center justify-center p-2 cursor-pointer"
+                                    >
+                                        <img
+                                            src={product.images?.[0] || "/fallback.jpg"}
+                                            alt={product.productName}
+                                            className="max-h-full max-w-full object-contain"
+                                        />
+                                    </Link>
+
+                                    {/* Product Info */}
+                                    <div className="p-3 border-t text-center">
+                                        <h3 className="text-sm font-semibold text-gray-800 uppercase tracking-wide truncate">
+                                            {product.productName}
+                                        </h3>
+
+                                        {/* View Product link (optional) */}
+                                        <Link
+                                            to={`/productInfo/${product.productId}`}
+                                            className="mt-2 inline-block text-xs text-blue-600 hover:underline"
+                                        >
+                                            View Product
+                                        </Link>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                </div>
             </section>
 
 
@@ -280,7 +280,7 @@ export default function HomeView() {
                 </p>
 
                 <div className="relative">
-
+                    {/* Left Arrow */}
                     <button
                         onClick={() => scrollGallery(-1)}
                         className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white border border-gray-100 shadow hover:shadow-lg p-2 text-gray-600"
@@ -288,32 +288,36 @@ export default function HomeView() {
                         <HiChevronLeft size={24} />
                     </button>
 
-
+                    {/* Scrollable Gallery */}
                     <div
                         ref={galleryRef}
                         className="flex overflow-x-auto gap-6 px-6 scrollbar-hide"
                     >
                         {Array.isArray(products) &&
-                            products.map((product, i) => (
-                                <div
-                                    key={i}
-                                    className="flex-shrink-0 w-[320px] text-left bg-white shadow-md cursor-pointer "
-                                >
-                                    <img
-                                        src={product.images?.[2] || "/fallback.jpg"}
-                                        alt={product.productName}
-                                        className="w-full h-[390px] object-cover"
-                                    />
-                                    <div className="p-4 border-t">
-                                        <h3 className="text-sm font-semibold text-gray-800 tracking-wide text-center uppercase">
-                                            {product.brands}
-                                        </h3>
+                            products
+                                .filter((p) => p.images?.[2])
+                                .map((product, i) => (
+                                    <div
+                                        key={i}
+                                        className="flex-shrink-0 w-[320px] text-left bg-white shadow-md cursor-pointer"
+                                    >
+                                        <Link to={`/productInfo/${product.productId}`}>
+                                            <img
+                                                src={product.images?.[2] || "/fallback.jpg"}
+                                                alt={product.productName}
+                                                className="w-full h-[390px] object-cover"
+                                            />
+                                        </Link>
+                                        <div className="p-4 border-t">
+                                            <h3 className="text-sm font-semibold text-gray-800 tracking-wide text-center uppercase">
+                                                {product.brands}
+                                            </h3>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
                     </div>
 
-
+                    {/* Right Arrow */}
                     <button
                         onClick={() => scrollGallery(1)}
                         className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white border border-gray-300 shadow hover:shadow-lg p-2 text-gray-600"
@@ -328,9 +332,8 @@ export default function HomeView() {
 
 
 
-            {/* About Section */}
             <section className="py-20 px-6 lg:px-24 bg-gradient-to-b from-white via-gray-50 to-white text-center">
-                <h2 className="text-4xl  text-gray-800 mb-6 font-arial tracking-wide leading-tight">
+                <h2 className="text-4xl text-gray-800 mb-6 font-heading tracking-wide leading-tight">
                     WHY CHOOSE <span className="text-blue-600">MAHEE FASHION?</span>
                 </h2>
                 <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12 font-body leading-relaxed">
@@ -339,38 +342,51 @@ export default function HomeView() {
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
-                    <div className="bg-white border border-gray-200 p-8  shadow-md hover:shadow-xl transition duration-300">
-                        <div className="text-pink-500 text-5xl mb-4">
+                    {/* Card 1 */}
+                    <div
+                        className="bg-white border p-6 rounded-xl shadow-sm hover:shadow-lg transition duration-300 text-center"
+                        data-aos="fade-up"
+                    >
+                        <div className="text-pink-500 text-6xl mb-4 transition-transform duration-300 hover:scale-110">
                             <HiOutlineScissors />
                         </div>
-                        <h3 className="text-xl font-semibold mb-2 text-gray-800">EXQUISITE CRAFTSMANSHIP</h3>
-                        <p className="text-gray-600 font-sans">
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2 uppercase">Exquisite Craftsmanship</h3>
+                        <p className="text-sm text-gray-600 font-sans">
                             Each piece is designed with attention to detail, tailored by expert hands to ensure a perfect fit and timeless appeal.
                         </p>
                     </div>
 
-                    <div className="bg-white border border-gray-200 p-8  shadow-md hover:shadow-xl transition duration-300">
-                        <div className="text-blue-500 text-5xl mb-4">
+                    {/* Card 2 */}
+                    <div
+                        className="bg-white border p-6 rounded-xl shadow-sm hover:shadow-lg transition duration-300 text-center"
+                        data-aos="fade-up"
+                        data-aos-delay="100"
+                    >
+                        <div className="text-blue-500 text-6xl mb-4 transition-transform duration-300 hover:scale-110">
                             <MdLocalShipping />
                         </div>
-                        <h3 className="text-xl font-semibold mb-2 text-gray-800">NATIONWIDE FAST DELIVERY</h3>
-                        <p className="text-gray-600 font-sans">
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2 uppercase">Nationwide Fast Delivery</h3>
+                        <p className="text-sm text-gray-600 font-sans">
                             Get your order delivered quickly to any location in Sri Lanka with our reliable shipping service.
                         </p>
                     </div>
 
-                    <div className="bg-white border border-gray-200 p-8 shadow-md hover:shadow-xl transition duration-300">
-                        <div className="text-yellow-500 text-5xl mb-4">
+                    {/* Card 3 */}
+                    <div
+                        className="bg-white border p-6 rounded-xl shadow-sm hover:shadow-lg transition duration-300 text-center"
+                        data-aos="fade-up"
+                        data-aos-delay="200"
+                    >
+                        <div className="text-yellow-500 text-6xl mb-4 transition-transform duration-300 hover:scale-110">
                             <GiSpinningRibbons />
                         </div>
-                        <h3 className="text-xl font-semibold mb-2 text-gray-800">MODERN MEETS TRADITIONAL</h3>
-                        <p className="text-gray-600 font-sans">
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2 uppercase">Modern Meets Traditional</h3>
+                        <p className="text-sm text-gray-600 font-sans">
                             Our designs balance tradition and innovation — from ethnic elegance to contemporary minimalism.
                         </p>
                     </div>
                 </div>
             </section>
-
 
 
 

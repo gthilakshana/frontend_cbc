@@ -12,7 +12,7 @@ export default function AdminSidebar() {
 
     const handleSignOut = () => {
         localStorage.removeItem("token");
-        window.location.href = "/login";
+        window.location.href = "/home";
     };
 
     return (
@@ -20,7 +20,7 @@ export default function AdminSidebar() {
             {/* Sidebar Toggle Button */}
             <button
                 onClick={() => setSidebarOpen(true)}
-                className="fixed top-4 right-4 z-50 rounded-lg bg-blue-500 text-white p-2 shadow-md hover:bg-blue-600 transition"
+                className="fixed top-4 right-4 z-50 rounded-lg bg-gray-800 text-white p-2 shadow-md hover:bg-gray-700 transition "
             >
                 <HiOutlineMenu size={24} />
             </button>

@@ -113,7 +113,7 @@ export default function SignupPage() {
 
                         <button
                             type="submit"
-                            className="w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 mt-2"
+                            className="w-full bg-black hover:bg-gray-800 text-white font-semibold py-2 mt-2"
                         >
                             CREATE AN ACCOUNT
                         </button>

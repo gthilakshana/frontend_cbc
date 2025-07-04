@@ -12,7 +12,7 @@ export default function Header() {
 
                 <Link
                     to="/"
-                    className="text-2xl font-extralight text-gray-600 hover:text-gray-500 transition duration-300 tracking-wide"
+                    className="text-2xl font-extralight font-bold text-gray-800 hover:text-gray-500 transition duration-300 tracking-wide"
 
                 >
                     MAHEE FASHION

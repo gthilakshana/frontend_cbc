@@ -166,39 +166,59 @@ export default function HomeView() {
                     Be the first to wear the trend. Explore our newest collection crafted with style and comfort.
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
-                    {products.slice(0, 10).map((product) => (
-                        <div
-                            key={product.productId}
-                            className="bg-white border border-gray-200 overflow-hidden shadow hover:shadow-lg transition cursor-pointer"
-                        >
-                            <img
-                                src={product.images?.[0] || "/fallback.jpg"}
-                                alt={product.productName}
-                                className="w-full h-80 object-cover"
-                            />
-                            <div className="p-4 border-t">
-                                <h3 className="text-sm font-semibold text-gray-800 tracking-wide truncate">
-                                    {product.productName}
-                                </h3>
-                                <p className="text-xs text-gray-500 truncate">
-                                    {product.altNames?.join(" | ")}
-                                </p>
-                                <div className="mt-2 font-semibold text-gray-800 text-sm">
-                                    Rs. {product.lastPrice.toLocaleString()}
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {products.filter(p => p.stock > 0).slice(0, 12).map((product) => {
+                        const isInStock = product.stock > 0;
+
+                        return (
+                            <div
+                                key={product.productId}
+                                className="bg-white border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition rounded-sm flex flex-col relative"
+                            >
+                                {/* Stock Badge */}
+                                <div
+                                    className={`absolute top-2 left-2 text-xs px-2 py-1 rounded-md z-10 font-semibold ${isInStock ? "bg-gray-800 text-white" : "bg-orange-600 text-white"
+                                        }`}
+                                >
+                                    {isInStock ? "In Stock" : "Out of Stock"}
                                 </div>
 
-                                <a
-                                    href={`/productInfo/${product.productId}`}
-                                    className="mt-4 inline-block text-xs text-blue-500 hover:underline"
-                                >
-                                    View Product
-                                </a>
+                                {/* Product Image */}
+                                <div className="w-full h-[350px] bg-white flex items-center justify-center p-2">
+                                    <img
+                                        src={product.images?.[0] || "/fallback.jpg"}
+                                        alt={product.productName}
+                                        className="max-h-full max-w-full object-contain"
+                                    />
+                                </div>
+
+                                {/* Product Info */}
+                                <div className="p-3 border-t text-center">
+                                    <h3 className="text-sm font-semibold text-gray-800 uppercase tracking-wide truncate">
+                                        {product.productName}
+                                    </h3>
+
+                                    {/* View Button */}
+                                    <a
+                                        href={`/productInfo/${product.productId}`}
+                                        className="mt-2 inline-block text-xs text-blue-600 hover:underline"
+                                    >
+                                        View Product
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
+
+                {/* Fallback message */}
+                {products.filter((p) => p.stock > 0).length === 0 && (
+                    <div className="text-sm text-gray-500 mt-8 text-center">
+                        No new arrivals available right now.
+                    </div>
+                )}
             </section>
+
 
 
 

@@ -50,7 +50,7 @@ export default function ProductOverview() {
                 {/* Right: Info */}
                 <div className="space-y-6">
                     <div>
-                        <h1 className="text-2xl font-bold">{product.productName}</h1>
+                        <h1 className="text-2xl font-bold uppercase">{product.productName}</h1>
                         <p className="text-gray-500">{product.altNames?.join(" | ")}</p>
                         <p className="text-lg text-gray-700 font-semibold mt-2">LKR {product.lastPrice.toLocaleString()}</p>
                     </div>
@@ -140,42 +140,99 @@ export default function ProductOverview() {
             {/* Related Products Section */}
             <div className="mt-20 mb-10">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800 uppercase">Related Products_</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 border p-4">
                     {products
-                        .filter((p) => p.productId !== productId && p.brands?.[0] === product.brands?.[0])
+                        .filter(
+                            (p) =>
+                                p.productId !== productId &&
+                                p.brands?.[0] === product?.brands?.[0]
+                        )
                         .slice(0, 4)
-                        .map((item) => (
-                            <div key={item.productId} className="border bg-white shadow-sm hover:shadow-md transition">
-                                <img
-                                    src={item.images?.[0]}
-                                    alt={item.productName}
-                                    className="w-full h-64 object-cover rounded-t-md"
-                                />
-                                <div className="p-4">
-                                    <h3 className="text-lg font-semibold text-gray-800 truncate">{item.productName}</h3>
-                                    <p className="text-sm text-gray-500">{item.altNames?.join(" | ")}</p>
-                                    <div className="text-lg font-semibold text-gray-800 mt-2">
-                                        <span className="text-gray-600 text-[16px]">Rs. {item.lastPrice}</span>
+                        .map((item) => {
+                            const isInStock = item.stock > 0;
+
+                            return (
+                                <div
+                                    key={item.productId}
+                                    className={`w-[270px] h-[470px] bg-white border shadow overflow-hidden flex flex-col relative transition duration-300 
+                                    ${!isInStock
+                                            ? "opacity-60 grayscale pointer-events-none"
+                                            : "hover:shadow-lg"
+                                        }`}
+                                >
+                                    {/* Stock Badge */}
+                                    <div
+                                        className={`absolute top-2 left-2 text-xs px-2 py-1 rounded-md z-10 font-semibold 
+                                    ${isInStock
+                                                ? "bg-gray-800 text-white"
+                                                : "bg-orange-600 text-white"
+                                            }`}
+                                    >
+                                        {isInStock ? "In Stock" : "Out of Stock"}
                                     </div>
-                                    <div className="mt-4 flex justify-between items-center">
-                                        <button
-                                            onClick={() => addToCart(item.productId, 1)}
-                                            className="bg-gray-800 text-white text-sm px-4 py-2 rounded hover:bg-black"
-                                        >
-                                            Add to Cart
-                                        </button>
-                                        <a
-                                            href={`/productInfo/${item.productId}`}
-                                            className="text-sm text-blue-600 hover:underline"
-                                        >
-                                            View
-                                        </a>
+
+                                    {/* Product Image */}
+                                    <img
+                                        src={item.images?.[0]}
+                                        alt={item.productName}
+                                        className="w-full h-64 object-cover cursor-pointer"
+                                    />
+
+                                    {/* Product Info */}
+                                    <div className="p-4 flex-1 flex flex-col justify-between">
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-gray-800 truncate uppercase">
+                                                {item.productName}
+                                            </h3>
+                                            <p className="text-sm text-gray-500">
+                                                {item.altNames?.join(" | ")}
+                                            </p>
+                                            <div className="text-lg font-semibold text-gray-800 mt-2">
+                                                <span className="text-gray-600 text-[16px] line-through mr-2">
+                                                    Rs. {item.price}
+                                                </span>
+                                                <span className="text-gray-600 text-[16px]">
+                                                    Rs. {item.lastPrice}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {/* Actions */}
+                                        <div className="mt-4 flex justify-between items-center">
+                                            <button
+                                                onClick={() => addToCart(item.productId, 1)}
+                                                className="bg-gray-800 text-white text-sm px-4 py-2 rounded hover:bg-black"
+                                            >
+                                                Add to Cart
+                                            </button>
+                                            <a
+                                                href={`/productInfo/${item.productId}`}
+                                                className="text-sm text-blue-600 hover:underline"
+                                            >
+                                                View
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
+                            );
+                        })}
+
+                    {/* Optional Fallback if no related products */}
+                    {products.filter(
+                        (p) =>
+                            p.productId !== productId &&
+                            p.brands?.[0] === product?.brands?.[0]
+                    ).length === 0 && (
+                            <div className="col-span-full text-center text-gray-500 text-sm py-4">
+                                No related products found.
                             </div>
-                        ))}
+                        )}
                 </div>
             </div>
+
+
+
 
             <Footer />
         </div>

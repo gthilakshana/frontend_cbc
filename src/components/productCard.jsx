@@ -21,7 +21,7 @@ export default function ProductCard({ product }) {
         >
             {/* Stock Badge */}
             <div
-                className={`absolute top-2 left-2 text-xs px-2 py-1 rounded-md z-10 font-semibold ${isInStock ? "bg-green-600 text-white" : "bg-red-600 text-white"
+                className={`absolute top-2 left-2 text-xs px-2 py-1 rounded-md z-10 font-semibold ${isInStock ? "bg-gray-800 text-white" : "bg-orange-600 text-white"
                     }`}
             >
                 {isInStock ? "In Stock" : "Out of Stock"}
@@ -39,7 +39,7 @@ export default function ProductCard({ product }) {
             {/* Info */}
             <div className="flex-1 p-4 flex flex-col">
                 <Link to={`/productInfo/${product.productId}`} className="hover:underline mb-1">
-                    <h2 className="text-sm font-medium text-gray-800 line-clamp-2 leading-tight">
+                    <h2 className="text-sm font-medium text-gray-800 line-clamp-2 leading-tight uppercase">
                         {product.productName}
                     </h2>
                 </Link>

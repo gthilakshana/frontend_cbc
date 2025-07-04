@@ -29,7 +29,7 @@ export default function Product() {
     return (
         <div className="min-h-screen flex flex-col">
             {/* Main Content */}
-            <main className="flex-grow w-full bg-gray-100 text-gray-800 font-body">
+            <main className="flex-grow w-full bg-white text-gray-800 font-body">
                 <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
 
                     <div className="mb-10 text-center">
@@ -41,15 +41,15 @@ export default function Product() {
                         </p>
                     </div>
 
-                    {/* Search Input */}
-                    <div className="max-w-2xl mx-auto mb-12">
+                    {/* Responsive Search Input */}
+                    <div className="w-full px-4 sm:px-6 md:px-0 max-w-2xl mx-auto mb-6">
                         <div className="relative">
                             <input
                                 type="text"
                                 placeholder="Search for dresses, tops, etc..."
                                 value={searchText}
                                 onChange={(e) => setSearchText(e.target.value)}
-                                className="w-full px-5 py-3 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-800 focus:border-gray-800 transition duration-300 placeholder-gray-400 text-sm sm:text-base"
+                                className="w-full px-5 py-3 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 transition duration-300 placeholder-gray-400 text-sm sm:text-base"
                             />
                             <svg
                                 className="w-5 h-5 text-gray-400 absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none"
@@ -61,10 +61,11 @@ export default function Product() {
                             </svg>
                         </div>
                     </div>
+
                 </section>
 
 
-                <section className="mb-10">
+                <section className="mb-[150px]">
                     {/* Product Grid */}
                     {loading ? (
                         <div className="w-full h-screen flex justify-center items-center">

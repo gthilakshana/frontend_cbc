@@ -21,9 +21,6 @@ export default function EditProductForm() {
         navigate('/admin/products');
     }
 
-
-
-
     const [productId, setProductId] = useState(product.productId);
     const [productName, setProductName] = useState(product.productName);
     const [alterNativeNames, setAlterNativeNames] = useState(altNames);
@@ -39,6 +36,15 @@ export default function EditProductForm() {
     const [lastPrice, setLastPrice] = useState(product.lastPrice);
     const [stock, setStock] = useState(product.stock);
     const [description, setDescription] = useState(product.description);
+    const [delivery, setDelivery] = useState(product.delivery);
+
+
+    // Example state (assuming you're in a component with product.materials)
+    const [materials, setMaterials] = useState(product.materials || []);
+    const [newMaterial, setNewMaterial] = useState("");
+
+
+
 
 
 
@@ -69,7 +75,9 @@ export default function EditProductForm() {
             colors: colors,
             sizes: sizes,
             brands: brands,
-            description: description
+            description: description,
+            materials: materials,
+            delivery: delivery
         };
         const token = localStorage.getItem('token');
         try {
@@ -257,6 +265,61 @@ export default function EditProductForm() {
                     </div>
 
 
+                    {/* Materials Input Section */}
+                    <div className="flex flex-col mb-6">
+                        <label className="mb-1 text-sm font-medium text-gray-700">Add Material</label>
+
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                placeholder="Enter material name"
+                                value={newMaterial}
+                                onChange={(e) => setNewMaterial(e.target.value)}
+                                className="p-2 border rounded-md flex-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            />
+
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    const material = newMaterial.trim();
+                                    if (material && !materials.includes(material)) {
+                                        setMaterials([...materials, material]);
+                                        setNewMaterial("");
+                                    }
+                                }}
+                                className="px-4 py-2 bg-blue-400 text-white  hover:bg-blue-400 transition"
+                            >
+                                Add
+                            </button>
+                        </div>
+
+                        {/* Editable Material List */}
+                        <div className="flex flex-wrap gap-2 mt-3">
+                            {materials.map((material, index) => (
+                                <div key={index} className="flex items-center gap-1">
+                                    <input
+                                        value={material}
+                                        onChange={(e) => {
+                                            const updated = [...materials];
+                                            updated[index] = e.target.value;
+                                            setMaterials(updated);
+                                        }}
+                                        className="px-3 py-1 border rounded-md"
+                                    />
+                                    <button
+                                        onClick={() => {
+                                            const updated = materials.filter((_, i) => i !== index);
+                                            setMaterials(updated);
+                                        }}
+                                        className="text-red-500 hover:text-red-700 text-lg font-bold"
+                                        title="Remove"
+                                    >
+                                        &times;
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
 
 
 
@@ -311,14 +374,39 @@ export default function EditProductForm() {
                     </div>
 
                     <div className="flex flex-col md:col-span-2">
-                        <label className="mb-1 text-sm font-medium">Description</label>
+                        <label className="mb-1 text-sm font-medium text-gray-800">
+                            Delivery Information
+                        </label>
+
                         <textarea
-                            placeholder="Enter Description"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            className="p-2 border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            placeholder="Provide delivery details in full sentences. Mention delivery time, shipping method, and any location-specific info."
+                            value={delivery}
+                            onChange={(e) => setDelivery(e.target.value)}
+                            className="p-3 border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-400 h-[200px] text-sm text-gray-700"
                             rows="3"
                         />
+
+                        <p className="mt-2 text-xs text-gray-500">
+                            🚚 Example: “Delivery within 2–5 business days. Free standard shipping available islandwide. Express delivery available on request.”
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col md:col-span-2">
+                        <label className="mb-1 text-sm font-medium text-gray-800">
+                            Product Description
+                        </label>
+
+                        <textarea
+                            placeholder="Write a detailed product description using clear, complete sentences. Mention fabric, fit, style, and ideal usage."
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            className="p-3 border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-400 h-[350px] text-sm text-gray-700"
+                            rows="3"
+                        />
+
+                        <p className="mt-2 text-xs text-gray-500">
+                            ✍️ Please write clear, complete sentences. For example: “This elegant cotton saree features a breathable weave, perfect for daily wear or formal occasions.”
+                        </p>
                     </div>
                 </div>
 

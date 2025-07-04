@@ -60,7 +60,7 @@ export default function ImageSlider({ img }) {
                                 onClick={() => setCurrentIndex(index)}
                                 className={`w-16 h-16 object-cover cursor-pointer border-2 
                                     ${currentIndex === index
-                                        ? "border-blue-500 scale-105"
+                                        ? "border-gray-300 scale-105"
                                         : "border-transparent hover:border-gray-300"}
                                     transition-all duration-200`}
                             />

@@ -208,7 +208,7 @@ export default function HomeView() {
                                         {/* View Product link (optional) */}
                                         <Link
                                             to={`/productInfo/${product.productId}`}
-                                            className="mt-2 inline-block text-xs text-blue-600 hover:underline"
+                                            className="mt-2 inline-block text-xs text-gray-600 hover:underline"
                                         >
                                             View Product
                                         </Link>

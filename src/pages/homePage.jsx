@@ -7,17 +7,15 @@ import SignupPage from "./signUpPage";
 import Cart from "./home/cart";
 import ProductOverview from "./home/productOverview";
 import Product from "./home/product";
-
 import LoginPage from "./loginPage";
+import NotFoundPage from "./notfoundPage";
 
 export default function HomePage() {
     return (
-        <div className="h-screen w-full flex flex-col bg-gray-50 ">
-            {/* Sticky Header */}
+        <div className="h-screen w-full flex flex-col bg-gray-50">
             <Header />
-
             <div className="w-full h-[calc(100vh-80px)] overflow-y-auto">
-                <Routes path="/*">
+                <Routes>
                     <Route path="/" element={<HomeView />} />
                     <Route path="/home" element={<HomeView />} />
                     <Route path="/product" element={<Product />} />
@@ -28,18 +26,10 @@ export default function HomePage() {
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/productInfo/:id" element={<ProductOverview />} />
 
-
+                    {/* Not Found fallback for HomePage nested routes */}
+                    <Route path="*" element={<NotFoundPage />} />
                 </Routes>
-
             </div>
-
-
-            {/* Sticky Footer */}
-            {/* <Footer /> */}
-
         </div>
-
-
-
     );
 }

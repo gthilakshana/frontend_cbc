@@ -283,7 +283,7 @@ export default function HomeView() {
                     {/* Left Arrow */}
                     <button
                         onClick={() => scrollGallery(-1)}
-                        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white border border-gray-100 shadow hover:shadow-lg p-2 text-gray-600"
+                        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white border border-gray-100 shadow hover:shadow-lg p-2 text-orange-600"
                     >
                         <HiChevronLeft size={24} />
                     </button>

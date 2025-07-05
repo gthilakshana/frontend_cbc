@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import NotFoundImage from "../assets/NotFoundImage.png";
+
 
 export default function NotFoundPage() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-white text-center px-4">
             <img
-                src={NotFoundImage}
+                src="/404.png"
                 alt="Not Found"
                 className="w-[150px] max-w-full mb-8 opacity-70 animate-bounce"
             />

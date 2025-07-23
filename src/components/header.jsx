@@ -36,6 +36,7 @@ export default function Header() {
 
     return (
         <header className="w-full sticky top-0 z-50 bg-white shadow-md">
+            {/* Top bar with Socials and Nav Links */}
             <div className="bg-black text-white text-sm px-4 py-2 flex justify-between items-center">
                 <div className="flex space-x-3 text-lg cursor-pointer">
                     <FiFacebook className="hover:text-orange-400 transition" />
@@ -59,8 +60,8 @@ export default function Header() {
 
             {/* Main Header */}
             <div className="w-full px-4 md:px-10 py-4 flex flex-col md:flex-row md:items-center md:justify-between">
-                {/* Logo (Left) */}
-                <div className="flex items-center justify-between md:justify-start w-full md:w-auto">
+                {/* Logo and Hamburger */}
+                <div className="flex items-center justify-between w-full md:w-auto">
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="md:hidden text-gray-700 mr-2"
@@ -80,29 +81,39 @@ export default function Header() {
                         </svg>
                     </button>
                     <Link to="/" className="flex flex-col items-center md:items-start text-orange-400 w-full">
-                        <span className="text-xl font-bold uppercase">Mahee Fashion</span>
+                        <span className="text-xl font-bold uppercase">Mahee Fashion.lk</span>
                         <span className="text-xs text-orange-300 -mt-1">
                             Your Style, Our Passion
                         </span>
                     </Link>
+
+                    {/* Icons on Mobile */}
+                    <div className="flex items-center space-x-4 md:hidden">
+                        <Link to="/login" className="text-gray-800">
+                            <HiOutlineUser className="text-2xl" />
+                        </Link>
+                        <Link to="/cart" className="text-gray-800">
+                            <HiOutlineShoppingCart className="text-2xl" />
+                        </Link>
+                    </div>
                 </div>
 
-                {/* Search Bar - Responsive */}
-                <div className="flex flex-1 justify-center mt-4 md:mt-0 px-4 md:px-6 w-full">
-                    <div className="flex w-full max-w-xl">
+                {/* Search Bar */}
+                <div className="mt-4 md:mt-0 w-full flex justify-center">
+                    <div className="flex w-full max-w-xl md:max-w-3xl">
                         <input
                             type="text"
                             placeholder="Search"
-                            className="w-full border border-gray-300 px-4 py-2 focus:outline-none text-sm rounded-none"
+                            className="w-full border border-gray-300 px-4 py-2 focus:outline-none"
                         />
-                        <button className="bg-orange-400 text-white px-5 text-sm">
+                        <button className="bg-orange-400 text-white px-5">
                             Search
                         </button>
                     </div>
                 </div>
 
-                {/* Icons (Right) */}
-                <div className="flex items-center space-x-6 mt-4 md:mt-0">
+                {/* Icons on Desktop */}
+                <div className="hidden md:flex items-center space-x-6">
                     <Link to="/login" className="flex items-center gap-2 text-sm text-gray-800">
                         <HiOutlineUser className="text-2xl" />
                         <div className="flex flex-col leading-tight">
@@ -137,6 +148,7 @@ export default function Header() {
             {/* Mobile Menu */}
             {isMenuOpen && (
                 <div className="md:hidden bg-white border-t border-gray-200 shadow-md">
+                    {/* Category List */}
                     <div className="flex flex-col divide-y divide-gray-100">
                         {categories.map((item) => (
                             <button
@@ -151,7 +163,11 @@ export default function Header() {
                             </button>
                         ))}
                     </div>
+
+                    {/* Divider */}
                     <div className="my-2 border-t border-gray-100" />
+
+                    {/* Navigation Links */}
                     <nav className="flex flex-col space-y-1 px-5 pb-4">
                         {navLinks.map(({ path, label }) => (
                             <Link

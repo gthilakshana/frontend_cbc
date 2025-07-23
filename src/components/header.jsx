@@ -69,7 +69,7 @@ export default function Header() {
                             <input
                                 type="text"
                                 placeholder="Search"
-                                className="w-full border border-gray-300 px-4 py-2 focus:outline-none"
+                                className="w-full border border-gray-300 px-4 py-2 rounded-none"
                             />
                             <button className="bg-orange-400 text-white px-5">Search</button>
                         </div>

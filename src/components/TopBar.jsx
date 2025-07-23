@@ -1,8 +1,13 @@
 // components/TopBar.jsx
 import { Link } from "react-router-dom";
-import { FiFacebook, FiInstagram, FiYoutube } from "react-icons/fi";
-import { BsPinterest } from "react-icons/bs";
-import { PiTiktokLogoBold } from "react-icons/pi";
+import {
+    FaFacebookF,
+    FaPinterestP,
+    FaInstagram,
+    FaTiktok,
+    FaYoutube,
+    FaThreads,
+} from "react-icons/fa6";
 
 const navLinks = [
     { path: "/", label: "Home" },
@@ -13,20 +18,24 @@ const navLinks = [
 
 export default function TopBar() {
     return (
-        <div className="bg-black text-white text-sm px-4 py-2 flex justify-between items-center">
-            <div className="flex space-x-3 text-lg cursor-pointer">
-                <FiFacebook className="hover:text-orange-400 transition" />
-                <BsPinterest className="hover:text-orange-400 transition" />
-                <PiTiktokLogoBold className="hover:text-orange-400 transition" />
-                <FiInstagram className="hover:text-orange-400 transition" />
-                <FiYoutube className="hover:text-orange-400 transition" />
+        <div className="hidden md:flex bg-orange-400 text-black text-sm px-4 py-3 justify-between items-center">
+            {/* Social Icons */}
+            <div className="flex space-x-4 text-lg">
+                <FaFacebookF className="cursor-pointer hover:text-white transition" />
+                <FaPinterestP className="cursor-pointer hover:text-white transition" />
+                <FaInstagram className="cursor-pointer hover:text-white transition" />
+                <FaTiktok className="cursor-pointer hover:text-white transition" />
+                <FaYoutube className="cursor-pointer hover:text-white transition" />
+                <FaThreads className="cursor-pointer hover:text-white transition" />
             </div>
-            <div className="hidden md:flex space-x-6 text-xs font-semibold tracking-wide uppercase">
+
+            {/* Navigation Links */}
+            <div className="flex space-x-6 text-xs font-semibold tracking-wide uppercase">
                 {navLinks.map(({ path, label }) => (
                     <Link
                         key={path}
                         to={path}
-                        className="hover:underline hover:text-orange-400 transition"
+                        className="hover:underline hover:text-white transition"
                     >
                         {label}
                     </Link>

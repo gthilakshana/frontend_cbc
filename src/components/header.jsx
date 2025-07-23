@@ -5,6 +5,7 @@ import {
     HiOutlineShoppingCart,
 } from "react-icons/hi2";
 import CategoryBar from "./categoryBar";
+import TopBar from "./TopBar";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

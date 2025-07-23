@@ -8,7 +8,6 @@ import Cart from "./home/cart";
 import ProductOverview from "./home/productOverview";
 import Product from "./home/product";
 import LoginPage from "./loginPage";
-// import TopBar from "../../components/TopBar";
 import NotFoundPage from "./notfoundPage";
 import TopBar from "../components/TopBar";
 

@@ -4,36 +4,11 @@ import {
     HiOutlineUser,
     HiOutlineShoppingCart,
 } from "react-icons/hi2";
-import { PiTiktokLogoBold } from "react-icons/pi";
-import {
-    FiInstagram,
-    FiFacebook,
-    FiYoutube,
-} from "react-icons/fi";
-import { BsPinterest } from "react-icons/bs";
-import { FaChevronDown } from "react-icons/fa6";
+import CategoryBar from "./categoryBar";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [showScrollTop, setShowScrollTop] = useState(false);
-
-    const categories = [
-        "Women",
-        "Men",
-        "Mother & Baby",
-        "Brands",
-        "Gifts & Deals",
-    ];
-
-    const navLinks = [
-        { path: "/", label: "Home" },
-        { path: "/product", label: "Product" },
-        { path: "/about", label: "About" },
-        { path: "/contact", label: "Contact" },
-    ];
-
-    const hasDropdown = (item) =>
-        ["Women", "Men", "Mother & Baby", "Brands", "Gifts & Deals"].includes(item);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -49,9 +24,6 @@ export default function Header() {
 
     return (
         <header className="w-full">
-
-
-            {/* Scroll to Top Button */}
             {showScrollTop && (
                 <button
                     onClick={scrollToTop}
@@ -61,7 +33,6 @@ export default function Header() {
                 </button>
             )}
 
-            {/* Sticky Main Header */}
             <div className="sticky top-0 z-50 bg-white shadow-md">
                 <div className="w-full px-4 md:px-10 py-4 flex flex-col md:flex-row md:items-center md:justify-between">
                     {/* Logo & Hamburger */}
@@ -120,52 +91,9 @@ export default function Header() {
                     </div>
                 </div>
 
-                {/* Category Bar */}
-                <nav className="hidden md:flex bg-gray-100 px-10 py-3 border-t border-gray-200">
-                    <ul className="flex flex-wrap space-x-6 text-sm font-medium text-gray-800">
-                        {categories.map((item) => (
-                            <li
-                                key={item}
-                                className="flex items-center gap-1 cursor-pointer hover:text-orange-400 transition"
-                            >
-                                <span>{item}</span>
-                                {hasDropdown(item) && <FaChevronDown className="text-xs mt-0.5" />}
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
+                {/* CategoryBar: Handles both mobile & desktop */}
+                <CategoryBar isMobileOpen={isMenuOpen} />
             </div>
-
-            {/* Mobile Menu */}
-            {isMenuOpen && (
-                <div className="md:hidden bg-white border-t border-gray-200 shadow-md">
-                    <div className="flex flex-col divide-y divide-gray-100">
-                        {categories.map((item) => (
-                            <button
-                                key={item}
-                                className="flex items-center justify-between px-5 py-3 text-gray-800 font-medium hover:bg-orange-100"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <span>{item}</span>
-                                {hasDropdown(item) && <FaChevronDown className="text-xs text-gray-500" />}
-                            </button>
-                        ))}
-                    </div>
-                    <div className="my-2 border-t border-gray-100" />
-                    <nav className="flex flex-col space-y-1 px-5 pb-4">
-                        {navLinks.map(({ path, label }) => (
-                            <Link
-                                key={path}
-                                to={path}
-                                onClick={() => setIsMenuOpen(false)}
-                                className="block py-2 text-gray-700 font-semibold rounded hover:bg-gray-100 transition"
-                            >
-                                {label}
-                            </Link>
-                        ))}
-                    </nav>
-                </div>
-            )}
         </header>
     );
 }

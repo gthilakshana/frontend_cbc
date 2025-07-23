@@ -6,8 +6,8 @@ import { PiTiktokLogoBold } from "react-icons/pi";
 
 const navLinks = [
     { path: "/", label: "Home" },
+    { path: "/product", label: "Product" },
     { path: "/about", label: "About" },
-    { path: "/shop", label: "Shop" },
     { path: "/contact", label: "Contact" },
 ];
 

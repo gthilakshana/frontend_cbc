@@ -17,6 +17,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// Dummy monthly sales data
 const salesData = [
     { month: "Jan", sales: 4000 },
     { month: "Feb", sales: 3000 },
@@ -63,9 +64,9 @@ export default function AdminDashboard() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col p-6 overflow-y-auto">
+        <div className="w-full min-h-screen bg-gray-100 p-4 md:p-6">
             {/* Header */}
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
                 <button
                     onClick={handleRefresh}
@@ -82,9 +83,9 @@ export default function AdminDashboard() {
             </h2>
 
             {/* Overview Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 w-full">
                 {/* Total Products */}
-                <div className="bg-blue-600 text-white rounded-lg shadow p-5">
+                <div className="bg-blue-600 text-white rounded-lg shadow p-5 w-full">
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-sm font-medium">Total Products</p>
@@ -98,7 +99,7 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Total Orders */}
-                <div className="bg-green-500 text-white rounded-lg shadow p-5">
+                <div className="bg-green-500 text-white rounded-lg shadow p-5 w-full">
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-sm font-medium">Total Orders</p>
@@ -112,7 +113,7 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Total Customers */}
-                <div className="bg-purple-500 text-white rounded-lg shadow p-5">
+                <div className="bg-purple-500 text-white rounded-lg shadow p-5 w-full">
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-sm font-medium">Total Customers</p>
@@ -126,7 +127,7 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Total Revenue */}
-                <div className="bg-yellow-500 text-white rounded-lg shadow p-5">
+                <div className="bg-yellow-500 text-white rounded-lg shadow p-5 w-full">
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="text-sm font-medium">Total Revenue</p>
@@ -140,16 +141,22 @@ export default function AdminDashboard() {
                 </div>
             </div>
 
-            {/* Chart */}
-            <div className="bg-white shadow-md rounded-lg p-6">
+            {/* Monthly Sales Chart */}
+            <div className="bg-white shadow-md rounded-lg p-6 w-full">
                 <h2 className="text-lg font-semibold text-gray-700 mb-4">
                     📊 Monthly Sales Overview
                 </h2>
-                <div className="w-full h-80">
+                <div className="w-full h-[400px]">
                     <ResponsiveContainer width="100%" height="100%">
-                        <BarChart data={salesData} margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
+                        <BarChart
+                            data={salesData}
+                            margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
+                        >
                             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                            <XAxis dataKey="month" tick={{ fontSize: 13, fill: "#6b7280" }} />
+                            <XAxis
+                                dataKey="month"
+                                tick={{ fontSize: 13, fill: "#6b7280" }}
+                            />
                             <YAxis tick={{ fontSize: 13, fill: "#6b7280" }} />
                             <Tooltip
                                 contentStyle={{
@@ -161,7 +168,12 @@ export default function AdminDashboard() {
                                 labelStyle={{ color: "#374151", fontWeight: "bold" }}
                                 itemStyle={{ color: "#4f46e5" }}
                             />
-                            <Bar dataKey="sales" fill="#4f46e5" barSize={40} radius={[4, 4, 0, 0]} />
+                            <Bar
+                                dataKey="sales"
+                                fill="#4f46e5"
+                                barSize={40}
+                                radius={[4, 4, 0, 0]}
+                            />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>

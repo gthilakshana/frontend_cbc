@@ -6,20 +6,47 @@ const categories = [
         title: "Women",
         megaMenu: [
             {
-                section: "Face Care",
-                items: ["Day Cream", "Night Cream", "Fairness", "Face Oils & Serums", "Face Wash & Scrub", "Cleansers & Toners", "Face Packs"],
+                section: "Clothing",
+                items: [
+                    "Dresses",
+                    "Tops & Tees",
+                    "Blouses & Shirts",
+                    "Skirts",
+                    "Jeans",
+                    "Trousers",
+                    "Ethnic Wear"
+                ],
             },
             {
-                section: "Body Care",
-                items: ["Body Lotions", "Body Creams", "Body Oils", "Body Scrubs", "Body Wash", "Body Wax", "Hand & Foot Care"],
+                section: "Lingerie & Sleepwear",
+                items: [
+                    "Bras",
+                    "Panties",
+                    "Sleepwear",
+                    "Shapewear",
+                    "Camisoles & Slips"
+                ],
             },
             {
-                section: "Hair Care",
-                items: ["Shampoo", "Conditioner", "Hair Cream & Lotion", "Hair Masks", "Hair Styling", "Treatments & Oils", "Accessories"],
+                section: "Footwear",
+                items: [
+                    "Flats",
+                    "Heels",
+                    "Sneakers",
+                    "Sandals",
+                    "Boots"
+                ],
             },
             {
-                section: "Toiletries",
-                items: ["Bath & Shower", "Soap", "Hand Wash & Gel", "Hair Removal", "Talcum Powder", "Bath Bombs & Salts", "Dental"],
+                section: "Accessories",
+                items: [
+                    "Bags",
+                    "Jewelry",
+                    "Watches",
+                    "Scarves",
+                    "Belts",
+                    "Hats & Caps"
+                ],
             },
         ],
     },
@@ -27,22 +54,59 @@ const categories = [
         title: "Men",
         megaMenu: [
             {
-                section: "Grooming",
-                items: ["Razors", "Shaving Cream", "Beard Oil", "Hair Gel"],
+                section: "Clothing",
+                items: [
+                    "Shirts",
+                    "T-Shirts",
+                    "Jeans",
+                    "Trousers",
+                    "Blazers",
+                    "Ethnic Wear"
+                ],
+            },
+            {
+                section: "Footwear",
+                items: [
+                    "Formal Shoes",
+                    "Casual Shoes",
+                    "Sneakers",
+                    "Sandals",
+                    "Loafers"
+                ],
+            },
+            {
+                section: "Accessories",
+                items: [
+                    "Belts",
+                    "Wallets",
+                    "Caps & Hats",
+                    "Sunglasses",
+                    "Watches"
+                ],
             },
         ],
     },
     {
-        title: "Makeup",
-        megaMenu: [],
+        title: "Kids",
+        megaMenu: [
+            {
+                section: "Girls",
+                items: ["Frocks", "Tops", "Skirts", "Jeans", "Shoes"],
+            },
+            {
+                section: "Boys",
+                items: ["T-Shirts", "Shirts", "Pants", "Shorts", "Shoes"],
+            },
+        ],
     },
-    { title: "Sun Protection" },
-    { title: "Vitamin & Supplements" },
-    { title: "Grooming Tools" },
+    { title: "Footwear" },
     { title: "Mother & Baby" },
+    { title: "Accessories" },
     { title: "Brands" },
     { title: "Gifts & Deals" },
+    { title: "Sale" },
 ];
+
 
 
 export default function CategoryBar({ isMobileOpen }) {

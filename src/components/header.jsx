@@ -36,7 +36,6 @@ export default function Header() {
 
     return (
         <header className="w-full sticky top-0 z-50 bg-white shadow-md">
-
             <div className="bg-black text-white text-sm px-4 py-2 flex justify-between items-center">
                 <div className="flex space-x-3 text-lg cursor-pointer">
                     <FiFacebook className="hover:text-orange-400 transition" />
@@ -44,7 +43,6 @@ export default function Header() {
                     <PiTiktokLogoBold className="hover:text-orange-400 transition" />
                     <FiInstagram className="hover:text-orange-400 transition" />
                     <FiYoutube className="hover:text-orange-400 transition" />
-
                 </div>
                 <div className="hidden md:flex space-x-6 text-xs font-semibold tracking-wide uppercase">
                     {navLinks.map(({ path, label }) => (
@@ -59,12 +57,10 @@ export default function Header() {
                 </div>
             </div>
 
-
             {/* Main Header */}
             <div className="w-full px-4 md:px-10 py-4 flex flex-col md:flex-row md:items-center md:justify-between">
                 {/* Logo (Left) */}
                 <div className="flex items-center justify-between md:justify-start w-full md:w-auto">
-                    {/* Hamburger (mobile only) */}
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="md:hidden text-gray-700 mr-2"
@@ -91,15 +87,15 @@ export default function Header() {
                     </Link>
                 </div>
 
-                {/* Search Bar (Center on Desktop) */}
-                <div className="hidden md:flex flex-1 justify-center mt-4 md:mt-0 px-6">
+                {/* Search Bar - Responsive */}
+                <div className="flex flex-1 justify-center mt-4 md:mt-0 px-4 md:px-6 w-full">
                     <div className="flex w-full max-w-xl">
                         <input
                             type="text"
                             placeholder="Search"
-                            className="w-full border border-gray-300 px-4 py-2  focus:outline-none"
+                            className="w-full border border-gray-300 px-4 py-2 focus:outline-none text-sm"
                         />
-                        <button className="bg-orange-400 text-white px-5 ">
+                        <button className="bg-orange-400 text-white px-5 text-sm">
                             Search
                         </button>
                     </div>
@@ -107,7 +103,6 @@ export default function Header() {
 
                 {/* Icons (Right) */}
                 <div className="flex items-center space-x-6 mt-4 md:mt-0">
-                    {/* User */}
                     <Link to="/login" className="flex items-center gap-2 text-sm text-gray-800">
                         <HiOutlineUser className="text-2xl" />
                         <div className="flex flex-col leading-tight">
@@ -115,8 +110,6 @@ export default function Header() {
                             <span className="text-xs text-gray-500">Log In</span>
                         </div>
                     </Link>
-
-                    {/* Cart */}
                     <Link to="/cart" className="flex items-center gap-2 text-sm text-gray-800">
                         <HiOutlineShoppingCart className="text-2xl" />
                         <span className="font-semibold">Cart (0)</span>
@@ -144,7 +137,6 @@ export default function Header() {
             {/* Mobile Menu */}
             {isMenuOpen && (
                 <div className="md:hidden bg-white border-t border-gray-200 shadow-md">
-                    {/* Category List */}
                     <div className="flex flex-col divide-y divide-gray-100">
                         {categories.map((item) => (
                             <button
@@ -159,11 +151,7 @@ export default function Header() {
                             </button>
                         ))}
                     </div>
-
-                    {/* Divider */}
                     <div className="my-2 border-t border-gray-100" />
-
-                    {/* Navigation Links */}
                     <nav className="flex flex-col space-y-1 px-5 pb-4">
                         {navLinks.map(({ path, label }) => (
                             <Link

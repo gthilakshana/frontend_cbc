@@ -8,13 +8,23 @@ import Cart from "./home/cart";
 import ProductOverview from "./home/productOverview";
 import Product from "./home/product";
 import LoginPage from "./loginPage";
+// import TopBar from "../../components/TopBar";
 import NotFoundPage from "./notfoundPage";
+import TopBar from "../components/TopBar";
 
 export default function HomePage() {
     return (
         <div className="h-screen w-full flex flex-col bg-gray-50">
-            <Header />
-            <div className="w-full h-[calc(100vh-80px)] overflow-y-auto">
+
+            <div className="sticky top-0 z-50">
+                <TopBar />
+            </div>
+
+            {/* Scrollable Area */}
+            <div className="flex-1 overflow-y-auto">
+                {/* Scrolls with page */}
+                <Header />
+
                 <Routes>
                     <Route path="/" element={<HomeView />} />
                     <Route path="/home" element={<HomeView />} />
@@ -25,8 +35,6 @@ export default function HomePage() {
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/productInfo/:id" element={<ProductOverview />} />
-
-                    {/* Not Found fallback for HomePage nested routes */}
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </div>

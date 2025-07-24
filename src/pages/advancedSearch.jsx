@@ -2,8 +2,8 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FaTh, FaList } from "react-icons/fa";
-import ProductCard from "../components/ProductCard";
-import ProductListCard from "../components/ProductListCard";
+import ProductCard from "../components/productCard";
+import ProductListCard from "../components/productListCard";
 import Footer from "../components/Footer";
 
 export default function AdvancedSearch() {

@@ -5,13 +5,13 @@ import ProductCard from "../components/ProductCard";
 import ProductListCard from "../components/ProductListCard";
 import Footer from "../components/Footer";
 
-function ProductCardWrapper({ children }) {
-    return (
-        <div className="bg-white rounded-md shadow-sm border border-gray-200 p-3 w-full h-full">
-            {children}
-        </div>
-    );
-}
+// function ProductCardWrapper({ children }) {
+//     return (
+//         <div className="bg-white rounded-md shadow-sm border border-gray-200 p-3 w-full h-full">
+//             {children}
+//         </div>
+//     );
+// }
 
 export default function AdvancedSearch() {
     const { sub } = useParams();
@@ -148,9 +148,7 @@ export default function AdvancedSearch() {
                     {viewMode === "grid" ? (
                         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 px-1">
                             {dummyProducts.map((product) => (
-                                <ProductCardWrapper key={product.id}>
-                                    <ProductCard product={product} />
-                                </ProductCardWrapper>
+                                <ProductCard key={product.id} product={product} />
                             ))}
                         </div>
                     ) : (

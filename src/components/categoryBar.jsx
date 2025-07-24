@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const categories = [
     {
@@ -88,6 +89,9 @@ export default function CategoryBar({ isMobileOpen }) {
         setOpenCategory(openCategory === title ? null : title);
     };
 
+    const formatPath = (category, item) =>
+        `/category/${category.toLowerCase()}/${item.toLowerCase().replace(/\s+/g, "-")}`;
+
     return (
         <>
             {/* Desktop Category Bar */}
@@ -113,8 +117,13 @@ export default function CategoryBar({ isMobileOpen }) {
                                                     </h4>
                                                     <ul className="space-y-2 text-sm text-gray-600">
                                                         {section.items.map((item) => (
-                                                            <li key={item} className="hover:text-orange-500 cursor-pointer">
-                                                                {item}
+                                                            <li key={item}>
+                                                                <Link
+                                                                    to={formatPath(category.title, item)}
+                                                                    className="hover:text-orange-500 cursor-pointer"
+                                                                >
+                                                                    {item}
+                                                                </Link>
                                                             </li>
                                                         ))}
                                                     </ul>
@@ -128,6 +137,7 @@ export default function CategoryBar({ isMobileOpen }) {
                     ))}
                 </ul>
             </nav>
+
             {/* Mobile Category Menu */}
             {isMobileOpen && (
                 <div className="md:hidden bg-white border-t border-gray-200 px-4 py-3">
@@ -157,11 +167,13 @@ export default function CategoryBar({ isMobileOpen }) {
                                                     </div>
                                                     <ul className="ml-3 space-y-1 text-sm text-gray-600">
                                                         {section.items.map((item) => (
-                                                            <li
-                                                                key={item}
-                                                                className="hover:text-orange-500 cursor-pointer"
-                                                            >
-                                                                {item}
+                                                            <li key={item}>
+                                                                <Link
+                                                                    to={formatPath(cat.title, item)}
+                                                                    className="hover:text-orange-500 cursor-pointer"
+                                                                >
+                                                                    {item}
+                                                                </Link>
                                                             </li>
                                                         ))}
                                                     </ul>
@@ -175,7 +187,6 @@ export default function CategoryBar({ isMobileOpen }) {
                     </div>
                 </div>
             )}
-
         </>
     );
 }

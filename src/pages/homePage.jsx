@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
-
+import CategoryProducts from "./home/CategoryProducts";
 import Header from "../components/header";
 import ContactPage from "./home/contact";
 import HomeView from "./home/homeView";
@@ -14,7 +14,7 @@ import LoginPage from "./loginPage";
 import NotFoundPage from "./notfoundPage";
 import TopBar from "../components/TopBar";
 import AdvancedSearch from "./advancedSearch";
-import Trousers from "./home/categoriesList/women/trousers";
+// import Trousers from "./home/categoriesList/women/trousers";
 
 export default function HomePage() {
     const [showTopBar, setShowTopBar] = useState(true);
@@ -76,7 +76,9 @@ export default function HomePage() {
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/productInfo/:id" element={<ProductOverview />} />
                     <Route path="/advancedSearch" element={<AdvancedSearch />} />
-                    <Route path="/advancedSearch/trouser" element={<Trousers />} />
+                    <Route path="/category/:main/:sub" element={<AdvancedSearch />} />
+
+                    {/* <Route path="/advancedSearch" element={<Trousers />} /> */}
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </div>

@@ -1,10 +1,31 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiOutlineUser, HiOutlineShoppingCart } from "react-icons/hi2";
 import CategoryBar from "./categoryBar";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+    const navigate = useNavigate();
+
+    const handleSearch = () => {
+        if (!searchTerm.trim()) return;
+
+        // Split into parts (ex: "men shoes" → ["men", "shoes"])
+        const parts = searchTerm.trim().toLowerCase().split(" ");
+
+        if (parts.length === 1) {
+            navigate(`/search/${parts[0]}`);
+        } else {
+            navigate(`/search/${parts[0]}/${parts[1]}`);
+        }
+
+        setSearchTerm(""); // optional: clear input
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") handleSearch();
+    };
 
     return (
         <header className="w-full">
@@ -42,10 +63,18 @@ export default function Header() {
                     <div className="flex w-full max-w-xl">
                         <input
                             type="text"
-                            placeholder="Search"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            placeholder="Search by category or subcategory"
                             className="w-full border border-gray-300 px-4 py-2 rounded-none"
                         />
-                        <button className="bg-orange-400 text-white px-5">Search</button>
+                        <button
+                            className="bg-orange-400 text-white px-5"
+                            onClick={handleSearch}
+                        >
+                            Search
+                        </button>
                     </div>
                 </div>
 
@@ -65,7 +94,7 @@ export default function Header() {
                 </div>
             </div>
 
-            {/* CategoryBar: Handles both mobile & desktop */}
+            {/* CategoryBar */}
             <CategoryBar isMobileOpen={isMenuOpen} />
         </header>
     );

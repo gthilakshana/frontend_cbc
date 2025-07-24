@@ -5,10 +5,8 @@ import { FaTh, FaList } from "react-icons/fa";
 import ProductListCard from "../components/ProductListCard";
 import ProductCard from "../components/productCard";
 
-
-
 export default function AdvancedSearch() {
-    const { sub } = useParams();
+    const { category, subcategory, term } = useParams();
     const [viewMode, setViewMode] = useState("grid");
     const [showFilters, setShowFilters] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
@@ -20,33 +18,36 @@ export default function AdvancedSearch() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const subCategoryName = sub
-        ?.replace(/-/g, " ")
-        .replace(/\b\w/g, (c) => c.toUpperCase());
+    const displayTitle = term
+        ? term.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+        : subcategory
+            ? subcategory.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+            : category
+                ? category.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+                : "Search";
 
     const dummyProducts = [...Array(8)].map((_, idx) => ({
         id: idx,
         productId: idx + 1,
-        productName: `${subCategoryName} Product ${idx + 1}`,
+        productName: `${displayTitle} Product ${idx + 1}`,
         lastPrice: 5900 + idx * 100,
         price: 5300 + idx * 100,
         stock: idx % 2 === 0 ? 5 : 0,
         sizes: ["S", "M", "L"],
         brands: ["Puma"],
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         images: ["/images/sample-product.jpg"],
     }));
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50 ">
+        <div className="min-h-screen flex flex-col bg-gray-50">
             <div className="px-4 pt-4 text-sm text-gray-600">
-                <span className="hover:underline cursor-pointer">Home</span> {'>'} {subCategoryName}
+                <span className="hover:underline cursor-pointer">Home</span> {'>'} {displayTitle}
             </div>
 
             <div className="px-4 md:px-6 py-6">
                 <h1 className="text-2xl md:text-4xl font-semibold text-center uppercase">
-                    {subCategoryName}
+                    {displayTitle}
                 </h1>
             </div>
 
@@ -64,6 +65,7 @@ export default function AdvancedSearch() {
             <div className="px-4 md:px-6 pb-8 grid grid-cols-1 md:grid-cols-5 gap-6">
                 <div className={`${showFilters ? "block" : "hidden"} md:block md:col-span-1 space-y-6`}>
                     <h2 className="font-bold text-base uppercase tracking-wide mb-4">Filter:</h2>
+
                     <div>
                         <h3 className="font-semibold text-xs uppercase tracking-wide mb-2">Availability</h3>
                         <label className="block text-sm mb-2">
@@ -73,6 +75,7 @@ export default function AdvancedSearch() {
                             <input type="checkbox" className="mr-2" /> Out Of Stock (1)
                         </label>
                     </div>
+
                     <div className="mt-6">
                         <h3 className="font-semibold text-xs uppercase tracking-wide mb-2">Price</h3>
                         <p className="text-sm text-gray-500 mb-2">The highest price is Rs 31,815.00</p>
@@ -81,6 +84,7 @@ export default function AdvancedSearch() {
                             <input placeholder="To" className="border px-2 py-1 w-full text-sm" type="number" />
                         </div>
                     </div>
+
                     <div className="mt-6">
                         <h3 className="font-semibold text-xs uppercase tracking-wide mb-2">Brand</h3>
                         <label className="block text-sm mb-2">
@@ -143,8 +147,6 @@ export default function AdvancedSearch() {
                     )}
                 </div>
             </div>
-
-            {/* <Footer /> */}
         </div>
     );
 }

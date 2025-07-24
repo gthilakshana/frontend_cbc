@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import ProductCard from "../components/productCard";
-import Footer from "../components/footer";
+import { FaTh, FaList } from "react-icons/fa";
+import ProductCard from "../components/ProductCard";
+import ProductListCard from "../components/ProductListCard";
+import Footer from "../components/Footer";
 
-// Optional: wrapper to add spacing and consistent styling
 function ProductCardWrapper({ children }) {
     return (
         <div className="bg-white rounded-md shadow-sm border border-gray-200 p-3 w-full h-full">
@@ -33,10 +34,14 @@ export default function AdvancedSearch() {
         id: idx,
         productId: idx + 1,
         productName: `${subCategoryName} Product ${idx + 1}`,
-        lastPrice: 3000 + idx * 500,
+        lastPrice: 5900 + idx * 100,
+        price: 5300 + idx * 100,
         stock: idx % 2 === 0 ? 5 : 0,
         sizes: ["S", "M", "L"],
-        images: ["/path-to-image.jpg"],
+        brands: ["Puma"],
+        description:
+            "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+        images: ["/images/sample-product.jpg"],
     }));
 
     return (
@@ -113,16 +118,16 @@ export default function AdvancedSearch() {
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div className="flex gap-2">
                             <button
-                                className={`border p-2 ${viewMode === "grid" ? "text-black" : "text-gray-400"}`}
+                                className={`border p-2 rounded ${viewMode === "grid" ? "text-black" : "text-gray-400"}`}
                                 onClick={() => setViewMode("grid")}
                             >
-                                <i className="fas fa-th"></i>
+                                <FaTh />
                             </button>
                             <button
-                                className={`border p-2 ${viewMode === "list" ? "text-black" : "text-gray-400"}`}
+                                className={`border p-2 rounded ${viewMode === "list" ? "text-black" : "text-gray-400"}`}
                                 onClick={() => setViewMode("list")}
                             >
-                                <i className="fas fa-list"></i>
+                                <FaList />
                             </button>
                         </div>
 
@@ -139,7 +144,7 @@ export default function AdvancedSearch() {
                         </div>
                     </div>
 
-                    {/* Grid/List */}
+                    {/* Grid/List Rendering */}
                     {viewMode === "grid" ? (
                         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 px-1">
                             {dummyProducts.map((product) => (
@@ -149,11 +154,9 @@ export default function AdvancedSearch() {
                             ))}
                         </div>
                     ) : (
-                        <div className="space-y-4 px-4">
+                        <div className="space-y-4 px-2">
                             {dummyProducts.map((product) => (
-                                <div key={product.id} className="border p-4 rounded shadow-sm">
-                                    <ProductCard product={product} layout="list" />
-                                </div>
+                                <ProductListCard key={product.id} product={product} />
                             ))}
                         </div>
                     )}

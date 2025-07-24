@@ -197,7 +197,7 @@ export default function ProductOverview() {
                 </div>
             </div>
 
-            <Footer />
+
         </div>
     );
 }

@@ -51,7 +51,7 @@ export default function HomePage() {
                     </div>
 
 
-                    <div className="h-16 bg-white shadow">
+                    <div className=" bg-white shadow">
                         <Header />
                     </div>
                 </div>

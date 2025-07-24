@@ -18,7 +18,7 @@ const navLinks = [
 
 export default function TopBar() {
     return (
-        <div className="hidden md:flex bg-orange-400 text-black text-sm px-4 py-3 justify-between items-center">
+        <div className="hidden md:flex bg-red-500 text-white text-sm px-4 py-3 justify-between items-center">
             {/* Social Icons */}
             <div className="flex space-x-4 text-lg">
                 <FaFacebookF className="cursor-pointer hover:text-white transition" />

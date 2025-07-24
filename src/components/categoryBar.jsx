@@ -1,5 +1,5 @@
-
-import { FaChevronDown } from "react-icons/fa";
+import { useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const categories = [
     {
@@ -107,9 +107,13 @@ const categories = [
     { title: "Sale" },
 ];
 
-
-
 export default function CategoryBar({ isMobileOpen }) {
+    const [openCategory, setOpenCategory] = useState(null);
+
+    const toggleCategory = (title) => {
+        setOpenCategory(openCategory === title ? null : title);
+    };
+
     return (
         <>
             {/* Desktop Category Bar */}
@@ -142,29 +146,49 @@ export default function CategoryBar({ isMobileOpen }) {
                                         ))}
                                     </div>
                                 </div>
-
                             )}
                         </li>
                     ))}
                 </ul>
             </nav>
 
-            {/* Mobile Category Menu */}
+            {/* Mobile Category Menu with dropdowns */}
             {isMobileOpen && (
                 <div className="md:hidden bg-white border-t border-gray-200 px-4 py-3">
-                    <ul className="space-y-3">
+                    <ul className="space-y-4">
                         {categories.map((cat) => (
                             <li key={cat.title}>
-                                <div className="font-semibold text-gray-800">{cat.title}</div>
-                                {cat.megaMenu?.length > 0 && (
-                                    <ul className="ml-4 mt-1 text-sm text-gray-600 space-y-1 cursor-pointer">
-                                        {cat.megaMenu.flatMap((section) =>
-                                            section.items.map((item) => (
-                                                <li key={item} className="hover:text-orange-500 ">
-                                                    {item}
-                                                </li>
-                                            ))
-                                        )}
+                                <div
+                                    className="flex justify-between items-center font-semibold text-gray-800 cursor-pointer"
+                                    onClick={() => toggleCategory(cat.title)}
+                                >
+                                    <span>{cat.title}</span>
+                                    {cat.megaMenu && cat.megaMenu.length > 0 && (
+                                        openCategory === cat.title ? (
+                                            <FaChevronUp className="text-sm" />
+                                        ) : (
+                                            <FaChevronDown className="text-sm" />
+                                        )
+                                    )}
+                                </div>
+
+                                {/* Dropdown section */}
+                                {openCategory === cat.title && cat.megaMenu?.length > 0 && (
+                                    <ul className="ml-4 mt-2 space-y-3">
+                                        {cat.megaMenu.map((section) => (
+                                            <li key={section.section}>
+                                                <div className="text-sm font-medium text-gray-700 mb-1">
+                                                    {section.section}
+                                                </div>
+                                                <ul className="ml-3 space-y-1 text-sm text-gray-600">
+                                                    {section.items.map((item) => (
+                                                        <li key={item} className="hover:text-orange-500 cursor-pointer">
+                                                            {item}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </li>
+                                        ))}
                                     </ul>
                                 )}
                             </li>

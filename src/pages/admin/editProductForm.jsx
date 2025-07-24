@@ -21,6 +21,19 @@ export default function EditProductForm() {
         navigate('/admin/products');
     }
 
+    const categoryOptions = {
+        Women: ["Dresses", "Tops", "Sarees"],
+        Men: ["Shirts", "T-Shirts", "Trousers"],
+        Kids: ["Boys", "Girls", "Infants"],
+        Footwear: ["Men", "Women", "Kids"],
+        "Mother & Baby": ["Maternity Wear", "Baby Gear"],
+        Accessories: ["Bags", "Jewelry", "Watches"],
+        Brands: ["Nike", "Adidas", "Puma"],
+        "Gifts & Deals": ["Gift Sets", "Discount Packs"],
+        Sale: ["Clearance", "Flash Deals"]
+    };
+
+
     const [productId, setProductId] = useState(product.productId);
     const [productName, setProductName] = useState(product.productName);
     const [alterNativeNames, setAlterNativeNames] = useState(altNames);
@@ -28,10 +41,8 @@ export default function EditProductForm() {
     const [price, setPrice] = useState(product.price);
     const [colors, setColors] = useState(product.colors || []);
     const [selectedColor, setSelectedColor] = useState("");
-
     const [sizes, setSizes] = useState(product.sizes || []);
     const [selectedSize, setSelectedSize] = useState("");
-
     const [brands, setBrands] = useState(product.brands);
     const [lastPrice, setLastPrice] = useState(product.lastPrice);
     const [stock, setStock] = useState(product.stock);
@@ -39,10 +50,12 @@ export default function EditProductForm() {
     const [delivery, setDelivery] = useState(product.delivery);
 
 
+
     // Example state (assuming you're in a component with product.materials)
     const [materials, setMaterials] = useState(product.materials || []);
     const [newMaterial, setNewMaterial] = useState("");
-
+    const [category, setCategory] = useState(product.category || '');
+    const [subcategory, setSubcategory] = useState(product.subcategory || '');
 
 
 
@@ -77,7 +90,10 @@ export default function EditProductForm() {
             brands: brands,
             description: description,
             materials: materials,
-            delivery: delivery
+            delivery: delivery,
+            category: category,
+            subcategory: subcategory
+
         };
         const token = localStorage.getItem('token');
         try {
@@ -320,6 +336,48 @@ export default function EditProductForm() {
                             ))}
                         </div>
                     </div>
+
+
+
+                    {/* Categories & Subcategories */}
+                    <div className="flex flex-col mb-6">
+                        <label className="mb-1 text-sm font-medium text-gray-700">Category</label>
+                        <select
+                            value={category}
+                            onChange={(e) => {
+                                setCategory(e.target.value);
+                                setSubcategory("");
+                            }}
+                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        >
+                            <option value="">Select Category</option>
+                            {Object.keys(categoryOptions).map((cat) => (
+                                <option key={cat} value={cat}>
+                                    {cat}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {category && (
+                        <div className="flex flex-col mb-6">
+                            <label className="mb-1 text-sm font-medium text-gray-700">Subcategory</label>
+                            <select
+                                value={subcategory}
+                                onChange={(e) => setSubcategory(e.target.value)}
+                                className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            >
+                                <option value="">Select Subcategory</option>
+                                {categoryOptions[category].map((sub, index) => (
+                                    <option key={index} value={sub}>
+                                        {sub}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
+
+
 
 
 

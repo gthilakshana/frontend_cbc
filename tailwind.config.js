@@ -11,6 +11,7 @@ export default {
         secondary: '#FBFBFB',
         tertiary: '#E8F9FF',
       },
+     
 
     
     },

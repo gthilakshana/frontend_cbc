@@ -7,6 +7,19 @@ import { useNavigate } from 'react-router-dom';
 
 export default function AddProductForm() {
 
+    const categoryOptions = {
+        Women: ["Dresses", "Tops", "Sarees"],
+        Men: ["Shirts", "T-Shirts", "Trousers"],
+        Kids: ["Boys", "Girls", "Infants"],
+        Footwear: ["Men", "Women", "Kids"],
+        MotherAndBaby: ["Maternity Wear", "Baby Gear"],
+        Accessories: ["Bags", "Jewelry", "Watches"],
+        Brands: ["Nike", "Adidas", "Puma"],
+        GiftsAndDeals: ["Gift Sets", "Discount Packs"],
+        Sale: ["Clearance", "Flash Deals"]
+    };
+
+
     const [productId, setProductId] = useState("");
     const [productName, setProductName] = useState("");
     const [alterNativeNames, setAlterNativeNames] = useState("");
@@ -28,6 +41,9 @@ export default function AddProductForm() {
     // Example state (assuming you're in a component with product.materials)
     const [materials, setMaterials] = useState([]);
     const [newMaterial, setNewMaterial] = useState("");
+    const [category, setCategory] = useState("");
+    const [subcategory, setSubcategory] = useState("");
+    const [categoryPairs, setCategoryPairs] = useState([]);
 
 
 
@@ -59,7 +75,9 @@ export default function AddProductForm() {
             brands: brands,
             description: description,
             materials: materials,
-            delivery: delivery
+            delivery: delivery,
+            category: category,
+            subcategory: subcategory
         };
         const token = localStorage.getItem('token');
         try {
@@ -324,6 +342,105 @@ export default function AddProductForm() {
                             ))}
                         </div>
                     </div>
+
+
+
+                    {/* Category */}
+                    <div className="flex flex-col mb-6">
+                        <label className="mb-1 text-sm font-medium text-gray-700">Category</label>
+                        <select
+                            value={category}
+                            onChange={(e) => {
+                                setCategory(e.target.value);
+                                setSubcategory(""); // Reset subcategory when category changes
+                            }}
+                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        >
+                            <option value="">Select Category</option>
+                            {Object.keys(categoryOptions).map((cat) => (
+                                <option key={cat} value={cat}>
+                                    {cat}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Subcategory + Add Button */}
+                    {category && (
+                        <div className="flex flex-col mb-6">
+                            <label className="mb-1 text-sm font-medium text-gray-700">Subcategory</label>
+                            <div className="flex gap-2">
+                                <select
+                                    value={subcategory}
+                                    onChange={(e) => setSubcategory(e.target.value)}
+                                    className="p-2 border rounded-md flex-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                >
+                                    <option value="">Select Subcategory</option>
+                                    {categoryOptions[category].map((sub, index) => (
+                                        <option key={index} value={sub}>
+                                            {sub}
+                                        </option>
+                                    ))}
+                                </select>
+
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        if (
+                                            category &&
+                                            subcategory &&
+                                            !categoryPairs.some(
+                                                (pair) =>
+                                                    pair.category === category &&
+                                                    pair.subcategory === subcategory
+                                            )
+                                        ) {
+                                            setCategoryPairs([
+                                                ...categoryPairs,
+                                                { category, subcategory },
+                                            ]);
+                                            setCategory("");
+                                            setSubcategory("");
+                                        }
+                                    }}
+                                    className="px-4 py-2 bg-blue-400 text-white hover:bg-blue-500 transition"
+                                >
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Added Category/Subcategory List */}
+                    {categoryPairs.length > 0 && (
+                        <div className="flex flex-col mb-6">
+                            <label className="mb-1 text-sm font-medium text-gray-700">Added Categories</label>
+
+                            <div className="flex flex-wrap gap-2 mb-2">
+                                {categoryPairs.map((pair, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="flex items-center gap-2 border px-3 py-1 rounded-md bg-gray-100"
+                                    >
+                                        <span className="text-sm">
+                                            {pair.category} / {pair.subcategory}
+                                        </span>
+                                        <button
+                                            onClick={() => {
+                                                const updated = categoryPairs.filter((_, i) => i !== idx);
+                                                setCategoryPairs(updated);
+                                            }}
+                                            className="text-red-500 hover:text-red-700 text-lg font-bold"
+                                        >
+                                            &times;
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+
+
+                        </div>
+                    )}
 
 
 

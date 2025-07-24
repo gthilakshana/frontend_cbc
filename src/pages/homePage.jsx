@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+
 import Header from "../components/header";
 import ContactPage from "./home/contact";
 import HomeView from "./home/homeView";
@@ -10,20 +12,53 @@ import Product from "./home/product";
 import LoginPage from "./loginPage";
 import NotFoundPage from "./notfoundPage";
 import TopBar from "../components/TopBar";
+import AdvancedSearch from "./advancedSearch";
+import Trousers from "./home/categoriesList/women/trousers";
 
 export default function HomePage() {
-    return (
-        <div className="h-screen w-full flex flex-col bg-gray-50">
+    const [showTopBar, setShowTopBar] = useState(true);
+    const lastScrollY = useRef(0);
 
-            <div className="sticky top-0 z-50">
-                <TopBar />
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+                setShowTopBar(false);
+            } else {
+                setShowTopBar(true);
+            }
+
+            lastScrollY.current = currentScrollY;
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    return (
+        <div className="min-h-screen w-full flex flex-col bg-gray-50">
+
+
+            <div className="sticky top-0 z-50 ">
+                <div
+                    className={`transition-transform duration-300 ease-in-out ${showTopBar ? "translate-y-0" : "-translate-y-10"
+                        }`}
+                >
+
+                    <div className="h-10 bg-white">
+                        <TopBar />
+                    </div>
+
+
+                    <div className="h-16 bg-white shadow">
+                        <Header />
+                    </div>
+                </div>
             </div>
 
-            {/* Scrollable Area */}
-            <div className="flex-1 overflow-y-auto">
-                {/* Scrolls with page */}
-                <Header />
-
+            {/* Page content */}
+            <div className="flex-1">
                 <Routes>
                     <Route path="/" element={<HomeView />} />
                     <Route path="/home" element={<HomeView />} />
@@ -34,6 +69,8 @@ export default function HomePage() {
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/productInfo/:id" element={<ProductOverview />} />
+                    <Route path="/advancedSearch" element={<AdvancedSearch />} />
+                    <Route path="/advancedSearch/trouser" element={<Trousers />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </div>

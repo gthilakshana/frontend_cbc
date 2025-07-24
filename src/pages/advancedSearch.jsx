@@ -5,14 +5,6 @@ import ProductCard from "../components/ProductCard";
 import ProductListCard from "../components/ProductListCard";
 import Footer from "../components/Footer";
 
-// function ProductCardWrapper({ children }) {
-//     return (
-//         <div className="bg-white rounded-md shadow-sm border border-gray-200 p-3 w-full h-full">
-//             {children}
-//         </div>
-//     );
-// }
-
 export default function AdvancedSearch() {
     const { sub } = useParams();
     const [viewMode, setViewMode] = useState("grid");

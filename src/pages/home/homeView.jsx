@@ -1,4 +1,4 @@
-import Footer from "../../components/footer";
+import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { useEffect, useState } from "react";
@@ -79,7 +79,7 @@ export default function HomeView() {
 
 
     return (
-        <div className="w-full bg-gray-100 text-gray-800 font-body">
+        <div className="w-full bg-gray-100 text-gray-800 font-body ">
 
             <section
                 className="relative w-full h-[90vh] bg-cover bg-center bg-no-repeat transition-all duration-700"
@@ -386,14 +386,6 @@ export default function HomeView() {
                     </div>
                 </div>
             </section>
-
-
-
-
-
-
-
-
 
 
 

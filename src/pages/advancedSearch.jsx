@@ -38,7 +38,7 @@ export default function AdvancedSearch() {
     }));
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50">
+        <div className="min-h-screen flex flex-col bg-gray-50 ">
             <div className="px-4 pt-4 text-sm text-gray-600">
                 <span className="hover:underline cursor-pointer">Home</span> {'>'} {subCategoryName}
             </div>
@@ -143,7 +143,7 @@ export default function AdvancedSearch() {
                 </div>
             </div>
 
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

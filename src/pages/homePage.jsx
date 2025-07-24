@@ -14,7 +14,7 @@ import LoginPage from "./loginPage";
 import NotFoundPage from "./notfoundPage";
 import TopBar from "../components/TopBar";
 import AdvancedSearch from "./advancedSearch";
-// import Trousers from "./home/categoriesList/women/trousers";
+
 
 export default function HomePage() {
     const [showTopBar, setShowTopBar] = useState(true);
@@ -25,16 +25,13 @@ export default function HomePage() {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
 
-            // Show/hide top bar
             if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
                 setShowTopBar(false);
             } else {
                 setShowTopBar(true);
             }
 
-            // Show scroll-to-top button
             setShowScrollButton(currentScrollY > 200);
-
             lastScrollY.current = currentScrollY;
         };
 
@@ -47,8 +44,8 @@ export default function HomePage() {
     };
 
     return (
-        <div className="min-h-screen w-full flex flex-col bg-gray-50">
-
+        <div className="min-h-screen w-full flex flex-col bg-gray-50 ">
+            {/* Sticky Header */}
             <div className="sticky top-0 z-50">
                 <div
                     className={`transition-transform duration-300 ease-in-out ${showTopBar ? "translate-y-0" : "-translate-y-10"
@@ -63,8 +60,8 @@ export default function HomePage() {
                 </div>
             </div>
 
-            {/* Page content */}
-            <div className="flex-1">
+            {/* Main Content */}
+            <main className="flex-1 ">
                 <Routes>
                     <Route path="/" element={<HomeView />} />
                     <Route path="/home" element={<HomeView />} />
@@ -77,13 +74,13 @@ export default function HomePage() {
                     <Route path="/productInfo/:id" element={<ProductOverview />} />
                     <Route path="/advancedSearch" element={<AdvancedSearch />} />
                     <Route path="/category/:main/:sub" element={<AdvancedSearch />} />
-
-                    {/* <Route path="/advancedSearch" element={<Trousers />} /> */}
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
-            </div>
+            </main>
 
-            {/* Scroll-to-top button */}
+
+
+            {/* Scroll To Top Button */}
             {showScrollButton && (
                 <button
                     onClick={scrollToTop}

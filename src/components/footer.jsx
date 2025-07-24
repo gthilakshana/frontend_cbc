@@ -2,7 +2,7 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaEnvelope, FaPhoneAlt, FaMapMarke
 
 export default function Footer() {
     return (
-        <footer className="bg-white text-gray-400 px-6 sm:px-10 lg:px-20 py-10 w-full">
+        <footer className="bg-gray-900 text-gray-400 px-6 sm:px-10 lg:px-20 py-10 w-full ">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
                 {/* Brand Info */}
                 <div>

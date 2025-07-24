@@ -1,4 +1,3 @@
-// components/TopBar.jsx
 import { Link } from "react-router-dom";
 import {
     FaFacebookF,
@@ -18,9 +17,9 @@ const navLinks = [
 
 export default function TopBar() {
     return (
-        <div className="hidden md:flex bg-red-500 text-white text-sm px-4 py-3 justify-between items-center">
+        <div className="flex flex-col md:flex-row bg-red-500 text-white text-sm px-4 py-3 md:justify-between md:items-center space-y-2 md:space-y-0">
             {/* Social Icons */}
-            <div className="flex space-x-4 text-lg">
+            <div className="flex justify-center md:justify-start space-x-4 text-lg">
                 <FaFacebookF className="cursor-pointer hover:text-white transition" />
                 <FaPinterestP className="cursor-pointer hover:text-white transition" />
                 <FaInstagram className="cursor-pointer hover:text-white transition" />
@@ -30,7 +29,7 @@ export default function TopBar() {
             </div>
 
             {/* Navigation Links */}
-            <div className="flex space-x-6 text-xs font-semibold tracking-wide uppercase">
+            <div className="flex justify-center flex-wrap space-x-4 text-xs font-semibold tracking-wide uppercase">
                 {navLinks.map(({ path, label }) => (
                     <Link
                         key={path}

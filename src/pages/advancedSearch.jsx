@@ -1,3 +1,4 @@
+// src/pages/AdvancedSearch.jsx
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FaTh, FaList } from "react-icons/fa";
@@ -32,25 +33,22 @@ export default function AdvancedSearch() {
         sizes: ["S", "M", "L"],
         brands: ["Puma"],
         description:
-            "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
         images: ["/images/sample-product.jpg"],
     }));
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-50">
-            {/* Breadcrumb */}
             <div className="px-4 pt-4 text-sm text-gray-600">
                 <span className="hover:underline cursor-pointer">Home</span> {'>'} {subCategoryName}
             </div>
 
-            {/* Title */}
             <div className="px-4 md:px-6 py-6">
                 <h1 className="text-2xl md:text-4xl font-semibold text-center uppercase">
                     {subCategoryName}
                 </h1>
             </div>
 
-            {/* Filter Toggle */}
             {isMobile && (
                 <div className="px-4 mb-4">
                     <button
@@ -62,12 +60,9 @@ export default function AdvancedSearch() {
                 </div>
             )}
 
-            {/* Main Layout */}
             <div className="px-4 md:px-6 pb-8 grid grid-cols-1 md:grid-cols-5 gap-6">
-                {/* Filters */}
                 <div className={`${showFilters ? "block" : "hidden"} md:block md:col-span-1 space-y-6`}>
                     <h2 className="font-bold text-base uppercase tracking-wide mb-4">Filter:</h2>
-
                     <div>
                         <h3 className="font-semibold text-xs uppercase tracking-wide mb-2">Availability</h3>
                         <label className="block text-sm mb-2">
@@ -77,7 +72,6 @@ export default function AdvancedSearch() {
                             <input type="checkbox" className="mr-2" /> Out Of Stock (1)
                         </label>
                     </div>
-
                     <div className="mt-6">
                         <h3 className="font-semibold text-xs uppercase tracking-wide mb-2">Price</h3>
                         <p className="text-sm text-gray-500 mb-2">The highest price is Rs 31,815.00</p>
@@ -86,7 +80,6 @@ export default function AdvancedSearch() {
                             <input placeholder="To" className="border px-2 py-1 w-full text-sm" type="number" />
                         </div>
                     </div>
-
                     <div className="mt-6">
                         <h3 className="font-semibold text-xs uppercase tracking-wide mb-2">Brand</h3>
                         <label className="block text-sm mb-2">
@@ -104,9 +97,7 @@ export default function AdvancedSearch() {
                     </div>
                 </div>
 
-                {/* Products */}
                 <div className="md:col-span-4 space-y-6">
-                    {/* Toolbar */}
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div className="flex gap-2">
                             <button
@@ -136,7 +127,6 @@ export default function AdvancedSearch() {
                         </div>
                     </div>
 
-                    {/* Grid/List Rendering */}
                     {viewMode === "grid" ? (
                         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 px-1">
                             {dummyProducts.map((product) => (

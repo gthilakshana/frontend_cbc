@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
-import CategoryProducts from "./home/CategoryProducts";
+
 import Header from "../components/header";
 import ContactPage from "./home/contact";
 import HomeView from "./home/homeView";

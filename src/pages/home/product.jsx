@@ -76,7 +76,7 @@ export default function Product() {
                 </section>
 
                 <section className="mb-[150px]">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-5 place-items-center px-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 px-4">
                         {filteredProducts.length > 0 ? (
                             filteredProducts.map((product) => (
                                 <ProductCard key={product.productId} product={product} />
@@ -86,6 +86,7 @@ export default function Product() {
                         )}
                     </div>
                 </section>
+
             </main>
 
             <Footer />

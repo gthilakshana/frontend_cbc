@@ -101,12 +101,13 @@ export default function CategoryBar({ isMobileOpen }) {
                         <li key={category.title} className="relative group cursor-pointer">
                             <div className="flex items-center gap-1 hover:text-orange-400 transition">
                                 <span>{category.title}</span>
-                                {category.megaMenu && category.megaMenu.length > 0 && (
+                                {category.megaMenu && (
                                     <FaChevronDown className="text-xs mt-0.5 transition-transform duration-300 group-hover:rotate-180" />
                                 )}
                             </div>
 
-                            {category.megaMenu && category.megaMenu.length > 0 && (
+                            {/* Mega Menu */}
+                            {category.megaMenu && (
                                 <div className="absolute top-full left-0 right-0 mt-3 bg-white shadow-lg border border-gray-200 p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 w-screen">
                                     <div className="w-full max-w-none mx-auto overflow-y-auto max-h-[80vh] px-10">
                                         <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
@@ -120,7 +121,7 @@ export default function CategoryBar({ isMobileOpen }) {
                                                             <li key={item}>
                                                                 <Link
                                                                     to={formatPath(category.title, item)}
-                                                                    className="hover:text-orange-500 cursor-pointer"
+                                                                    className="hover:text-orange-500"
                                                                 >
                                                                     {item}
                                                                 </Link>
@@ -145,6 +146,7 @@ export default function CategoryBar({ isMobileOpen }) {
                         <ul className="space-y-4">
                             {categories.map((cat) => (
                                 <li key={cat.title}>
+                                    {/* Category Header */}
                                     <div
                                         className="flex justify-between items-center font-semibold text-gray-800 cursor-pointer"
                                         onClick={() => toggleCategory(cat.title)}
@@ -158,10 +160,11 @@ export default function CategoryBar({ isMobileOpen }) {
                                         )}
                                     </div>
 
-                                    {openCategory === cat.title && cat.megaMenu?.length > 0 && (
-                                        <ul className="ml-4 mt-2 space-y-3">
+                                    {/* Subcategory List */}
+                                    {openCategory === cat.title && cat.megaMenu && (
+                                        <div className="mt-2 ml-2 border-l border-gray-200 pl-3">
                                             {cat.megaMenu.map((section) => (
-                                                <li key={section.section}>
+                                                <div key={section.section} className="mb-3">
                                                     <div className="text-sm font-medium text-gray-700 mb-1">
                                                         {section.section}
                                                     </div>
@@ -170,16 +173,17 @@ export default function CategoryBar({ isMobileOpen }) {
                                                             <li key={item}>
                                                                 <Link
                                                                     to={formatPath(cat.title, item)}
-                                                                    className="hover:text-orange-500 cursor-pointer"
+                                                                    className="hover:text-orange-500 block"
+                                                                    onClick={() => setOpenCategory(null)} // Close when clicked
                                                                 >
                                                                     {item}
                                                                 </Link>
                                                             </li>
                                                         ))}
                                                     </ul>
-                                                </li>
+                                                </div>
                                             ))}
-                                        </ul>
+                                        </div>
                                     )}
                                 </li>
                             ))}

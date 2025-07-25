@@ -1,16 +1,20 @@
 // src/pages/AdvancedSearch.jsx
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FaTh, FaList } from "react-icons/fa";
 import ProductListCard from "../components/ProductListCard";
 import ProductCard from "../components/productCard";
+import axios from "axios";
 
 export default function AdvancedSearch() {
     const { category, subcategory, term } = useParams();
+    const navigate = useNavigate();
     const [viewMode, setViewMode] = useState("grid");
     const [showFilters, setShowFilters] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [products, setProducts] = useState([]);
 
+    // Resize check
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
         handleResize();
@@ -26,31 +30,69 @@ export default function AdvancedSearch() {
                 ? category.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
                 : "Search";
 
-    const dummyProducts = [...Array(8)].map((_, idx) => ({
-        id: idx,
-        productId: idx + 1,
-        productName: `${displayTitle} Product ${idx + 1}`,
-        lastPrice: 5900 + idx * 100,
-        price: 5300 + idx * 100,
-        stock: idx % 2 === 0 ? 5 : 0,
-        sizes: ["S", "M", "L"],
-        brands: ["Puma"],
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-        images: ["/images/sample-product.jpg"],
-    }));
+    // Fetch & filter products
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get("/api/products");
+                const allProducts = response.data;
+
+                const filtered = allProducts.filter((product) => {
+                    if (term) {
+                        const termLower = term.toLowerCase();
+                        return (
+                            product.productName.toLowerCase().includes(termLower) ||
+                            product.altNames?.some((name) =>
+                                name.toLowerCase().includes(termLower)
+                            )
+                        );
+                    } else if (category && subcategory) {
+                        return product.categories?.some(
+                            (c) =>
+                                c.title?.toLowerCase() === category.toLowerCase() &&
+                                c.subCategory?.toLowerCase() === subcategory.toLowerCase()
+                        );
+                    } else if (category) {
+                        return product.categories?.some(
+                            (c) => c.title?.toLowerCase() === category.toLowerCase()
+                        );
+                    }
+                    return false;
+                });
+
+                setProducts(filtered);
+            } catch (error) {
+                console.error("Fetch failed:", error);
+            }
+        };
+
+        fetchProducts();
+    }, [category, subcategory, term]);
+
+    const handleCardClick = (productId) => {
+        if (productId) {
+            navigate(`/productinfo/${productId}`);
+        }
+    };
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-50">
+            {/* Breadcrumb */}
             <div className="px-4 pt-4 text-sm text-gray-600">
-                <span className="hover:underline cursor-pointer">Home</span> {'>'} {displayTitle}
+                <span className="hover:underline cursor-pointer" onClick={() => navigate("/")}>
+                    Home
+                </span>{" "}
+                &gt; {displayTitle}
             </div>
 
+            {/* Title */}
             <div className="px-4 md:px-6 py-6">
                 <h1 className="text-2xl md:text-4xl font-semibold text-center uppercase">
                     {displayTitle}
                 </h1>
             </div>
 
+            {/* Mobile Filters */}
             {isMobile && (
                 <div className="px-4 mb-4">
                     <button
@@ -62,47 +104,51 @@ export default function AdvancedSearch() {
                 </div>
             )}
 
+            {/* Main Section */}
             <div className="px-4 md:px-6 pb-8 grid grid-cols-1 md:grid-cols-5 gap-6">
+                {/* Filter Sidebar */}
                 <div className={`${showFilters ? "block" : "hidden"} md:block md:col-span-1 space-y-6`}>
                     <h2 className="font-bold text-base uppercase tracking-wide mb-4">Filter:</h2>
 
+                    {/* Availability */}
                     <div>
                         <h3 className="font-semibold text-xs uppercase tracking-wide mb-2">Availability</h3>
                         <label className="block text-sm mb-2">
-                            <input type="checkbox" className="mr-2" /> In Stock (11)
+                            <input type="checkbox" className="mr-2" /> In Stock
                         </label>
                         <label className="block text-sm mb-2">
-                            <input type="checkbox" className="mr-2" /> Out Of Stock (1)
+                            <input type="checkbox" className="mr-2" /> Out Of Stock
                         </label>
                     </div>
 
+                    {/* Price */}
                     <div className="mt-6">
                         <h3 className="font-semibold text-xs uppercase tracking-wide mb-2">Price</h3>
-                        <p className="text-sm text-gray-500 mb-2">The highest price is Rs 31,815.00</p>
+                        <p className="text-sm text-gray-500 mb-2">Set your desired price range</p>
                         <div className="flex gap-2">
                             <input placeholder="From" className="border px-2 py-1 w-full text-sm" type="number" />
                             <input placeholder="To" className="border px-2 py-1 w-full text-sm" type="number" />
                         </div>
                     </div>
 
+                    {/* Brand */}
                     <div className="mt-6">
                         <h3 className="font-semibold text-xs uppercase tracking-wide mb-2">Brand</h3>
                         <label className="block text-sm mb-2">
-                            <input type="checkbox" className="mr-2" /> Cetaphil (1)
+                            <input type="checkbox" className="mr-2" /> Puma
                         </label>
                         <label className="block text-sm mb-2">
-                            <input type="checkbox" className="mr-2" /> Dr. Rashel (3)
+                            <input type="checkbox" className="mr-2" /> Adidas
                         </label>
                         <label className="block text-sm mb-2">
-                            <input type="checkbox" className="mr-2" /> Egyptian Magic (2)
-                        </label>
-                        <label className="block text-sm mb-2">
-                            <input type="checkbox" className="mr-2" /> Fadeout (2)
+                            <input type="checkbox" className="mr-2" /> Nike
                         </label>
                     </div>
                 </div>
 
+                {/* Product Grid/List */}
                 <div className="md:col-span-4 space-y-6">
+                    {/* Controls */}
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div className="flex gap-2">
                             <button
@@ -128,20 +174,33 @@ export default function AdvancedSearch() {
                                     <option>Highest Price</option>
                                 </select>
                             </div>
-                            <div className="text-gray-600">{dummyProducts.length} products</div>
+                            <div className="text-gray-600">{products.length} products</div>
                         </div>
                     </div>
 
+                    {/* Product Display */}
                     {viewMode === "grid" ? (
                         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 px-1">
-                            {dummyProducts.map((product) => (
-                                <ProductCard key={product.id} product={product} />
+                            {products.map((product) => (
+                                <div
+                                    key={product._id}
+                                    onClick={() => handleCardClick(product.productId)}
+                                    className="cursor-pointer"
+                                >
+                                    <ProductCard product={product} />
+                                </div>
                             ))}
                         </div>
                     ) : (
                         <div className="space-y-4 px-2">
-                            {dummyProducts.map((product) => (
-                                <ProductListCard key={product.id} product={product} />
+                            {products.map((product) => (
+                                <div
+                                    key={product._id}
+                                    onClick={() => handleCardClick(product.productId)}
+                                    className="cursor-pointer"
+                                >
+                                    <ProductListCard product={product} />
+                                </div>
                             ))}
                         </div>
                     )}

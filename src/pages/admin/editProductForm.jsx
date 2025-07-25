@@ -23,15 +23,54 @@ export default function EditProductForm() {
     }
 
     const categoryOptions = {
-        Women: ["Dresses", "Tops", "Sarees"],
-        Men: ["Shirts", "T-Shirts", "Trousers"],
-        Kids: ["Boys", "Girls", "Infants"],
-        Footwear: ["Men", "Women", "Kids"],
-        "Mother & Baby": ["Maternity Wear", "Baby Gear"],
-        Accessories: ["Bags", "Jewelry", "Watches"],
-        Brands: ["Nike", "Adidas", "Puma"],
-        "Gifts & Deals": ["Gift Sets", "Discount Packs"],
-        Sale: ["Clearance", "Flash Deals"]
+        Women: [
+            "Dresses", "Tops", "Sarees", "Kurtis", "Tunics", "Lehengas",
+            "Skirts", "Jeans", "Trousers", "Shorts", "T-Shirts", "Jackets",
+            "Sweaters", "Blouses", "Coats"
+        ],
+        Men: [
+            "Shirts", "T-Shirts", "Trousers", "Jeans", "Shorts", "Suits",
+            "Blazers", "Sweatshirts", "Hoodies", "Jackets", "Vests", "Coats",
+            "Ethnic Wear", "Track Pants", "Polo Shirts"
+        ],
+        Kids: [
+            "Boys T-Shirts", "Boys Shirts", "Boys Pants", "Boys Shorts", "Boys Jackets",
+            "Girls Frocks", "Girls Tops", "Girls Skirts", "Girls Leggings", "Girls Dresses",
+            "Infant Sets", "Baby Rompers", "Baby Pajamas", "Baby Sweaters", "Baby Shoes"
+        ],
+        Footwear: [
+            "Sneakers", "Running Shoes", "Loafers", "Boots", "Flats", "Heels",
+            "Sandals", "Flip Flops", "Slippers", "Oxfords", "Derby Shoes",
+            "Clogs", "Wedges", "Mules", "Sports Shoes"
+        ],
+        MotherAndBaby: [
+            "Maternity Dresses", "Nursing Bras", "Breast Pumps", "Baby Carriers",
+            "Diapers", "Wipes", "Baby Lotions", "Feeding Bottles", "Cribs",
+            "Baby Monitors", "Onesies", "Swaddles", "Baby Powder", "Rattles",
+            "Pacifiers"
+        ],
+        Accessories: [
+            "Bags", "Jewelry", "Watches", "Belts", "Scarves", "Hair Accessories",
+            "Sunglasses", "Wallets", "Gloves", "Hats", "Earrings", "Necklaces",
+            "Bracelets", "Rings", "Anklets"
+        ],
+        Brands: [
+            "Nike", "Adidas", "Puma", "Reebok", "Zara", "H&M", "Levi's",
+            "Gucci", "Calvin Klein", "Tommy Hilfiger", "Louis Vuitton", "Fila",
+            "New Balance", "Under Armour", "Uniqlo"
+        ],
+        GiftsAndDeals: [
+            "Gift Cards", "Gift Boxes", "Holiday Bundles", "Discount Packs",
+            "Fashion Combos", "Fragrance Sets", "Jewelry Sets", "Accessory Kits",
+            "For Her", "For Him", "Birthday Deals", "Wedding Gifts",
+            "Anniversary Sets", "Kids Toys", "Baby Hampers"
+        ],
+        Sale: [
+            "Clearance", "Flash Deals", "BOGO Offers", "50% Off", "Flat Discounts",
+            "Buy More Save More", "Weekend Sale", "Mega Sale", "Daily Deals",
+            "Hot Picks", "Exclusive Offers", "Combo Deals", "Time-Limited",
+            "Coupon Codes", "Festive Offers"
+        ]
     };
 
 

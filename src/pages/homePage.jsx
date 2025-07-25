@@ -72,14 +72,16 @@ export default function HomePage() {
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/productInfo/:id" element={<ProductOverview />} />
-                    <Route path="/advancedSearch" element={<AdvancedSearch />} />
+
+                    {/* Advanced Search Routes */}
                     <Route path="/search/:term" element={<AdvancedSearch />} />
                     <Route path="/search/:category/:subcategory" element={<AdvancedSearch />} />
+                    <Route path="/category/:category/:subcategory" element={<AdvancedSearch />} />
+                    <Route path="/category/:category" element={<AdvancedSearch />} />
 
-
-                    <Route path="/category/:main/:sub" element={<AdvancedSearch />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
+
             </main>
 
 

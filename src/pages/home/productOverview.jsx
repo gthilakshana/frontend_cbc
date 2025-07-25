@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import axios from "axios";
@@ -101,6 +101,7 @@ export default function ProductOverview() {
                         <p>Availability : <span className="text-black">{product.stock > 0 ? "In Stock" : "Out of Stock"}</span></p>
                         <p>Brand : {product.brands?.[0] || "N/A"}</p>
                         <p>Materials : {product.materials?.join(" | ")}</p>
+
                         <p>
                             Code: {product.productId}
                             {selectedColor && `-${selectedColor}`}
@@ -144,58 +145,77 @@ export default function ProductOverview() {
 
             {/* Related Products */}
             <div className="mt-20 mb-10">
-                <h2 className="text-2xl font-bold mb-6 text-gray-800 uppercase">Related Products_</h2>
+                <h2 className="text-2xl font-bold mb-6 text-gray-800 uppercase">
+                    Related Products_
+                </h2>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 border p-4 justify-items-center">
                     {products
-                        .filter(p => p.productId !== productId && p.brands?.[0] === product?.brands?.[0])
+                        .filter(
+                            (p) =>
+                                p.productId !== productId &&
+                                p.categories?.[0]?.subCategory === product?.categories?.[0]?.subCategory
+                        )
                         .slice(0, 4)
                         .map((item) => {
                             const isInStock = item.stock > 0;
                             return (
                                 <div
                                     key={item.productId}
-                                    className={`w-[270px] h-[470px] bg-white border shadow overflow-hidden flex flex-col relative transition duration-300 ${!isInStock ? "opacity-60 grayscale pointer-events-none" : "hover:shadow-lg"}`}
+                                    className={`w-[270px] h-[470px] bg-white border shadow overflow-hidden flex flex-col relative transition duration-300 ${!isInStock
+                                            ? "opacity-60 grayscale pointer-events-none"
+                                            : "hover:shadow-lg"
+                                        }`}
                                 >
-                                    <div className={`absolute top-2 left-2 text-xs px-2 py-1 rounded-md z-10 font-semibold ${isInStock ? "bg-gray-800 text-white" : "bg-orange-600 text-white"}`}>
+                                    <div
+                                        className={`absolute top-2 left-2 text-xs px-2 py-1 rounded-md z-10 font-semibold ${isInStock ? "bg-gray-800 text-white" : "bg-orange-600 text-white"
+                                            }`}
+                                    >
                                         {isInStock ? "In Stock" : "Out of Stock"}
                                     </div>
-                                    <img src={item.images?.[0]} alt={item.productName} className="w-full h-64 object-cover cursor-pointer" />
-                                    <div className="p-4 flex-1 flex flex-col justify-between">
-                                        <div>
-                                            <h3 className="text-lg font-semibold text-gray-800 truncate uppercase">{item.productName}</h3>
-                                            <p className="text-sm text-gray-500">{item.altNames?.join(" | ")}</p>
-                                            <div className="text-lg font-semibold text-gray-800 mt-2">
-                                                <span className="text-gray-600 text-[16px] line-through mr-2">Rs. {item.price}</span>
-                                                <span className="text-gray-600 text-[16px]">Rs. {item.lastPrice}</span>
+
+                                    <Link to={`/productInfo/${item.productId}`}>
+                                        <img
+                                            src={item.images?.[0]}
+                                            alt={item.productName}
+                                            className="w-full h-64 object-cover cursor-pointer"
+                                        />
+                                        <div className="p-4 flex-1 flex flex-col justify-between">
+                                            <div>
+                                                <h3 className="text-lg font-semibold text-gray-800 truncate uppercase">
+                                                    {item.productName}
+                                                </h3>
+                                                <p className="text-sm text-gray-500">
+                                                    {item.altNames?.join(" | ")}
+                                                </p>
+                                                <div className="text-lg font-semibold text-gray-800 mt-2">
+                                                    <span className="text-gray-600 text-[16px] line-through mr-2">
+                                                        Rs. {item.price}
+                                                    </span>
+                                                    <span className="text-gray-600 text-[16px]">
+                                                        Rs. {item.lastPrice}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="mt-4 flex justify-between items-center">
-                                            <button
-                                                onClick={() => addToCart(item.productId, 1)}
-                                                className="bg-gray-800 text-white text-sm px-4 py-2 rounded hover:bg-black"
-                                            >
-                                                Add to Cart
-                                            </button>
-                                            <a
-                                                href={`/productInfo/${item.productId}`}
-                                                className="text-sm text-blue-600 hover:underline"
-                                            >
-                                                View
-                                            </a>
-                                        </div>
-                                    </div>
+                                    </Link>
                                 </div>
                             );
                         })}
 
                     {/* Fallback message */}
-                    {products.filter(p => p.productId !== productId && p.brands?.[0] === product?.brands?.[0]).length === 0 && (
-                        <div className="col-span-full text-center text-gray-500 text-sm py-4">
-                            No related products found.
-                        </div>
-                    )}
+                    {products.filter(
+                        (p) =>
+                            p.productId !== productId &&
+                            p.categories?.[0]?.subCategory === product?.categories?.[0]?.subCategory
+                    ).length === 0 && (
+                            <div className="col-span-full text-center text-gray-500 text-sm py-4">
+                                No related products found.
+                            </div>
+                        )}
                 </div>
             </div>
+
 
 
         </div>

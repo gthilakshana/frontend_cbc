@@ -41,7 +41,7 @@ export default function Header() {
                         </svg>
                     </button>
                     <Link to="/" className="flex flex-col items-center md:items-start text-orange-400 w-full">
-                        <span className="text-xl font-bold uppercase">Mahee Fashion.lk</span>
+                        <span className="text-xl font-bold uppercase ">Mahee Fashion.lk</span>
                         <span className="text-xs text-orange-300 -mt-1">
                             Your Style, Our Passion
                         </span>

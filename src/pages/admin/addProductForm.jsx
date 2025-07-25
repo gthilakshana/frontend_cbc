@@ -43,7 +43,10 @@ export default function AddProductForm() {
     const [newMaterial, setNewMaterial] = useState("");
     const [category, setCategory] = useState("");
     const [subcategory, setSubcategory] = useState("");
-    const [categoryPairs, setCategoryPairs] = useState([]);
+    const [finalCategory, setFinalCategory] = useState("");
+    const [finalSubcategory, setFinalSubcategory] = useState("");
+
+
 
 
 
@@ -76,8 +79,18 @@ export default function AddProductForm() {
             description: description,
             materials: materials,
             delivery: delivery,
-            category: category,
-            subcategory: subcategory
+            categories: [
+                {
+                    title: finalCategory,
+                    subCategory: finalSubcategory,
+
+                }
+            ]
+
+
+
+
+
         };
         const token = localStorage.getItem('token');
         try {
@@ -97,7 +110,7 @@ export default function AddProductForm() {
 
     return (
         <div className="w-full h-full flex  bg-gray-100 p-4">
-            <div className="w-full h-full bg-white p-6 rounded-lg shadow-md border">
+            <div className="w-full h-full bg-white p-6 rounded-lg shadow-md border uppercase">
                 <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
                     Add Product Form
                 </h1>
@@ -113,6 +126,70 @@ export default function AddProductForm() {
                             className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                     </div>
+
+
+
+                    {/* Category */}
+                    <div className="flex flex-col mb-4">
+                        <label className="mb-1 text-sm font-medium text-gray-700">Category</label>
+                        <select
+                            value={category}
+                            onChange={(e) => {
+                                setCategory(e.target.value);
+                                setSubcategory("");
+                            }}
+                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        >
+                            <option value="">Select Category</option>
+                            {Object.keys(categoryOptions).map((cat) => (
+                                <option key={cat} value={cat}>{cat}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Subcategory and Add Button */}
+                    {category && (
+                        <div className="flex flex-col mb-6">
+                            <label className="mb-1 text-sm font-medium text-gray-700">Subcategory</label>
+                            <div className="flex gap-2">
+                                <select
+                                    value={subcategory}
+                                    onChange={(e) => setSubcategory(e.target.value)}
+                                    className="p-2 border rounded-md flex-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                >
+                                    <option value="">Select Subcategory</option>
+                                    {categoryOptions[category].map((sub) => (
+                                        <option key={sub} value={sub}>{sub}</option>
+                                    ))}
+                                </select>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        if (category && subcategory) {
+                                            setFinalCategory(category);
+                                            setFinalSubcategory(subcategory);
+                                            toast.success(`Added: ${category} / ${subcategory}`);
+                                        } else {
+                                            toast.error("Please select both category and subcategory");
+                                        }
+                                    }}
+                                >
+                                    Add
+                                </button>
+
+                            </div>
+                        </div>
+                    )}
+
+
+
+
+
+
+
+
+
+
 
                     <div className="flex flex-col">
                         <label className="mb-1 text-sm font-medium">Stock</label>
@@ -345,102 +422,6 @@ export default function AddProductForm() {
 
 
 
-                    {/* Category */}
-                    <div className="flex flex-col mb-6">
-                        <label className="mb-1 text-sm font-medium text-gray-700">Category</label>
-                        <select
-                            value={category}
-                            onChange={(e) => {
-                                setCategory(e.target.value);
-                                setSubcategory(""); // Reset subcategory when category changes
-                            }}
-                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        >
-                            <option value="">Select Category</option>
-                            {Object.keys(categoryOptions).map((cat) => (
-                                <option key={cat} value={cat}>
-                                    {cat}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-                    {/* Subcategory + Add Button */}
-                    {category && (
-                        <div className="flex flex-col mb-6">
-                            <label className="mb-1 text-sm font-medium text-gray-700">Subcategory</label>
-                            <div className="flex gap-2">
-                                <select
-                                    value={subcategory}
-                                    onChange={(e) => setSubcategory(e.target.value)}
-                                    className="p-2 border rounded-md flex-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                                >
-                                    <option value="">Select Subcategory</option>
-                                    {categoryOptions[category].map((sub, index) => (
-                                        <option key={index} value={sub}>
-                                            {sub}
-                                        </option>
-                                    ))}
-                                </select>
-
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        if (
-                                            category &&
-                                            subcategory &&
-                                            !categoryPairs.some(
-                                                (pair) =>
-                                                    pair.category === category &&
-                                                    pair.subcategory === subcategory
-                                            )
-                                        ) {
-                                            setCategoryPairs([
-                                                ...categoryPairs,
-                                                { category, subcategory },
-                                            ]);
-                                            setCategory("");
-                                            setSubcategory("");
-                                        }
-                                    }}
-                                    className="px-4 py-2 bg-blue-400 text-white hover:bg-blue-500 transition"
-                                >
-                                    Add
-                                </button>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Added Category/Subcategory List */}
-                    {categoryPairs.length > 0 && (
-                        <div className="flex flex-col mb-6">
-                            <label className="mb-1 text-sm font-medium text-gray-700">Added Categories</label>
-
-                            <div className="flex flex-wrap gap-2 mb-2">
-                                {categoryPairs.map((pair, idx) => (
-                                    <div
-                                        key={idx}
-                                        className="flex items-center gap-2 border px-3 py-1 rounded-md bg-gray-100"
-                                    >
-                                        <span className="text-sm">
-                                            {pair.category} / {pair.subcategory}
-                                        </span>
-                                        <button
-                                            onClick={() => {
-                                                const updated = categoryPairs.filter((_, i) => i !== idx);
-                                                setCategoryPairs(updated);
-                                            }}
-                                            className="text-red-500 hover:text-red-700 text-lg font-bold"
-                                        >
-                                            &times;
-                                        </button>
-                                    </div>
-                                ))}
-                            </div>
-
-
-                        </div>
-                    )}
 
 
 

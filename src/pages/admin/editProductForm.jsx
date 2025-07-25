@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React from 'react';
-import uploadMediaToSupabase from '../../utils/mediaUpload';
 import { useState } from 'react';
+import uploadMediaToSupabase from '../../utils/mediaUpload';
+
 import toast from 'react-hot-toast';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -54,8 +55,9 @@ export default function EditProductForm() {
     // Example state (assuming you're in a component with product.materials)
     const [materials, setMaterials] = useState(product.materials || []);
     const [newMaterial, setNewMaterial] = useState("");
-    const [category, setCategory] = useState(product.category || '');
-    const [subcategory, setSubcategory] = useState(product.subcategory || '');
+
+    const [category, setCategory] = useState(product?.categories?.[0]?.title || '');
+    const [subCategory, setSubCategory] = useState(product?.categories?.[0]?.subCategory || '');
 
 
 
@@ -91,8 +93,13 @@ export default function EditProductForm() {
             description: description,
             materials: materials,
             delivery: delivery,
-            category: category,
-            subcategory: subcategory
+            categories: [
+                {
+                    title: category,
+                    subCategory: subCategory
+                }
+            ]
+
 
         };
         const token = localStorage.getItem('token');
@@ -130,6 +137,54 @@ export default function EditProductForm() {
                             className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                     </div>
+
+
+
+                    {/* Category Selector */}
+                    <div className="flex flex-col">
+                        <label className="mb-1 text-sm font-medium">Category</label>
+                        <select
+                            value={category}
+                            onChange={(e) => {
+                                const selectedCat = e.target.value;
+                                setCategory(selectedCat);
+                                setSubCategory(""); // reset subcategory on change
+                            }}
+                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        >
+                            <option value="">Select a category</option>
+                            {Object.keys(categoryOptions).map((cat) => (
+                                <option key={cat} value={cat}>{cat}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* Subcategory Selector */}
+                    <div className="flex flex-col">
+                        <label className="mb-1 text-sm font-medium">Subcategory</label>
+                        <select
+                            value={subCategory}
+                            onChange={(e) => setSubCategory(e.target.value)}
+                            disabled={!category}
+                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        >
+                            <option value="">Select a subcategory</option>
+                            {category && categoryOptions[category].map((sub) => (
+                                <option key={sub} value={sub}>{sub}</option>
+                            ))}
+                        </select>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
 
                     <div className="flex flex-col">
                         <label className="mb-1 text-sm font-medium">Stock</label>
@@ -336,47 +391,6 @@ export default function EditProductForm() {
                             ))}
                         </div>
                     </div>
-
-
-
-                    {/* Categories & Subcategories */}
-                    <div className="flex flex-col mb-6">
-                        <label className="mb-1 text-sm font-medium text-gray-700">Category</label>
-                        <select
-                            value={category}
-                            onChange={(e) => {
-                                setCategory(e.target.value);
-                                setSubcategory("");
-                            }}
-                            className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        >
-                            <option value="">Select Category</option>
-                            {Object.keys(categoryOptions).map((cat) => (
-                                <option key={cat} value={cat}>
-                                    {cat}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-                    {category && (
-                        <div className="flex flex-col mb-6">
-                            <label className="mb-1 text-sm font-medium text-gray-700">Subcategory</label>
-                            <select
-                                value={subcategory}
-                                onChange={(e) => setSubcategory(e.target.value)}
-                                className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            >
-                                <option value="">Select Subcategory</option>
-                                {categoryOptions[category].map((sub, index) => (
-                                    <option key={index} value={sub}>
-                                        {sub}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    )}
-
 
 
 

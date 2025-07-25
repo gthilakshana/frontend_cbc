@@ -159,7 +159,7 @@ export default function EditProductForm() {
 
     return (
         <div className="w-full h-full flex  bg-gray-100 p-4">
-            <div className="w-full h-full bg-white p-6 rounded-lg shadow-md border">
+            <div className="w-full h-full bg-white p-6 rounded-lg shadow-md border uppercase">
                 <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
                     Edit Product Form
                 </h1>

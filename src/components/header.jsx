@@ -40,9 +40,9 @@ export default function Header() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
-                    <Link to="/" className="flex flex-col items-center md:items-start text-orange-400 w-full">
-                        <span className="text-xl font-bold uppercase ">Mahee Fashion.lk</span>
-                        <span className="text-xs text-orange-300 -mt-1">
+                    <Link to="/" className="flex flex-col items-center md:items-start text-orange-500 w-full">
+                        <span className="text-xl font-bold uppercase ">Mahee Fashion</span>
+                        <span className="text-xs text-orange-400 -mt-1">
                             Your Style, Our Passion
                         </span>
                     </Link>
@@ -60,23 +60,24 @@ export default function Header() {
 
                 {/* Search Bar */}
                 <div className="mt-4 md:mt-0 w-full md:flex-1 flex justify-center">
-                    <div className="flex w-full max-w-xl">
+                    <div className="flex w-full max-w-xl  overflow-hidden border border-orange-500 shadow-sm focus-within:ring-2 focus-within:ring-orange-400 transition">
                         <input
                             type="text"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            placeholder="Search by category or subcategory"
-                            className="w-full border border-gray-300 px-4 py-2 rounded-none"
+                            placeholder="Search for clothing, brands, or categories..."
+                            className="flex-1 px-5 py-2 text-sm focus:outline-none"
                         />
                         <button
-                            className="bg-orange-400 text-white px-5"
+                            className="bg-orange-500 hover:bg-orange-600 text-white px-6 text-sm font-medium transition"
                             onClick={handleSearch}
                         >
                             Search
                         </button>
                     </div>
                 </div>
+
 
                 {/* Desktop Icons */}
                 <div className="hidden md:flex items-center space-x-6">

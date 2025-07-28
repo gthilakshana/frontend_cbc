@@ -159,30 +159,11 @@ const categories = [
     },
     {
         title: "Gifts & Deals",
-        megaMenu: [
-            {
-                section: "Special Offers",
-                items: [
-                    "Gift Cards", "Gift Boxes", "Holiday Bundles", "Discount Packs", "Fashion Combos",
-                    "Fragrance Sets", "Jewelry Sets", "Accessory Kits", "For Her", "For Him",
-                    "Birthday Deals", "Wedding Gifts", "Anniversary Sets", "Kids Toys", "Baby Hampers"
-                ],
-            },
-        ],
+
     },
     {
         title: "Sale",
-        megaMenu: [
-            {
-                section: "Offers",
-                items: [
-                    "Clearance", "Flash Deals", "BOGO Offers", "50% Off", "Flat Discounts",
-                    "Buy More Save More", "Weekend Sale", "Mega Sale", "Daily Deals",
-                    "Hot Picks", "Exclusive Offers", "Combo Deals", "Time-Limited",
-                    "Coupon Codes", "Festive Offers"
-                ],
-            },
-        ],
+
     }
 ];
 

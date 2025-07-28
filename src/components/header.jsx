@@ -60,14 +60,15 @@ export default function Header() {
 
                 {/* Search Bar */}
                 <div className="mt-4 md:mt-0 w-full md:flex-1 flex justify-center">
-                    <div className="flex w-full max-w-xl  overflow-hidden border border-orange-500 shadow-sm focus-within:ring-orange-400 transition">
+                    <div className="flex w-full max-w-xl overflow-hidden border border-orange-500 shadow-sm focus-within:ring-orange-400 transition rounded-md">
                         <input
                             type="text"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder="Search for clothing, brands, or categories..."
-                            className="flex-1 px-5 py-2 text-sm focus:outline-none"
+                            className="flex-1 px-5 py-2 text-sm focus:outline-none bg-white"
+                            inputMode="search"
                         />
                         <button
                             className="bg-orange-500 hover:bg-orange-600 text-white px-6 text-sm font-medium transition"
@@ -77,6 +78,7 @@ export default function Header() {
                         </button>
                     </div>
                 </div>
+
 
 
                 {/* Desktop Icons */}

@@ -37,11 +37,11 @@ export default function ProductListCard({ product }) {
 
             {/* Actions Section */}
             <div className="w-full sm:w-1/5 flex flex-col justify-center items-center gap-2 px-4 py-4 sm:py-0">
-                <button className="w-full bg-orange-400 hover:bg-orange-600 text-white py-2 flex items-center justify-center gap-2">
+                <button className="w-full bg-gray-800 hover:bg-gray-600 text-white py-2 flex items-center justify-center gap-2">
                     <FaShoppingCart /> Add To Cart
                 </button>
                 <Link to={`/productInfo/${product.productId}`} className="w-full">
-                    <button className="w-full bg-orange-400 hover:bg-orange-600 text-white py-2 flex items-center justify-center gap-2">
+                    <button className="w-full bg-gray-800 hover:bg-gray-600 text-white py-2 flex items-center justify-center gap-2">
                         <FaEye /> Quick View
                     </button>
                 </Link>

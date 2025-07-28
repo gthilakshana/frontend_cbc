@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Footer from "../../components/footer";
@@ -89,7 +90,10 @@ export default function Product() {
 
             </main>
 
+            {/* Footer */}
             <Footer />
         </div>
     );
 }
+
+

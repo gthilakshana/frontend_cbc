@@ -43,12 +43,13 @@ export default function ProductCard({ product }) {
                     {product.sizes?.map((size, idx) => (
                         <span
                             key={idx}
-                            className="border border-gray-300 px-2 py-1 text-xs text-gray-700 rounded"
+                            className="border border-orange-500 px-2 py-1 text-xs text-orange-600 rounded"
                         >
                             {size}
                         </span>
                     ))}
                 </div>
+
             </div>
         </div>
     );

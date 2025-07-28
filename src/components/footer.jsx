@@ -11,13 +11,13 @@ export default function Footer() {
                         Elevating your style with elegance and authenticity. Discover the latest trends and timeless classics.
                     </p>
                     <div className="flex gap-4 mt-4 text-xl">
-                        <a href="https://facebook.com" target="_blank" className="hover:text-blue-400 transition">
+                        <a href="https://facebook.com" target="_blank" className="hover:text-orange-500 transition">
                             <FaFacebookF />
                         </a>
-                        <a href="https://instagram.com" target="_blank" className="hover:text-blue-400 transition">
+                        <a href="https://instagram.com" target="_blank" className="hover:text-orange-500 transition">
                             <FaInstagram />
                         </a>
-                        <a href="https://twitter.com" target="_blank" className="hover:text-sky-400 transition">
+                        <a href="https://twitter.com" target="_blank" className="hover:text-orange-500 transition">
                             <FaTwitter />
                         </a>
                     </div>
@@ -25,12 +25,12 @@ export default function Footer() {
 
                 {/* Quick Links */}
                 <div>
-                    <h2 className="text-lg  mb-4 text-gray-500">QUICK LINKS</h2>
+                    <h2 className="text-lg  mb-4 text-gray-500 ">QUICK LINKS</h2>
                     <ul className="space-y-2 text-gray-500">
-                        <li><a href="/" className="hover:text-gray-400 transition">Home</a></li>
-                        <li><a href="/product" className="hover:text-gray-400 transition">Products</a></li>
-                        <li><a href="/about" className="hover:text-gray-400 transition">About Us</a></li>
-                        <li><a href="/contact" className="hover:text-gray-400 transition">Contact</a></li>
+                        <li><a href="/" className="hover:text-orange-400 transition">Home</a></li>
+                        <li><a href="/product" className="hover:text-orange-400 transition">Products</a></li>
+                        <li><a href="/about" className="hover:text-orange-400 transition">About Us</a></li>
+                        <li><a href="/contact" className="hover:text-orange-400 transition">Contact</a></li>
                     </ul>
                 </div>
 

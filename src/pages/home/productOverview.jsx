@@ -145,12 +145,12 @@ export default function ProductOverview() {
                 </div>
 
                 {/* Related Products */}
-                <div className="mt-20 mb-10">
-                    <h2 className="text-2xl font-bold mb-6 text-gray-800 uppercase">
+                <div className="mt-20 mb-20">
+                    <h2 className="text-2xl font-bold mb-6 text-gray-800 uppercase tracking-wide">
                         Related Products_
                     </h2>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 border p-4 justify-items-center">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 justify-items-center bg-white border rounded-lg shadow-sm ">
                         {products
                             .filter(
                                 (p) =>
@@ -163,11 +163,12 @@ export default function ProductOverview() {
                                 return (
                                     <div
                                         key={item.productId}
-                                        className={`w-[270px] h-[470px] bg-white border shadow overflow-hidden flex flex-col relative transition duration-300 ${!isInStock
+                                        className={`w-full max-w-[270px] h-[420px] bg-white border border-gray-200 overflow-hidden mb-5 flex flex-col relative transition duration-300 ${!isInStock
                                             ? "opacity-60 grayscale pointer-events-none"
-                                            : "hover:shadow-lg"
+                                            : "hover:shadow-md"
                                             }`}
                                     >
+                                        {/* Stock badge */}
                                         <div
                                             className={`absolute top-2 left-2 text-xs px-2 py-1 rounded-md z-10 font-semibold ${isInStock ? "bg-gray-800 text-white" : "bg-orange-600 text-white"
                                                 }`}
@@ -175,36 +176,51 @@ export default function ProductOverview() {
                                             {isInStock ? "In Stock" : "Out of Stock"}
                                         </div>
 
+                                        {/* Product Image */}
                                         <Link to={`/productInfo/${item.productId}`}>
                                             <img
                                                 src={item.images?.[0]}
                                                 alt={item.productName}
-                                                className="w-full h-64 object-cover cursor-pointer"
+                                                className="w-full h-64 object-cover cursor-pointer transition hover:scale-105 duration-300 p-1"
                                             />
-                                            <div className="p-4 flex-1 flex flex-col justify-between">
-                                                <div>
-                                                    <h3 className="text-lg font-semibold text-gray-800 truncate uppercase">
-                                                        {item.productName}
-                                                    </h3>
-                                                    <p className="text-sm text-gray-500">
-                                                        {item.altNames?.join(" | ")}
-                                                    </p>
-                                                    <div className="text-lg font-semibold text-gray-800 mt-2">
-                                                        <span className="text-gray-600 text-[16px] line-through mr-2">
-                                                            Rs. {item.price}
-                                                        </span>
-                                                        <span className="text-gray-600 text-[16px]">
-                                                            Rs. {item.lastPrice}
-                                                        </span>
-                                                    </div>
+                                        </Link>
+
+                                        {/* Content */}
+                                        <div className="p-4 flex-1 flex flex-col justify-between">
+                                            <div>
+                                                <h3 className="text-md font-semibold text-gray-800 truncate uppercase">
+                                                    {item.productName}
+                                                </h3>
+                                                <p className="text-xs text-gray-500 line-clamp-1">
+                                                    {item.altNames?.join(" | ")}
+                                                </p>
+
+                                                {/* Pricing */}
+                                                <div className="text-md font-semibold text-gray-800 mt-2">
+                                                    <span className="text-gray-400 line-through mr-2 text-sm">
+                                                        Rs. {item.price}
+                                                    </span>
+                                                    <span className="text-orange-600 text-md">
+                                                        Rs. <span className="font-bold">{item.lastPrice}</span>
+                                                    </span>
                                                 </div>
                                             </div>
-                                        </Link>
+
+                                            {/* Buttons */}
+                                            <div className="mt-4 flex gap-2">
+                                                <button
+                                                    className="flex-1 px-3 py-2 text-sm font-medium bg-orange-500 text-white rounded hover:bg-orange-600 transition"
+                                                    onClick={() => console.log("Add to cart", item.productId)}
+                                                >
+                                                    Add to Cart
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 );
                             })}
 
-                        {/* Fallback message */}
+                        {/* No related products fallback */}
                         {products.filter(
                             (p) =>
                                 p.productId !== productId &&

@@ -21,6 +21,13 @@ export default function ProductOverview() {
     const product = products.find((p) => p.productId === productId);
 
     useEffect(() => {
+        setLoading(true);
+        setSelectedColor("");
+        setSelectedSize("");
+        setQuantity(1);
+        setDelivery("");
+        setRelatedProducts([]);
+
         axios
             .get(import.meta.env.VITE_BACKEND_URL + "/api/products")
             .then((res) => {
@@ -30,7 +37,6 @@ export default function ProductOverview() {
                 const foundProduct = data.find((p) => p.productId === productId);
                 if (foundProduct) {
                     setDelivery(foundProduct.delivery || "");
-
 
                     const related = data.filter(
                         (item) =>
@@ -48,7 +54,7 @@ export default function ProductOverview() {
             });
     }, [productId]);
 
-    const increaseQty = () => product.stock > quantity && setQuantity(quantity + 1);
+    const increaseQty = () => product?.stock > quantity && setQuantity(quantity + 1);
     const decreaseQty = () => quantity > 1 && setQuantity(quantity - 1);
 
     const handleAddToCart = () => {
@@ -56,10 +62,15 @@ export default function ProductOverview() {
         toast.success("Product added to cart");
     };
 
-    if (loading)
-        return <div className="flex justify-center items-center h-screen">Loading...</div>;
-    if (!product)
-        return <div className="text-center py-20">Product not found</div>;
+    if (loading) return (
+        <div className="flex justify-center items-center h-screen">
+            <span className="text-gray-600">Loading product..</span>
+        </div>
+    );
+
+    if (!product) return (
+        <div className="text-center py-20">Product not found</div>
+    );
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-50">
@@ -69,14 +80,13 @@ export default function ProductOverview() {
                     <div>
                         <ImageSlider img={product.images} />
                     </div>
+
                     <div className="space-y-4">
                         <h1 className="text-2xl font-bold uppercase">{product.productName}</h1>
                         <p className="text-gray-500 text-[16px] uppercase">{product.altNames?.join(" | ")}</p>
                         <p className="text-[22px] text-gray-900 font-semibold">
                             LKR {product.lastPrice.toLocaleString()}
-
                         </p>
-
 
                         <div>
                             <p className="text-sm font-medium">Color(s):</p>
@@ -96,7 +106,6 @@ export default function ProductOverview() {
                             </div>
                         </div>
 
-
                         <div>
                             <p className="text-sm font-medium">Size(s):</p>
                             <div className="flex flex-wrap gap-3 mt-2">
@@ -115,12 +124,8 @@ export default function ProductOverview() {
                             </div>
                         </div>
 
-
                         <div className="text-sm text-gray-600 space-y-1">
-                            <p>
-                                Availability:{" "}
-                                {product.stock > 0 ? "In Stock" : "Out of Stock"}
-                            </p>
+                            <p>Availability: {product.stock > 0 ? "In Stock" : "Out of Stock"}</p>
                             <p>Brand: {product.brands?.[0] || "N/A"}</p>
                             <p>Materials: {product.materials?.join(" | ")}</p>
                             <p>
@@ -129,7 +134,6 @@ export default function ProductOverview() {
                                 {selectedSize && `-${selectedSize}`}
                             </p>
                         </div>
-
 
                         <div className="flex items-center border px-2 py-1 gap-2 w-24 sm:w-[20%] justify-between rounded">
                             <button onClick={decreaseQty}>
@@ -140,7 +144,6 @@ export default function ProductOverview() {
                                 <AiOutlinePlus size={14} />
                             </button>
                         </div>
-
 
                         <div className="flex flex-col sm:flex-row gap-4 mt-6">
                             <button
@@ -154,23 +157,15 @@ export default function ProductOverview() {
                             </button>
                         </div>
 
-
                         <div className="mt-10 border-t pt-6 space-y-4">
                             <details className="border rounded p-4">
-                                <summary className="font-semibold cursor-pointer">
-                                    PRODUCT INFORMATION
-                                </summary>
-                                <p className="mt-3 text-sm text-gray-600">
-                                    {product.description}
-                                </p>
+                                <summary className="font-semibold cursor-pointer">PRODUCT INFORMATION</summary>
+                                <p className="mt-3 text-sm text-gray-600">{product.description}</p>
                             </details>
                             <details className="border rounded p-4">
-                                <summary className="font-semibold cursor-pointer">
-                                    DELIVERY INFORMATION
-                                </summary>
+                                <summary className="font-semibold cursor-pointer">DELIVERY INFORMATION</summary>
                                 <p className="mt-3 text-sm text-gray-600">
-                                    {delivery ||
-                                        "Standard delivery within 3–5 working days."}
+                                    {delivery || "Standard delivery within 3–5 working days."}
                                 </p>
                             </details>
                         </div>
@@ -183,8 +178,6 @@ export default function ProductOverview() {
                             Related Products
                         </h2>
                         <RelatedProducts relatedProducts={relatedProducts} currentProduct={product} />
-
-
                     </div>
                 )}
 

@@ -234,20 +234,23 @@ export default function AdvancedSearch() {
                             </div>
 
                             <div className="flex items-center gap-4 text-sm">
-                                <span>Sort by:</span>
+                                <span className="font-medium text-gray-700">Sort by:</span>
+
                                 <select
-                                    className="border px-2 py-1 rounded"
+                                    className="border px-3 py-1 rounded-md bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-500"
                                     value={sortOption}
                                     onChange={(e) => setSortOption(e.target.value)}
                                 >
-                                    <option>Featured</option>
-                                    <option>Lowest Price</option>
-                                    <option>Highest Price</option>
+                                    <option className="bg-white text-gray-700" value="featured">Featured</option>
+                                    <option className="bg-white text-gray-700" value="low">Lowest Price</option>
+                                    <option className="bg-white text-gray-700" value="high">Highest Price</option>
                                 </select>
+
                                 <span className="text-gray-600">
                                     {filteredProducts.length} product{filteredProducts.length !== 1 && "s"}
                                 </span>
                             </div>
+
                         </div>
 
                         <div className={`${viewMode === "grid"

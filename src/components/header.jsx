@@ -85,18 +85,26 @@ export default function Header() {
 
                 {/* Desktop Icons */}
                 <div className="hidden md:flex items-center space-x-6">
-                    <Link to="/login" className="flex items-center gap-2 text-sm text-gray-800">
+                    <Link
+                        to="/login"
+                        className="flex items-center gap-2 text-sm text-gray-800 hover:text-orange-600 transition-colors duration-200"
+                    >
                         <HiOutlineUser className="text-2xl" />
                         <div className="flex flex-col leading-tight">
                             <span className="font-semibold">My Account</span>
                             <span className="text-xs text-gray-500">Log In</span>
                         </div>
                     </Link>
-                    <Link to="/cart" className="flex items-center gap-2 text-sm text-gray-800">
+
+                    <Link
+                        to="/cart"
+                        className="flex items-center gap-2 text-sm text-gray-800 hover:text-orange-600 transition-colors duration-200"
+                    >
                         <HiOutlineShoppingCart className="text-2xl" />
                         <span className="font-semibold">Cart (0)</span>
                     </Link>
                 </div>
+
             </div>
 
             {/* CategoryBar */}

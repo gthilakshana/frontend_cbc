@@ -5,8 +5,8 @@ import axios from "axios";
 import ImageSlider from "../../components/imageSlider";
 import toast from "react-hot-toast";
 import { addToCart } from "../../utils/cartFunction";
-import RelatedProducts from "../../components/RelatedProducts.jsx";
 import FooterSmall from "../../components/footerSmall";
+import RelatedProducts from "../../components/relatedProducts";
 
 export default function ProductOverview() {
     const { id: productId } = useParams();
@@ -176,7 +176,6 @@ export default function ProductOverview() {
                         </div>
                     </div>
                 </div>
-
                 {/* Related Products */}
                 {relatedProducts.length > 0 && (
                     <div className="mt-16">
@@ -188,6 +187,7 @@ export default function ProductOverview() {
 
                     </div>
                 )}
+
             </div>
 
             <FooterSmall />

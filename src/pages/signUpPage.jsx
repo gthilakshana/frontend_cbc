@@ -46,7 +46,7 @@ export default function SignupPage() {
 
 
     return (
-        <div className="min-h-screen bg-white flex items-center justify-center px-4">
+        <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
             <div className="w-full max-w-md">
                 {/* Breadcrumb */}
                 <div className="text-sm text-gray-500 mb-4">
@@ -71,7 +71,7 @@ export default function SignupPage() {
                                 onChange={(e) => setFirstName(e.target.value)}
                                 placeholder='First Name'
                                 required
-                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500"
                             />
                         </div>
 
@@ -83,7 +83,7 @@ export default function SignupPage() {
                                 onChange={(e) => setLastName(e.target.value)}
                                 placeholder='Last Name'
                                 required
-                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500"
                             />
                         </div>
 
@@ -95,7 +95,7 @@ export default function SignupPage() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder='Email Address'
                                 required
-                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500"
                             />
                         </div>
 
@@ -107,13 +107,13 @@ export default function SignupPage() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder='Password'
                                 required
-                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500"
                             />
                         </div>
 
                         <button
                             type="submit"
-                            className="w-full bg-black hover:bg-gray-800 text-white font-semibold py-2 mt-2"
+                            className="w-full bg-orange-600 hover:bg-orange-500 text-white font-semibold py-2 mt-2"
                         >
                             CREATE AN ACCOUNT
                         </button>

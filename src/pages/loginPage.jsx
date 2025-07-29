@@ -44,7 +44,7 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="min-h-screen bg-white flex items-center justify-center px-4">
+        <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
             <div className="w-full max-w-md">
                 {/* Breadcrumb */}
                 <div className="text-sm text-gray-500 mb-4">
@@ -69,7 +69,7 @@ export default function LoginPage() {
                                 onChange={e => setEmail(e.target.value)}
                                 placeholder="Email Address"
                                 required
-                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500"
                             />
                         </div>
 
@@ -81,13 +81,13 @@ export default function LoginPage() {
                                 onChange={e => setPassword(e.target.value)}
                                 placeholder="Password"
                                 required
-                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="w-full px-4 py-3 rounded-sm border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500"
                             />
                         </div>
 
                         <button
                             type="submit"
-                            className="w-full bg-black hover:bg-gray-800 text-white font-semibold py-2 mt-2"
+                            className="w-full bg-orange-600 hover:bg-orange-500 text-white font-semibold py-2 mt-2"
                         >
                             LOGIN
                         </button>
@@ -96,13 +96,13 @@ export default function LoginPage() {
                     <div className="text-center mt-6">
                         <p className="text-sm text-gray-500">
                             Don't have an account?{' '}
-                            <Link to="/signup" className="text-blue-500 hover:underline">
+                            <Link to="/signup" className="text-orange-500 hover:underline">
                                 Create one
                             </Link>
                         </p>
                         <p className="text-sm text-gray-500 mt-2">
                             Forgot password?{' '}
-                            <Link to="/reset" className="text-blue-500 hover:underline">
+                            <Link to="/reset" className="text-orange-500 hover:underline">
                                 Reset here
                             </Link>
                         </p>

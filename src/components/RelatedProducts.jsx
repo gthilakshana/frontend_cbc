@@ -1,5 +1,6 @@
 import React from "react";
-import ProductCard from "./ProductCard";
+import ProductCard from "./ProductCard.jsx";
+
 
 export default function RelatedProducts({ relatedProducts, currentProduct }) {
     if (!relatedProducts || relatedProducts.length === 0 || !currentProduct) {

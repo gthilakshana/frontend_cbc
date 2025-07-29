@@ -73,7 +73,7 @@ export default function ProductOverview() {
                                     <button
                                         key={index}
                                         onClick={() => setSelectedColor(color)}
-                                        className={`px-4 py-2 border rounded text-sm ${selectedColor === color ? "bg-black text-white" : "bg-white text-gray-700 hover:bg-gray-100"}`}
+                                        className={`px-4 py-2 border rounded text-sm ${selectedColor === color ? "bg-orange-600 text-white" : "bg-white text-gray-700 hover:bg-gray-100"}`}
                                     >
                                         {color}
                                     </button>
@@ -89,7 +89,7 @@ export default function ProductOverview() {
                                     <button
                                         key={i}
                                         onClick={() => setSelectedSize(size)}
-                                        className={`px-5 py-2 border rounded text-sm ${selectedSize === size ? "bg-black text-white" : "bg-white text-gray-700 hover:bg-gray-100"}`}
+                                        className={`px-5 py-2 border rounded text-sm ${selectedSize === size ? "bg-orange-600 text-white" : "bg-white text-gray-700 hover:bg-gray-100"}`}
                                     >
                                         {size}
                                     </button>
@@ -99,7 +99,7 @@ export default function ProductOverview() {
 
                         {/* Meta Info */}
                         <div className="text-sm text-gray-600 mt-4 space-y-1">
-                            <p>Availability : <span className="text-black">{product.stock > 0 ? "In Stock" : "Out of Stock"}</span></p>
+                            <p>Availability : <span className="text-gray-600">{product.stock > 0 ? "In Stock" : "Out of Stock"}</span></p>
                             <p>Brand : {product.brands?.[0] || "N/A"}</p>
                             <p>Materials : {product.materials?.join(" | ")}</p>
 

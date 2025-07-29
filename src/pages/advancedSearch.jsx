@@ -4,7 +4,7 @@ import { FaTh, FaList } from "react-icons/fa";
 import ProductListCard from "../components/ProductListCard";
 import FooterSmall from "../components/footerSmall";
 import FilterSidebar from "../components/FilterSidebar";
-import ProductCard from "../components/productCard";
+import ProductCard from "../components/productCard.jsx";
 import axios from "axios";
 
 export default function AdvancedSearch() {
@@ -178,7 +178,7 @@ export default function AdvancedSearch() {
                 </div>
 
                 {/* Title */}
-                <h1 className="text-2xl md:text-4xl font-bold uppercase text-center mb-8">
+                <h1 className="text-2xl md:text-4xl  font-bold uppercase text-center mb-8">
                     {displayTitle}
                 </h1>
 

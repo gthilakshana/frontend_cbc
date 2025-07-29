@@ -6,7 +6,7 @@ import ImageSlider from "../../components/imageSlider";
 import toast from "react-hot-toast";
 import { addToCart } from "../../utils/cartFunction";
 import FooterSmall from "../../components/footerSmall";
-import RelatedProducts from "../../components/relatedProducts";
+import RelatedProducts from "../../components/relatedProducts.jsx";
 
 export default function ProductOverview() {
     const { id: productId } = useParams();
@@ -64,7 +64,7 @@ export default function ProductOverview() {
     return (
         <div className="min-h-screen flex flex-col bg-gray-50">
             <div className="w-full min-h-screen bg-white px-4 sm:px-6 md:px-10 lg:px-20 py-10 text-gray-800">
-                {/* Product info */}
+
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                     <div>
                         <ImageSlider img={product.images} />
@@ -77,7 +77,7 @@ export default function ProductOverview() {
 
                         </p>
 
-                        {/* Colors */}
+
                         <div>
                             <p className="text-sm font-medium">Color(s):</p>
                             <div className="flex flex-wrap gap-2 mt-2">
@@ -96,7 +96,7 @@ export default function ProductOverview() {
                             </div>
                         </div>
 
-                        {/* Sizes */}
+
                         <div>
                             <p className="text-sm font-medium">Size(s):</p>
                             <div className="flex flex-wrap gap-3 mt-2">
@@ -115,7 +115,7 @@ export default function ProductOverview() {
                             </div>
                         </div>
 
-                        {/* Info */}
+
                         <div className="text-sm text-gray-600 space-y-1">
                             <p>
                                 Availability:{" "}
@@ -130,7 +130,7 @@ export default function ProductOverview() {
                             </p>
                         </div>
 
-                        {/* Quantity Selector */}
+
                         <div className="flex items-center border px-2 py-1 gap-2 w-24 sm:w-[20%] justify-between rounded">
                             <button onClick={decreaseQty}>
                                 <AiOutlineMinus size={14} />
@@ -141,7 +141,7 @@ export default function ProductOverview() {
                             </button>
                         </div>
 
-                        {/* Buttons */}
+
                         <div className="flex flex-col sm:flex-row gap-4 mt-6">
                             <button
                                 onClick={handleAddToCart}
@@ -154,7 +154,7 @@ export default function ProductOverview() {
                             </button>
                         </div>
 
-                        {/* Product Details */}
+
                         <div className="mt-10 border-t pt-6 space-y-4">
                             <details className="border rounded p-4">
                                 <summary className="font-semibold cursor-pointer">
@@ -176,7 +176,7 @@ export default function ProductOverview() {
                         </div>
                     </div>
                 </div>
-                {/* Related Products */}
+
                 {relatedProducts.length > 0 && (
                     <div className="mt-16">
                         <h2 className="text-xl font-semibold mb-6 text-gray-800 uppercase">

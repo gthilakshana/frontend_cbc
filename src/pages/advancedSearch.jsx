@@ -158,7 +158,7 @@ export default function AdvancedSearch() {
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-white">
-                <div className="animate-spin h-12 w-12 border-4 border-gray-300 border-t-gray-800 rounded-full" />
+                <div className="animate-spin h-12 w-12 border-4 border-gray-300 border-t-orange-500 rounded-full" />
             </div>
         );
     }

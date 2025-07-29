@@ -30,32 +30,32 @@ export default function ContactPage() {
 
 
                 <div className="lg:col-span-2">
-                    <h2 className="text-3xl font-semibold mb-8">Contact Us</h2>
+                    <h2 className="text-3xl font-semibold mb-8 uppercase">Contact Us</h2>
                     <form className="space-y-6">
                         <input
                             type="text"
                             placeholder="Subject"
-                            className="w-full border border-gray-300 px-5 py-4 rounded-lg focus:ring-2 focus:ring-gray-800"
+                            className="w-full border border-gray-300 px-5 py-4 focus:ring-2 focus:ring-orange-400"
                         />
                         <input
                             type="text"
                             placeholder="Name"
-                            className="w-full border border-gray-300 px-5 py-4 rounded-lg focus:ring-2 focus:ring-gray-800"
+                            className="w-full border border-gray-300 px-5 py-4 focus:ring-2 focus:ring-orange-400"
                         />
                         <input
                             type="email"
                             placeholder="Email"
-                            className="w-full border border-gray-300 px-5 py-4 rounded-lg focus:ring-2 focus:ring-gray-800"
+                            className="w-full border border-gray-300 px-5 py-4 focus:ring-2 focus:ring-orange-400"
                         />
                         <textarea
                             rows="5"
                             placeholder="Enter your message here..."
-                            className="w-full border border-gray-300 px-5 py-4 rounded-lg focus:ring-2 focus:ring-gray-800 resize-none"
+                            className="w-full border border-gray-300 px-5 py-4 focus:ring-2 focus:ring-orange-400 resize-none"
                         />
 
                         <button
                             type="submit"
-                            className="w-full bg-black text-white py-3 rounded-lg text-lg hover:bg-gray-800 transition"
+                            className="w-full bg-orange-600 text-white py-3  text-lg hover:bg-orange-500 transition"
                         >
                             Submit
                         </button>

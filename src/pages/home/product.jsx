@@ -29,8 +29,8 @@ export default function Product() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex justify-center items-center bg-white">
-                <div className="animate-spin rounded-full h-14 w-14 border-4 border-gray-200 border-b-gray-800" />
+            <div className="min-h-screen flex items-center justify-center bg-white">
+                <div className="animate-spin h-12 w-12 border-4 border-gray-300 border-t-orange-500 rounded-full" />
             </div>
         );
     }

@@ -150,7 +150,7 @@ export default function ProductOverview() {
                         Related Products_
                     </h2>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 justify-items-center bg-white border rounded-lg shadow-sm ">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 p-4 justify-items-center bg-white border rounded-lg shadow-sm ">
                         {products
                             .filter(
                                 (p) =>
@@ -163,7 +163,7 @@ export default function ProductOverview() {
                                 return (
                                     <div
                                         key={item.productId}
-                                        className={`w-full max-w-[270px] h-[420px] bg-white border border-gray-200 overflow-hidden mb-5 flex flex-col relative transition duration-300 ${!isInStock
+                                        className={`w-full max-w-[270px] h-[420px] bg-white border rounded-lg border-gray-200 overflow-hidden mb-5 flex flex-col relative transition duration-300 ${!isInStock
                                             ? "opacity-60 grayscale pointer-events-none"
                                             : "hover:shadow-md"
                                             }`}
@@ -181,7 +181,7 @@ export default function ProductOverview() {
                                             <img
                                                 src={item.images?.[0]}
                                                 alt={item.productName}
-                                                className="w-full h-64 object-cover cursor-pointer transition hover:scale-105 duration-300 p-1"
+                                                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                                             />
                                         </Link>
 

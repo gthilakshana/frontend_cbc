@@ -16,62 +16,56 @@ export default function ImageSlider({ img }) {
 
     return (
         <>
-            {/* Main Slider */}
-            <div className="w-full flex justify-center">
-                <div className="w-[80%] max-w-xl flex flex-col items-center relative">
-                    <div className="w-full aspect-square relative overflow-hidden shadow-md flex items-center justify-center">
-                        <div className="relative w-full h-full group">
-                            {/* Main Image */}
-                            <img
-                                src={img[currentIndex]}
-                                alt="Main"
-                                className="w-full h-full object-cover transition duration-500 ease-in-out"
-                            />
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-center w-full max-w-5xl mx-auto">
 
-                            {/* Search Icon */}
-                            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300 flex items-center justify-center">
-                                <button onClick={() => setZoomed(true)}>
-                                    <FiSearch className="text-white text-3xl opacity-0 group-hover:opacity-100 transition duration-300 cursor-pointer" />
-                                </button>
-                            </div>
-                        </div>
+                <div className="flex md:flex-col gap-2 md:max-h-[500px]">
+                    {img.map((image, index) => (
+                        <img
+                            key={index}
+                            src={image}
+                            onClick={() => setCurrentIndex(index)}
+                            className={`w-16 h-16 md:w-20 md:h-20 object-cover cursor-pointer border-2 ${currentIndex === index
+                                ? "border-orange-600 scale-105"
+                                : "border-transparent hover:border-gray-300"
+                                } transition-all duration-200 shadow`}
+                        />
+                    ))}
+                </div>
 
-                        {/* Navigation Arrows */}
-                        <button
-                            onClick={goPrev}
-                            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-700 p-2 rounded-full shadow"
-                        >
-                            <FaChevronLeft />
-                        </button>
-                        <button
-                            onClick={goNext}
-                            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white text-gray-700 p-2 rounded-full shadow"
-                        >
-                            <FaChevronRight />
+
+                <div className="relative w-full max-w-xl aspect-square overflow-hidden rounded shadow-md group">
+                    <img
+                        src={img[currentIndex]}
+                        alt="Main"
+                        className="w-full h-full object-cover transition duration-500 ease-in-out"
+                    />
+
+
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-orange transition duration-300 flex items-center justify-center">
+                        <button onClick={() => setZoomed(true)}>
+                            <FiSearch className="text-white text-4xl opacity-0 group-hover:opacity-100 transition duration-300" />
                         </button>
                     </div>
 
-                    {/* Thumbnail Images */}
-                    <div className="flex gap-3 overflow-x-auto mt-4 p-2 w-full justify-center">
-                        {img.map((image, index) => (
-                            <img
-                                key={index}
-                                src={image}
-                                onClick={() => setCurrentIndex(index)}
-                                className={`w-16 h-16 object-cover cursor-pointer border-2 
-                                    ${currentIndex === index
-                                        ? "border-gray-300 scale-105"
-                                        : "border-transparent hover:border-gray-300"}
-                                    transition-all duration-200`}
-                            />
-                        ))}
-                    </div>
+
+                    <button
+                        onClick={goPrev}
+                        className="absolute top-1/2 left-3 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow"
+                    >
+                        <FaChevronLeft />
+                    </button>
+                    <button
+                        onClick={goNext}
+                        className="absolute top-1/2 right-3 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 p-2 rounded-full shadow"
+                    >
+                        <FaChevronRight />
+                    </button>
                 </div>
             </div>
 
-            {/* Zoom Modal */}
+
             {zoomed && (
-                <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex justify-center items-center">
+                <div className="fixed inset-0 bg-black/90 z-50 flex justify-center items-center">
                     <img
                         src={img[currentIndex]}
                         alt="Zoomed View"

@@ -138,20 +138,19 @@ export default function HomeView() {
                     Be the first to wear the trend. Explore our newest collection crafted with style and comfort.
                 </p>
 
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                     {products
                         .filter((p) => p.images?.[2])
-                        .slice(0, 20)
+                        .slice(0, 30)
                         .map((product, i) => {
                             const isInStock = product.stock > 0;
 
                             return (
                                 <div
                                     key={i}
-                                    className={`w-full h-full bg-white border shadow overflow-hidden flex flex-col relative transition duration-300  ${!isInStock
-                                        ? "opacity-60 grayscale pointer-events-none"
-                                        : "hover:shadow-lg hover:-translate-y-1"
-                                        }`}
+                                    className={`w-full h-full rounded-lg bg-white border shadow overflow-hidden flex flex-col relative transition duration-300
+                                    ${!isInStock ? "opacity-60 grayscale" : "hover:shadow-lg hover:-translate-y-1"}`}
+
                                 >
 
                                     <div
@@ -259,14 +258,14 @@ export default function HomeView() {
                     Feel. Gorgeous. Love. Mahee fashion.
                 </p>
 
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                     {products
                         .filter((p) => p.images?.[2])
-                        .slice(0, 12)
+                        .slice(0, 30)
                         .map((product, i) => (
                             <div
                                 key={i}
-                                className="bg-white  shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-1"
+                                className="bg-white rounded-lg  shadow-md hover:shadow-xl transition-transform transform hover:-translate-y-1"
                             >
                                 <Link to={`/productInfo/${product.productId}`}>
                                     <div className="h-[300px] w-full overflow-hidden ">

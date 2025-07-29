@@ -202,7 +202,7 @@ export default function AdvancedSearch() {
 
                         <div
                             className={`${viewMode === "grid"
-                                ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6"
+                                ? "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
                                 : "space-y-4"
                                 }`}
                         >

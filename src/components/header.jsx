@@ -60,7 +60,7 @@ export default function Header() {
 
                 {/* Search Bar */}
                 <div className="mt-4 md:mt-0 w-full md:flex-1 flex justify-center">
-                    <div className="flex w-full max-w-xl border border-orange-500 rounded-md">
+                    <div className="flex w-full max-w-xl overflow-hidden border border-orange-500 rounded-md">
                         <input
                             type="text"
                             value={searchTerm}

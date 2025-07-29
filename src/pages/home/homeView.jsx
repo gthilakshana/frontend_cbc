@@ -19,6 +19,8 @@ export default function HomeView() {
 
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
 
     //slider code
@@ -61,10 +63,31 @@ export default function HomeView() {
             .then((res) => {
                 console.log("API response:", res.data);
                 setProducts(res.data);
+                setLoading(false);
             })
-            .catch((err) => console.error("Error fetching products:", err));
+            .catch((err) => {
+                console.error("Error fetching products:", err);
+                setError("Failed to load products.");
+                setLoading(false);
+            });
     }, []);
 
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-white">
+                <div className="animate-spin h-12 w-12 border-4 border-gray-300 border-t-orange-500 rounded-full" />
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-white text-red-500 text-center">
+                <p>{error}</p>
+            </div>
+        );
+    }
 
 
 
@@ -121,7 +144,6 @@ export default function HomeView() {
                     ))}
                 </div>
             </section>
-
 
 
 

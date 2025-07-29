@@ -5,7 +5,7 @@ import axios from "axios";
 import ImageSlider from "../../components/imageSlider";
 import toast from "react-hot-toast";
 import { addToCart } from "../../utils/cartFunction";
-import RelatedProducts from "../../components/RelatedProducts";
+import RelatedProducts from "../../components/RelatedProducts.jsx";
 import FooterSmall from "../../components/footerSmall";
 
 export default function ProductOverview() {

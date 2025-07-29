@@ -163,7 +163,7 @@ export default function ProductOverview() {
                                 return (
                                     <div
                                         key={item.productId}
-                                        className={`w-full max-w-[270px] h-[420px] bg-white border rounded-lg border-gray-200 overflow-hidden mb-5 flex flex-col relative transition duration-300 ${!isInStock
+                                        className={`w-full max-w-[270px] h-[350px] bg-white border rounded-lg border-gray-200 overflow-hidden mb-3 flex flex-col relative transition duration-300 ${!isInStock
                                             ? "opacity-60 grayscale pointer-events-none"
                                             : "hover:shadow-md"
                                             }`}
@@ -188,7 +188,7 @@ export default function ProductOverview() {
                                         {/* Content */}
                                         <div className="p-4 flex-1 flex flex-col justify-between">
                                             <div>
-                                                <h3 className="text-md font-semibold text-gray-800 truncate uppercase">
+                                                <h3 className="text-[12px] font-semibold text-gray-800 truncate uppercase">
                                                     {item.productName}
                                                 </h3>
                                                 <p className="text-xs text-gray-500 line-clamp-1">
@@ -196,11 +196,11 @@ export default function ProductOverview() {
                                                 </p>
 
                                                 {/* Pricing */}
-                                                <div className="text-md font-semibold text-gray-800 mt-2">
-                                                    <span className="text-gray-400 line-through mr-2 text-sm">
+                                                <div className=" font-semibold text-gray-800 mt-2">
+                                                    <span className="text-gray-400 line-through mr-2 text-sm text-[12px]">
                                                         Rs. {item.price}
                                                     </span>
-                                                    <span className="text-orange-600 text-md">
+                                                    <span className="text-orange-600 text-[14px]">
                                                         Rs. <span className="font-bold">{item.lastPrice}</span>
                                                     </span>
                                                 </div>

@@ -68,7 +68,7 @@ export default function Header() {
                             onChange={(e) => setSearchTerm(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder="Search for clothing, brands, or categories..."
-                            className="flex-1 px-5 py-2 text-sm focus:outline-none bg-white"
+                            className="flex-1 px-5 py-2 text-[16px] md:text-sm focus:outline-none bg-white"
                             inputMode="search"
                         />
                         <button
@@ -79,6 +79,7 @@ export default function Header() {
                         </button>
                     </div>
                 </div>
+
 
 
 

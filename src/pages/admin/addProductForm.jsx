@@ -86,8 +86,17 @@ export default function AddProductForm() {
     const [finalCategory, setFinalCategory] = useState("");
     const [finalSubcategory, setFinalSubcategory] = useState("");
 
+    const maxImages = 5;
+    const handleFileChange = (e) => {
+        const files = Array.from(e.target.files);
 
+        if (files.length > maxImages) {
+            alert(`You can upload up to ${maxImages} images only.`);
+            return;
+        }
 
+        setImageFiles(files);
+    };
 
 
     const navigate = useNavigate();
@@ -478,16 +487,17 @@ export default function AddProductForm() {
                     </div>
 
                     <div className="flex flex-col">
-                        <label className="mb-1 text-sm font-medium">Image URL</label>
+                        <label className="mb-1 text-sm font-medium">Upload Images (max {maxImages})</label>
                         <input
                             type="file"
-                            placeholder="Enter Image URL"
+                            accept="image/*"
+                            multiple
                             className="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            onChange={(e) => {
-                                setImageFiles(e.target.files);
-
-                            }} multiple
+                            onChange={handleFileChange}
                         />
+                        <div className="mt-2 text-sm text-gray-600">
+                            {imageFiles.length} image{imageFiles.length !== 1 ? 's' : ''} selected
+                        </div>
                     </div>
 
                     <div className="flex flex-col md:col-span-2">

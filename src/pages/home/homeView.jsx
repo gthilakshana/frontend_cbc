@@ -182,7 +182,7 @@ export default function HomeView() {
 
                                         <Link
                                             to={`/productInfo/${product.productId}`}
-                                            className="inline-block text-sm text-white bg-orange-600 hover:bg-orange-500 px-4 py-1.5 transition"
+                                            className="inline-block text-sm rounded-md text-white bg-orange-600 hover:bg-orange-500 px-4 py-1.5 transition"
                                         >
                                             View Details
                                         </Link>
@@ -284,7 +284,7 @@ export default function HomeView() {
 
                                     <Link
                                         to={`/productInfo/${product.productId}`}
-                                        className="inline-block text-sm text-white bg-orange-600 hover:bg-orange-400 px-4 py-1.5 transition"
+                                        className="inline-block text-sm rounded-md text-white bg-orange-600 hover:bg-orange-400 px-4 py-1.5 transition"
                                     >
                                         View Details
                                     </Link>

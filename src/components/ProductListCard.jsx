@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function ProductListCard({ product }) {
     return (
-        <div className="bg-white rounded-2xl shadow-md overflow-hidden border transition hover:shadow-lg w-full flex flex-col sm:flex-row">
+        <div className="bg-white  shadow-md overflow-hidden border transition hover:shadow-lg w-full flex flex-col sm:flex-row">
 
             <Link
                 to={`/productInfo/${product.productId}`}
@@ -22,7 +22,7 @@ export default function ProductListCard({ product }) {
                     {product.brands?.[0] || "Brand"}
                 </p>
                 <Link to={`/productInfo/${product.productId}`}>
-                    <h2 className="text-lg sm:text-[18px] font-semibold text-gray-900 hover:text-orange-500 transition line-clamp-2 uppercase">
+                    <h2 className="sm:text-[16px] font-semibold text-gray-900 hover:text-orange-500 transition line-clamp-2 ">
                         {product.productName}
                     </h2>
                 </Link>

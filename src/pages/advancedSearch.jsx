@@ -19,6 +19,13 @@ export default function AdvancedSearch() {
     const [loading, setLoading] = useState(true);
     const [sortOption, setSortOption] = useState("Featured");
 
+    // Filters
+    const [priceRange, setPriceRange] = useState({ min: "", max: "" });
+    const [stockFilter, setStockFilter] = useState("");
+    const [selectedBrands, setSelectedBrands] = useState([]);
+    const [selectedColors, setSelectedColors] = useState([]);
+    const [selectedSizes, setSelectedSizes] = useState([]);
+
     const displayTitle = term || subcategory || category || "Search";
 
     useEffect(() => {
@@ -54,6 +61,7 @@ export default function AdvancedSearch() {
     useEffect(() => {
         let filtered = [];
 
+        // Initial filter by category/term
         if (term) {
             const searchTerm = term.toLowerCase().trim();
             filtered = products.filter(
@@ -75,43 +83,77 @@ export default function AdvancedSearch() {
                     product.categories.some(
                         (cat) =>
                             cat?.title?.toLowerCase().trim() === catLower &&
-                            (
-                                cat?.subCategory?.toLowerCase().trim() === subLower ||
-                                (Array.isArray(cat?.subCategories) &&
-                                    cat.subCategories.some(
-                                        (s) => s?.toLowerCase().trim() === subLower
-                                    ))
-                            )
+                            cat?.subCategory?.toLowerCase().trim() === subLower
                     )
             );
         } else if (category) {
             const catLower = category.toLowerCase().trim();
-
             filtered = products.filter(
                 (product) =>
                     Array.isArray(product.categories) &&
                     product.categories.some(
-                        (cat) =>
-                            cat?.title?.toLowerCase().trim() === catLower
+                        (cat) => cat?.title?.toLowerCase().trim() === catLower
                     )
             );
         } else {
             filtered = [...products];
         }
 
-        // Apply sorting
+        // Apply Stock Filter
+        if (stockFilter === "in") {
+            filtered = filtered.filter((p) => p.stock > 0);
+        } else if (stockFilter === "out") {
+            filtered = filtered.filter((p) => p.stock === 0);
+        }
+
+        // Apply Price Filter
+        filtered = filtered.filter((p) => {
+            const min = Number(priceRange.min) || 0;
+            const max = Number(priceRange.max) || Infinity;
+            return p.price >= min && p.price <= max;
+        });
+
+        // Apply Brand Filter
+        if (selectedBrands.length > 0) {
+            filtered = filtered.filter((p) =>
+                p.brands?.some((brand) => selectedBrands.includes(brand))
+            );
+        }
+
+        // Apply Color Filter
+        if (selectedColors.length > 0) {
+            filtered = filtered.filter((p) =>
+                p.colors?.some((color) => selectedColors.includes(color))
+            );
+        }
+
+        // Apply Size Filter
+        if (selectedSizes.length > 0) {
+            filtered = filtered.filter((p) =>
+                p.sizes?.some((size) => selectedSizes.includes(size))
+            );
+        }
+
+        // Apply Sorting
         if (sortOption === "Lowest Price") {
-            filtered = filtered
-                .filter((p) => Number(p.price) <= 2000)
-                .sort((a, b) => Number(a.price) - Number(b.price));
+            filtered = filtered.sort((a, b) => Number(a.price) - Number(b.price));
         } else if (sortOption === "Highest Price") {
-            filtered = filtered
-                .filter((p) => Number(p.price) > 2000)
-                .sort((a, b) => Number(b.price) - Number(a.price));
+            filtered = filtered.sort((a, b) => Number(b.price) - Number(a.price));
         }
 
         setFilteredProducts(filtered);
-    }, [products, category, subcategory, term, sortOption]);
+    }, [
+        products,
+        category,
+        subcategory,
+        term,
+        sortOption,
+        stockFilter,
+        priceRange,
+        selectedBrands,
+        selectedColors,
+        selectedSizes,
+    ]);
 
     if (loading) {
         return (
@@ -155,14 +197,22 @@ export default function AdvancedSearch() {
                 {/* Main Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
                     {/* Sidebar Filters */}
-                    <aside className="hidden md:block md:col-span-1">
-                        <FilterSidebar />
-                    </aside>
-
-                    {showFilters && isMobile && (
-                        <div className="block md:hidden">
-                            <FilterSidebar />
-                        </div>
+                    {(showFilters || !isMobile) && (
+                        <FilterSidebar
+                            allProducts={products}
+                            selectedBrands={selectedBrands}
+                            setSelectedBrands={setSelectedBrands}
+                            selectedColors={selectedColors}
+                            setSelectedColors={setSelectedColors}
+                            selectedSizes={selectedSizes}
+                            setSelectedSizes={setSelectedSizes}
+                            priceRange={priceRange}
+                            setPriceRange={setPriceRange}
+                            stockFilter={stockFilter}
+                            setStockFilter={setStockFilter}
+                            isMobile={isMobile}
+                            showFilters={showFilters}
+                        />
                     )}
 
                     {/* Main Content */}
@@ -200,12 +250,10 @@ export default function AdvancedSearch() {
                             </div>
                         </div>
 
-                        <div
-                            className={`${viewMode === "grid"
-                                ? "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
-                                : "space-y-4"
-                                }`}
-                        >
+                        <div className={`${viewMode === "grid"
+                            ? "grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+                            : "space-y-4"
+                            }`}>
                             {filteredProducts.length > 0 ? (
                                 filteredProducts.map((product) =>
                                     viewMode === "list" ? (

@@ -75,7 +75,7 @@ export default function FilterSidebar({
         >
             <h2 className="text-base font-semibold uppercase mb-4">Filters</h2>
 
-            {/* Availability Filter */}
+            {/* Stock Filter */}
             <div>
                 <h3 className="text-xs font-semibold uppercase mb-2">Availability</h3>
                 <label className="block text-sm mb-1">
@@ -84,7 +84,7 @@ export default function FilterSidebar({
                         value="in"
                         checked={stockFilter === "in"}
                         onChange={handleStockChange}
-                        className="mr-2"
+                        className="mr-2 accent-orange-600"
                     />
                     In Stock
                 </label>
@@ -94,7 +94,7 @@ export default function FilterSidebar({
                         value="out"
                         checked={stockFilter === "out"}
                         onChange={handleStockChange}
-                        className="mr-2"
+                        className="mr-2 accent-orange-600"
                     />
                     Out Of Stock
                 </label>
@@ -132,7 +132,7 @@ export default function FilterSidebar({
                             type="checkbox"
                             checked={selectedBrands.includes(brand)}
                             onChange={() => handleBrandChange(brand)}
-                            className="mr-2"
+                            className="mr-2 accent-orange-600"
                         />
                         {brand}
                     </label>
@@ -148,7 +148,7 @@ export default function FilterSidebar({
                             type="checkbox"
                             checked={selectedColors.includes(color)}
                             onChange={() => handleColorChange(color)}
-                            className="mr-2"
+                            className="mr-2 accent-orange-600"
                         />
                         {color}
                     </label>
@@ -164,12 +164,13 @@ export default function FilterSidebar({
                             type="checkbox"
                             checked={selectedSizes.includes(size)}
                             onChange={() => handleSizeChange(size)}
-                            className="mr-2"
+                            className="mr-2 accent-orange-600"
                         />
                         {size}
                     </label>
                 ))}
             </div>
+
         </aside>
     );
 }

@@ -6,7 +6,7 @@ import ImageSlider from "../../components/imageSlider";
 import toast from "react-hot-toast";
 import { addToCart } from "../../utils/cartFunction";
 import FooterSmall from "../../components/footerSmall";
-import RelatedProducts from "../../components/relatedProducts.jsx";
+import RelatedProducts from "../../components/relatedProducts";
 
 export default function ProductOverview() {
     const { id: productId } = useParams();

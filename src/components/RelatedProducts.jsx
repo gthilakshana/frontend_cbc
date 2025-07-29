@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "./ProductCard.jsx";
+import ProductCard from "./productCard";
 
 
 export default function RelatedProducts({ relatedProducts, currentProduct }) {

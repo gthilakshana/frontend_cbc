@@ -69,15 +69,21 @@ export default function CategoryBar({ isMobileOpen, setIsMobileOpen }) {
                         <ul className="space-y-4">
                             {categories.map((cat) => (
                                 <li key={cat.title}>
-                                    <div
-                                        className="flex justify-between items-center font-semibold text-gray-800 cursor-pointer"
-                                        onClick={() => toggleCategory(cat.title)}
-                                    >
-                                        <span>{cat.title}</span>
+                                    <div className="flex justify-between items-center font-semibold text-gray-800">
+                                        <Link
+                                            to={formatPath(cat.title)}
+                                            className="hover:text-orange-500"
+                                            onClick={() => {
+                                                setOpenCategory(null);
+                                                setIsMobileOpen(false);
+                                            }}
+                                        >
+                                            {cat.title}
+                                        </Link>
                                         {cat.megaMenu && (
                                             <FaChevronDown
-                                                className={`text-sm transition-transform duration-300 ${openCategory === cat.title ? "rotate-180" : ""
-                                                    }`}
+                                                className={`text-sm cursor-pointer transition-transform duration-300 ${openCategory === cat.title ? "rotate-180" : ""}`}
+                                                onClick={() => toggleCategory(cat.title)}
                                             />
                                         )}
                                     </div>
@@ -101,7 +107,7 @@ export default function CategoryBar({ isMobileOpen, setIsMobileOpen }) {
                                                                         className="hover:text-orange-500 block"
                                                                         onClick={() => {
                                                                             setOpenCategory(null);
-                                                                            setIsMobileOpen(false); // ✅ CLOSE mobile menu after click
+                                                                            setIsMobileOpen(false);
                                                                         }}
                                                                     >
                                                                         {item}

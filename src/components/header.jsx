@@ -40,6 +40,7 @@ export default function Header() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
+
                     <Link to="/" className="flex flex-col items-center md:items-start text-orange-500 w-full">
                         <span className="text-xl font-bold uppercase ">Mahee Fashion</span>
                         <span className="text-xs text-orange-400 -mt-1">

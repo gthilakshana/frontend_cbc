@@ -5,7 +5,7 @@ export default function ProductCard({ product }) {
 
     return (
         <div
-            className={`w-full h-full bg-white border shadow overflow-hidden flex flex-col relative transition duration-300 
+            className={`w-full h-full bg-white border shadow overflow-hidden flex flex-col rounded-lg relative transition duration-300 
         ${!isInStock ? "opacity-60 grayscale pointer-events-none" : "hover:shadow-lg"}`}
         >
             {/* Stock Badge */}
@@ -21,7 +21,7 @@ export default function ProductCard({ product }) {
                 <img
                     src={product.images?.[0] || "/placeholder.jpg"}
                     alt={product.productName}
-                    className="w-full h-[300px] object-cover transition-transform duration-300 hover:scale-105"
+                    className="w-full h-[230px] object-cover transition-transform duration-300 hover:scale-105 "
                 />
             </Link>
 

@@ -96,7 +96,7 @@ export default function ProductOverview() {
                                         key={index}
                                         onClick={() => setSelectedColor(color)}
                                         className={`px-4 py-2 border rounded text-sm ${selectedColor === color
-                                            ? "bg-orange-600 text-white"
+                                            ? "bg-orange-500 text-white"
                                             : "bg-white text-gray-700 hover:bg-gray-100"
                                             }`}
                                     >
@@ -114,7 +114,7 @@ export default function ProductOverview() {
                                         key={i}
                                         onClick={() => setSelectedSize(size)}
                                         className={`px-5 py-2 border rounded text-sm ${selectedSize === size
-                                            ? "bg-orange-600 text-white"
+                                            ? "bg-orange-500 text-white"
                                             : "bg-white text-gray-700 hover:bg-gray-100"
                                             }`}
                                     >

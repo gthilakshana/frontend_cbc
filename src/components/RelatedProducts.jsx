@@ -22,7 +22,7 @@ export default function RelatedProducts({ relatedProducts, currentProduct }) {
     return (
         <div className="mt-10">
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 px-4">
                 {filteredProducts.map((product) => (
                     <ProductCard key={product.productId} product={product} />
                 ))}

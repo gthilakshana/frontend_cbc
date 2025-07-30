@@ -2,25 +2,55 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HiOutlineUser, HiOutlineShoppingCart } from "react-icons/hi2";
 import CategoryBar from "./categoryBar";
+import categories from "../data/categories";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
 
+
+    const flatCategories = [];
+
+    categories.forEach(category => {
+        const main = category.title;
+        if (!main) return;
+
+
+        flatCategories.push({ category: main, subCategory: null });
+
+
+        if (category.megaMenu && Array.isArray(category.megaMenu)) {
+            category.megaMenu.forEach(section => {
+                section.items?.forEach(item => {
+                    flatCategories.push({ category: main, subCategory: item });
+                });
+            });
+        }
+    });
+
     const handleSearch = () => {
-        if (!searchTerm.trim()) return;
+        const term = searchTerm.trim().toLowerCase();
+        if (!term) return;
 
-        // Split into parts (ex: "men shoes" → ["men", "shoes"])
-        const parts = searchTerm.trim().toLowerCase().split(" ");
+        const match = flatCategories.find(entry => {
+            if (entry.subCategory) {
+                return entry.subCategory.toLowerCase() === term;
+            }
+            return entry.category.toLowerCase() === term;
+        });
 
-        if (parts.length === 1) {
-            navigate(`/search/${parts[0]}`);
+        if (match) {
+            if (match.subCategory) {
+                navigate(`/category/${match.category}/${match.subCategory}`);
+            } else {
+                navigate(`/category/${match.category}`);
+            }
         } else {
-            navigate(`/search/${parts[0]}/${parts[1]}`);
+            navigate(`/search/${term}`);
         }
 
-        setSearchTerm(""); // optional: clear input
+        setSearchTerm("");
     };
 
     const handleKeyDown = (e) => {
@@ -30,7 +60,7 @@ export default function Header() {
     return (
         <header className="w-full">
             <div className="bg-white shadow-md w-full px-4 md:px-10 py-4 flex flex-col md:flex-row md:items-center md:justify-between">
-                {/* Logo & Hamburger */}
+
                 <div className="flex items-center justify-between w-full md:w-auto">
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -42,7 +72,7 @@ export default function Header() {
                     </button>
 
                     <Link to="/" className="flex flex-col items-center md:items-start text-orange-500 w-full">
-                        <span className="text-xl font-bold uppercase ">Mahee Fashion</span>
+                        <span className="text-xl font-bold uppercase">Mahee Fashion</span>
                         <span className="text-xs text-orange-400 -mt-1">
                             Your Style, Our Passion
                         </span>
@@ -67,7 +97,7 @@ export default function Header() {
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            placeholder="Search for clothing, brands, or categories..."
+                            placeholder="Search by category or subcategory..."
                             className="flex-1 px-5 py-2 text-[16px] md:text-sm focus:outline-none bg-white"
                             inputMode="search"
                         />
@@ -79,9 +109,6 @@ export default function Header() {
                         </button>
                     </div>
                 </div>
-
-
-
 
                 {/* Desktop Icons */}
                 <div className="hidden md:flex items-center space-x-6">
@@ -104,7 +131,6 @@ export default function Header() {
                         <span className="font-semibold">Cart (0)</span>
                     </Link>
                 </div>
-
             </div>
 
             {/* CategoryBar */}

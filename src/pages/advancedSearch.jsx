@@ -60,6 +60,7 @@ export default function AdvancedSearch() {
     }, []);
 
     useEffect(() => {
+
         let filtered = [];
 
 
@@ -99,6 +100,8 @@ export default function AdvancedSearch() {
         } else {
             filtered = [...products];
         }
+
+
 
         // Apply Stock Filter
         if (stockFilter === "in") {
@@ -200,7 +203,7 @@ export default function AdvancedSearch() {
                     {/* Sidebar Filters */}
                     {(showFilters || !isMobile) && (
                         <FilterSidebar
-                            allProducts={products}
+                            allProducts={filteredProducts}
                             selectedBrands={selectedBrands}
                             setSelectedBrands={setSelectedBrands}
                             selectedColors={selectedColors}
@@ -214,6 +217,8 @@ export default function AdvancedSearch() {
                             isMobile={isMobile}
                             showFilters={showFilters}
                         />
+
+
                     )}
 
                     {/* Main Content */}

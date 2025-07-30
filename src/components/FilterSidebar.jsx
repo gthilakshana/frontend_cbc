@@ -15,21 +15,22 @@ export default function FilterSidebar({
     isMobile = false,
     showFilters = false,
 }) {
-    // Get unique brands/colors/sizes from products
-    const uniqueBrands = useMemo(
-        () => [...new Set(allProducts.flatMap(p => p.brands || []))],
-        [allProducts]
-    );
 
-    const uniqueColors = useMemo(
-        () => [...new Set(allProducts.flatMap(p => p.colors || []))],
-        [allProducts]
-    );
+    const filteredProducts = useMemo(() => {
+        return allProducts;
+    }, [allProducts]);
 
-    const uniqueSizes = useMemo(
-        () => [...new Set(allProducts.flatMap(p => p.sizes || []))],
-        [allProducts]
-    );
+    const uniqueBrands = useMemo(() => {
+        return [...new Set(filteredProducts.flatMap(p => p.brands || []))];
+    }, [filteredProducts]);
+
+    const uniqueColors = useMemo(() => {
+        return [...new Set(filteredProducts.flatMap(p => p.colors || []))];
+    }, [filteredProducts]);
+
+    const uniqueSizes = useMemo(() => {
+        return [...new Set(filteredProducts.flatMap(p => p.sizes || []))];
+    }, [filteredProducts]);
 
     const handlePriceChange = (e) => {
         const { name, value } = e.target;
@@ -39,27 +40,11 @@ export default function FilterSidebar({
         }));
     };
 
-    const handleBrandChange = (brand) => {
-        if (selectedBrands.includes(brand)) {
-            setSelectedBrands(selectedBrands.filter((b) => b !== brand));
+    const handleChange = (item, list, setList) => {
+        if (list.includes(item)) {
+            setList(list.filter(i => i !== item));
         } else {
-            setSelectedBrands([...selectedBrands, brand]);
-        }
-    };
-
-    const handleColorChange = (color) => {
-        if (selectedColors.includes(color)) {
-            setSelectedColors(selectedColors.filter((c) => c !== color));
-        } else {
-            setSelectedColors([...selectedColors, color]);
-        }
-    };
-
-    const handleSizeChange = (size) => {
-        if (selectedSizes.includes(size)) {
-            setSelectedSizes(selectedSizes.filter((s) => s !== size));
-        } else {
-            setSelectedSizes([...selectedSizes, size]);
+            setList([...list, item]);
         }
     };
 
@@ -69,13 +54,10 @@ export default function FilterSidebar({
     };
 
     return (
-        <aside
-            className={`bg-white p-4 border rounded space-y-6 ${showFilters || !isMobile ? "block" : "hidden"
-                } md:block md:col-span-1`}
-        >
+        <aside className={`bg-white p-4 border rounded space-y-6 ${showFilters || !isMobile ? "block" : "hidden"} md:block md:col-span-1`}>
             <h2 className="text-base font-semibold uppercase mb-4">Filters</h2>
 
-            {/* Stock Filter */}
+            {/* Stock */}
             <div>
                 <h3 className="text-xs font-semibold uppercase mb-2">Availability</h3>
                 <label className="block text-sm mb-1">
@@ -100,7 +82,7 @@ export default function FilterSidebar({
                 </label>
             </div>
 
-            {/* Price Filter */}
+            {/* Price */}
             <div>
                 <h3 className="text-xs font-semibold uppercase mb-2">Price</h3>
                 <div className="flex gap-2">
@@ -123,54 +105,59 @@ export default function FilterSidebar({
                 </div>
             </div>
 
-            {/* Brand Filter */}
-            <div>
-                <h3 className="text-xs font-semibold uppercase mb-2">Brands</h3>
-                {uniqueBrands.map((brand) => (
-                    <label key={brand} className="block text-sm mb-1">
-                        <input
-                            type="checkbox"
-                            checked={selectedBrands.includes(brand)}
-                            onChange={() => handleBrandChange(brand)}
-                            className="mr-2 accent-orange-600"
-                        />
-                        {brand}
-                    </label>
-                ))}
-            </div>
+            {/* Brands */}
+            {uniqueBrands.length > 0 && (
+                <div>
+                    <h3 className="text-xs font-semibold uppercase mb-2">Brands</h3>
+                    {uniqueBrands.map((brand) => (
+                        <label key={brand} className="block text-sm mb-1">
+                            <input
+                                type="checkbox"
+                                checked={selectedBrands.includes(brand)}
+                                onChange={() => handleChange(brand, selectedBrands, setSelectedBrands)}
+                                className="mr-2 accent-orange-600"
+                            />
+                            {brand}
+                        </label>
+                    ))}
+                </div>
+            )}
 
-            {/* Color Filter */}
-            <div>
-                <h3 className="text-xs font-semibold uppercase mb-2">Colors</h3>
-                {uniqueColors.map((color) => (
-                    <label key={color} className="block text-sm mb-1">
-                        <input
-                            type="checkbox"
-                            checked={selectedColors.includes(color)}
-                            onChange={() => handleColorChange(color)}
-                            className="mr-2 accent-orange-600"
-                        />
-                        {color}
-                    </label>
-                ))}
-            </div>
+            {/* Colors */}
+            {uniqueColors.length > 0 && (
+                <div>
+                    <h3 className="text-xs font-semibold uppercase mb-2">Colors</h3>
+                    {uniqueColors.map((color) => (
+                        <label key={color} className="block text-sm mb-1">
+                            <input
+                                type="checkbox"
+                                checked={selectedColors.includes(color)}
+                                onChange={() => handleChange(color, selectedColors, setSelectedColors)}
+                                className="mr-2 accent-orange-600"
+                            />
+                            {color}
+                        </label>
+                    ))}
+                </div>
+            )}
 
-            {/* Size Filter */}
-            <div>
-                <h3 className="text-xs font-semibold uppercase mb-2">Sizes</h3>
-                {uniqueSizes.map((size) => (
-                    <label key={size} className="block text-sm mb-1">
-                        <input
-                            type="checkbox"
-                            checked={selectedSizes.includes(size)}
-                            onChange={() => handleSizeChange(size)}
-                            className="mr-2 accent-orange-600"
-                        />
-                        {size}
-                    </label>
-                ))}
-            </div>
-
+            {/* Sizes */}
+            {uniqueSizes.length > 0 && (
+                <div>
+                    <h3 className="text-xs font-semibold uppercase mb-2">Sizes</h3>
+                    {uniqueSizes.map((size) => (
+                        <label key={size} className="block text-sm mb-1">
+                            <input
+                                type="checkbox"
+                                checked={selectedSizes.includes(size)}
+                                onChange={() => handleChange(size, selectedSizes, setSelectedSizes)}
+                                className="mr-2 accent-orange-600"
+                            />
+                            {size}
+                        </label>
+                    ))}
+                </div>
+            )}
         </aside>
     );
 }

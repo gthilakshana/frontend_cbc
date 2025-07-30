@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FaTh, FaList } from "react-icons/fa";
+import { MdSearchOff } from "react-icons/md";
 import ProductListCard from "../components/ProductListCard";
 import FooterSmall from "../components/footerSmall";
 import FilterSidebar from "../components/FilterSidebar";
@@ -61,7 +62,7 @@ export default function AdvancedSearch() {
     useEffect(() => {
         let filtered = [];
 
-        // Initial filter by category/term
+
         if (term) {
             const searchTerm = term.toLowerCase().trim();
             filtered = products.filter(
@@ -194,7 +195,7 @@ export default function AdvancedSearch() {
                     </div>
                 )}
 
-                {/* Main Grid */}
+
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
                     {/* Sidebar Filters */}
                     {(showFilters || !isMobile) && (
@@ -266,9 +267,11 @@ export default function AdvancedSearch() {
                                     )
                                 )
                             ) : (
-                                <p className="text-center text-gray-500 col-span-full">
-                                    No products found.
-                                </p>
+                                <div className="col-span-full flex flex-col items-center justify-center py-12">
+                                    <MdSearchOff className="text-6xl text-orange-500 mb-4" />
+                                    <p className="text-center text-gray-500 text-lg">No products found.</p>
+                                </div>
+
                             )}
                         </div>
                     </main>
